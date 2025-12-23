@@ -47,3 +47,18 @@ Official Release Channels
 - CurseForge：https://www.curseforge.com/minecraft/mc-mods/croparium
 
 - Modrinth：https://modrinth.com/mod/croparium
+
+# 🌟 自愿赞赏支持
+感谢你体验LitQA的模组！所有模组均会长期保持免费和开放。
+
+## 💰 赞赏说明
+1. 本赞赏为自愿行为，不赞赏也可正常使用所有模组的完整功能；
+2. 赞赏资金将用于：模组维护、模组功能开发；
+3. 未成年人请在家长同意下理性支持。
+
+## 📱 赞赏通道
+
+| 支付方式 | 微信支付|支付宝支付| 微信赞赏|
+|----------|--------|--------|--------|
+| 收款码  | ![bbeabdc41b1420efa42ca9de121f2dae](https://github.com/user-attachments/assets/3e04a4e3-b60d-4b99-b86f-bb8874cd5090)|![f5b5c49a98ec39b0c0afad5a0d0b6eef](https://github.com/user-attachments/assets/7e4e7eec-9b2e-40e0-8274-0e3c599328cf)|<img width="1037" height="1037" alt="0fd564bc0812c0dfad80006026ed84cb" src="https://github.com/user-attachments/assets/82565574-737c-40c8-888a-f77402eea3ed" />|
+
