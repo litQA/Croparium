@@ -2,6 +2,8 @@
 ## Project Introduction
 Croparium is a practical mod designed for Minecraft, aiming to provide players with a new way to obtain resourses and enrich the gaming experience.
 
+This mod complies with the Mojang EULA and is for non-commercial use only. Reselling or using it for commercial profit is strictly prohibited.
+
 ## License Terms
 
 - Source Code: **All Rights Reserved**
@@ -26,6 +28,8 @@ Official Release Channels
 
 # 项目简介
 矿石种植工艺是一款为Minecraft设计的实用模组，旨在为玩家提供全新的资源获取方式，丰富游戏体验。
+
+本模组遵循Mojang EULA，仅用于非商业用途，严禁倒卖或用于商业盈利。
 
 # 许可条款
 
