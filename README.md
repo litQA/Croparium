@@ -4,7 +4,7 @@ Croparium is a practical mod designed for Minecraft, aiming to provide players w
 
 ## License Terms
 
-- Source Code: Closed-source, licensed under **All Rights Reserved**
+- Source Code: **All Rights Reserved**
 
 - Assets (textures, models, etc.): Licensed under **CC-BY-NC 4.0**
 
@@ -29,10 +29,10 @@ Official Release Channels
 
 # 许可条款
 
-- 源码：闭源，保留所有权利
-- 资源文件（贴图、模型等）：采用知识共享 署名-非商业性使用 4.0 国际许可协议 许可
+- 源码：**保留所有权利**
+- 资源文件（贴图、模型等）：采用**知识共享 署名-非商业性使用 4.0 国际许可协议**许可
 
-- Jar 文档：采用 知识共享 署名-非商业性使用 4.0 国际许可协议 许可
+- Jar 文档：采用**知识共享 署名-非商业性使用 4.0 国际许可协议**许可
 
 # 使用与分发说明
 
