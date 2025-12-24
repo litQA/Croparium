@@ -69,65 +69,43 @@
 
 ###### For English Players
 
-**Use "English Config.json" directly. The content of the file is as follows:**
+**Use `English Config.json` directly. The content of the file is as follows:**
 
 
 
-{
-
-&nbsp; "This value determines whether entuties will take damage when walking on farmland soaked with lava (Defaut: true)": true,
-
-&nbsp; "This value determines whether the right-click to harvest crops function is enabled (Defaut: true)": true,
-
-&nbsp; "This value determines whether smelted items will drop when harvesting crops with a tool enchanted with fire aspect using right-click (Defaut: true)": true,
-
-&nbsp; "This value determines whether the reactor core is enabled (Defaut: true)": true,
-
-&nbsp; "This value determines the base number of items dropped when right clicking to harvest (Default: 2.0)": 2.0,
-
-&nbsp; "This value determines the extra number of items dropped when breaking mature crops (Default: 0.0)": 0.0,
-
-&nbsp; "This value determines how fast the crop grows, bigger the value is, slower the crops grow  (Default: 3.0)": 3.0,
-
-&nbsp; "This value determines how frequently the reactor core refreshes, and setting this value too low may cause lag (Default: 180.0)": 180.0,
-
-&nbsp; "This value determines the success rate of obtaining embryo shards each time in the classic stonecutter  (Default: 0.3)": 0.3
-
-}
+`{
+"This value determines whether entuties will take damage when walking on farmland soaked with lava (Defaut: true)": true,
+"This value determines whether the right-click to harvest crops function is enabled (Defaut: true)": true,
+"This value determines whether smelted items will drop when harvesting crops with a tool enchanted with fire aspect using right-click (Defaut: true)": true,
+"This value determines whether the reactor core is enabled (Defaut: true)": true,
+"This value determines the base number of items dropped when right clicking to harvest (Default: 2.0)": 2.0,
+"This value determines the extra number of items dropped when breaking mature crops (Default: 0.0)": 0.0,
+"This value determines how fast the crop grows, bigger the value is, slower the crops grow  (Default: 3.0)": 3.0,
+"This value determines how frequently the reactor core refreshes, and setting this value too low may cause lag (Default: 180.0)": 180.0,
+"This value determines the success rate of obtaining embryo shards each time in the classic stonecutter  (Default: 0.3)": 0.3
+}`
 
 ###### 中文玩家
 
-**使用”中文配置.json“，文件内容如下：**
+**使用`中文配置.json`，文件内容如下：**
 
 
 
-{
+`{
+"启用中文配置（英文配置文件将被忽略）": false,
+"该数值决定实体在被岩浆浸润的农田上行走时是否会受到伤害 (默认: true)": true,
+"该数值决定是否启用右键收获作物功能 (默认: true)": true,
+"该数值决定使用火焰附加的工具右键收获作物时是否掉落熔炼后的物品 (默认: true)": true,
+"该数值决定是否启用反应核心 (默认: true)": true,
+"该数值决定是否可以用矿芯碎片催熟对应作物 (默认: true)": true,
+"该数值决定右键收获时的基础掉落物数量 (默认: 2.0)": 2.0,
+"该数值决定破坏成熟作物时的额外掉落物数量 (默认: 0.0)": 0.0,
+"该数值决定作物成长快慢，数值越大，作物成长速度越慢 (默认: 3.0)": 3.0,
+ "该数值决定反应核心刷新周期，过低的数值可能会导致卡顿 (默认: 180.0)": 180.0,
+"该数值决定每次在经典切石机中提取矿芯碎片的成功率 (默认: 0.3)": 0.3
+}`
 
-&nbsp; "启用中文配置（英文配置文件将被忽略）": false,
-
-&nbsp; "该数值决定实体在被岩浆浸润的农田上行走时是否会受到伤害 (默认: true)": true,
-
-&nbsp; "该数值决定是否启用右键收获作物功能 (默认: true)": true,
-
-&nbsp; "该数值决定使用火焰附加的工具右键收获作物时是否掉落熔炼后的物品 (默认: true)": true,
-
-&nbsp; "该数值决定是否启用反应核心 (默认: true)": true,
-
-&nbsp; "该数值决定是否可以用矿芯碎片催熟对应作物 (默认: true)": true,
-
-&nbsp; "该数值决定右键收获时的基础掉落物数量 (默认: 2.0)": 2.0,
-
-&nbsp; "该数值决定破坏成熟作物时的额外掉落物数量 (默认: 0.0)": 0.0,
-
-&nbsp; "该数值决定作物成长快慢，数值越大，作物成长速度越慢 (默认: 3.0)": 3.0,
-
-&nbsp; "该数值决定反应核心刷新周期，过低的数值可能会导致卡顿 (默认: 180.0)": 180.0,
-
-&nbsp; "该数值决定每次在经典切石机中提取矿芯碎片的成功率 (默认: 0.3)": 0.3
-
-}
-
-* 配置项与英文文件对应；中文玩家需将「启用中文配置（英文配置文件将被忽略）」设为true。
+* 配置项与英文文件对应；中文玩家需将`启用中文配置（英文配置文件将被忽略）`设为true。
 
 #### Change
 
@@ -271,7 +249,14 @@ The specific effects of each module are as follows:
 * Seed Drop Mechanic Optimization: When the main-hand tool has no Fortune enchantment, the probability of dropping 1 seed after destroying mature crops is 50%. The Fortune enchantment can still increase the maximum drop quantity, but the bonus magnitude is reduced.
 * The specific probability distribution is shown in the following table:
 
-
+| Drop Quantity | No Fortune | Fortune I | Fortune II | Fortune III | Fortune n (n>1) |
+|---------------|------------|-----------|------------|-------------|--------------------|
+| 1             | 50%        | 50%       | 50%        | 50%         | 50%                |
+| 2             | 50%        | 25%       | 16.7%      | 12.5%       | 1/[2(n-1)]         |
+| 3             | 0%         | 25%       | 16.7%      | 12.5%       | 1/[2(n-1)]         |
+| 4             | 0%         | 0%        | 16.7%      | 12.5%       | 1/[2(n-1)]         |
+| 5             | 0%         | 0%        | 0%         | 12.5%       | 1/[2(n-1)]         |
+| Average | 1.5 | 1.75 | 2.0 | 2.25 | (n+6)/4 |
 
 
 
@@ -972,3 +957,4 @@ This rule controls whether ore crops can only be planted in specified environmen
 * Left-hand holding of Ore Seeds now allows planting.​
 * Now, Overworld crops require ore embryo shard to ripen, while Nether crops require nether ore embryo shard for ripening.​ (Bone meal will no longer work )
 * The Stone Crafting Table now requires Redstone power to function.
+
