@@ -1,3 +1,91 @@
+# Croparium 4.6.5-beta
+## Dec 26, 2025
+
+#### New Content
+
+##### Configuration Files
+Added 5 new configuration keys.
+
+###### English Configuration File
+
+
+```
+{
+  "This value determines whether the condition of surrounding farmland will affect the growth rate of crops (Default: true)": true,
+  "This value determines whether farmland soaked by magma will turn water into cobblestone upon contact (Default: true)": true,
+  "This value determines whether the reactor core consumes the module durability (Default: true)": true,
+  "This value determines the horizontal range multiplier when the reactor core takes effect  (Default: 6.0)": 6.0,
+  "This value determines the vertical range multiplier when the reactor core takes effect  (Default: 1.0)": 1.0
+}
+```
+
+
+###### Chinese Configuration File
+
+
+```
+{
+  "该数值决定周围耕地状态是否会影响作物的生长速率 (默认: true)": true,
+  "该数值决定被岩浆浸润的农田接触到水是否将水转换为圆石 (默认: true)": true,
+  "该数值决定反应核心是否消耗模块的耐久度 (默认: true)": true,
+  "该数值决定反应核心生效时作用的水平方向范围乘数 (默认: 6.0)": 6.0,
+  "该数值决定反应核心生效时作用的垂直方向范围乘数 (默认: 1.0)": 1.0
+}
+
+```
+
+##### Commands
+
+- Added command /cropariumReload, only available on the server side. After execution, it will immediately re-read the existing configuration file or automatically create one if the file is missing.
+
+##### Achievement
+
+- Added New Achievement: **No more hunger**.
+- Obtain the Agricultural Reaction Module. Seedlings form shade, golden ears fill the granary—once a persistent pursuit for subsistence, it harbors the sincerity of a lifetime of tilling the land.
+
+#### Changes
+
+##### Reactor Core
+
+- Removed the hard-coded restriction on the effective range; supports custom adjustment of the effective range after activation through the configuration file. Please fully understand its mechanism before making adjustments.
+
+
+  - Length & Width = 2 × Horizontal Range Multiplier × Base Level + 1
+
+  - Height = 2 × Vertical Range Multiplier × Base Level - 1
+
+- Range calculation rules: Taking the reactor core coordinates as the center, a cubic effective area is formed. The specific formulas are:
+
+- Default parameters: The default horizontal range multiplier is 6.0, and the default vertical range multiplier is 1.0.
+
+- Important note: Excessively large multiplier settings may disrupt game balance and cause significant performance impacts on certain devices; it is recommended to adjust reasonably.
+
+- Added a configuration item to control whether the reactor core consumes module durability during operation; the consumption function is enabled by default.
+
+##### Farmland & Crop Mechanism Adjustments
+
+- The impact of surrounding farmland conditions on crop growth rate can be enabled/disabled through the configuration file (enabled by default). When disabled, a preset fixed growth rate will be used.
+
+- Whether water will be converted to cobblestone when farmland soaked by magma comes into contact with water can be controlled through the configuration file (enabled by default).
+
+##### Configuration File Loading
+
+- Game initialization phase: Only performs the configuration file creation operation, without reading the file content.
+
+- World loading phase: Automatically reads the configuration file content and applies the configuration parameters.
+
+#### Fixes
+
+- Fixed the issue where the game failed to start when jauml was not installed. Now, not installing jauml will no longer cause a crash, but only missing configuration file-related functions.
+
+- Fixed an issue causing unexpected drops of crop products.
+
+- Fixed the crash issue caused by entering invalid numbers in the numeric items of the English configuration file.
+
+- Fixed the issue where the server crashed when the client did not agree to the stance confirmation pop-up GUI.
+
+#
+
 # Croparium 4.5.2
 
 ## Dec 24, 2025
@@ -72,38 +160,62 @@
 **Use `English Config.json` directly. The content of the file is as follows:**
 
 
+```
+{
 
-`{
 "This value determines whether entuties will take damage when walking on farmland soaked with lava (Defaut: true)": true,
+
 "This value determines whether the right-click to harvest crops function is enabled (Defaut: true)": true,
+
 "This value determines whether smelted items will drop when harvesting crops with a tool enchanted with fire aspect using right-click (Defaut: true)": true,
+
 "This value determines whether the reactor core is enabled (Defaut: true)": true,
+
 "This value determines the base number of items dropped when right clicking to harvest (Default: 2.0)": 2.0,
+
 "This value determines the extra number of items dropped when breaking mature crops (Default: 0.0)": 0.0,
+
 "This value determines how fast the crop grows, bigger the value is, slower the crops grow  (Default: 3.0)": 3.0,
+
 "This value determines how frequently the reactor core refreshes, and setting this value too low may cause lag (Default: 180.0)": 180.0,
+
 "This value determines the success rate of obtaining embryo shards each time in the classic stonecutter  (Default: 0.3)": 0.3
-}`
+
+}
+```
 
 ###### 中文玩家
 
 **使用`中文配置.json`，文件内容如下：**
 
 
+```
+{
 
-`{
 "启用中文配置（英文配置文件将被忽略）": false,
+
 "该数值决定实体在被岩浆浸润的农田上行走时是否会受到伤害 (默认: true)": true,
+
 "该数值决定是否启用右键收获作物功能 (默认: true)": true,
+
 "该数值决定使用火焰附加的工具右键收获作物时是否掉落熔炼后的物品 (默认: true)": true,
+
 "该数值决定是否启用反应核心 (默认: true)": true,
+
 "该数值决定是否可以用矿芯碎片催熟对应作物 (默认: true)": true,
+
 "该数值决定右键收获时的基础掉落物数量 (默认: 2.0)": 2.0,
+
 "该数值决定破坏成熟作物时的额外掉落物数量 (默认: 0.0)": 0.0,
+
 "该数值决定作物成长快慢，数值越大，作物成长速度越慢 (默认: 3.0)": 3.0,
+
  "该数值决定反应核心刷新周期，过低的数值可能会导致卡顿 (默认: 180.0)": 180.0,
+
 "该数值决定每次在经典切石机中提取矿芯碎片的成功率 (默认: 0.3)": 0.3
-}`
+
+}
+```
 
 * 配置项与英文文件对应；中文玩家需将`启用中文配置（英文配置文件将被忽略）`设为true。
 
@@ -957,4 +1069,5 @@ This rule controls whether ore crops can only be planted in specified environmen
 * Left-hand holding of Ore Seeds now allows planting.​
 * Now, Overworld crops require ore embryo shard to ripen, while Nether crops require nether ore embryo shard for ripening.​ (Bone meal will no longer work )
 * The Stone Crafting Table now requires Redstone power to function.
+
 
