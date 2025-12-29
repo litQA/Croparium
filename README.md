@@ -1,7 +1,7 @@
 
 <img width="2048" height="1152" alt="white bg wide" src="https://github.com/user-attachments/assets/5397d140-df74-4261-ba8a-4d4f78490032" />
 
-[<img width="276" height="80" alt="mcmod" src="https://github.com/user-attachments/assets/9dfd1f0f-9a73-4b45-bff7-5ab6f43268e7" />](https://www.mcmod.cn/class/22202.html)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<img width="276" height="80" alt="curseforge" src="https://github.com/user-attachments/assets/bfdca0ad-073c-47fe-9b8f-5bdbbdc5a3a7" />](https://www.curseforge.com/minecraft/mc-mods/croparium)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<img width="276" height="80" alt="modrinth" src="https://github.com/user-attachments/assets/2fe4fdf4-b383-4167-b25b-5ac95ff30dea" />](https://modrinth.com/mod/croparium)
+[<img width="276" height="80" alt="mcmod" src="https://github.com/user-attachments/assets/9dfd1f0f-9a73-4b45-bff7-5ab6f43268e7" />](https://www.mcmod.cn/class/22202.html) [<img width="276" height="80" alt="curseforge" src="https://github.com/user-attachments/assets/bfdca0ad-073c-47fe-9b8f-5bdbbdc5a3a7" />](https://www.curseforge.com/minecraft/mc-mods/croparium) [<img width="276" height="80" alt="modrinth" src="https://github.com/user-attachments/assets/2fe4fdf4-b383-4167-b25b-5ac95ff30dea" />](https://modrinth.com/mod/croparium)
 
 # Croparium
 ## Project Introduction
