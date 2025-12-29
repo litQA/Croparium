@@ -1,4 +1,9 @@
-# The Croparium Project
+
+<img width="2048" height="1152" alt="white bg wide" src="https://github.com/user-attachments/assets/5397d140-df74-4261-ba8a-4d4f78490032" />
+
+[<img width="276" height="80" alt="mcmod" src="https://github.com/user-attachments/assets/9dfd1f0f-9a73-4b45-bff7-5ab6f43268e7" />](https://www.mcmod.cn/class/22202.html)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<img width="276" height="80" alt="curseforge" src="https://github.com/user-attachments/assets/bfdca0ad-073c-47fe-9b8f-5bdbbdc5a3a7" />](https://www.curseforge.com/minecraft/mc-mods/croparium)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<img width="276" height="80" alt="modrinth" src="https://github.com/user-attachments/assets/2fe4fdf4-b383-4167-b25b-5ac95ff30dea" />](https://modrinth.com/mod/croparium)
+
+# Croparium
 ## Project Introduction
 Croparium is a practical mod designed for Minecraft, aiming to provide players with a new way to obtain resourses and enrich the gaming experience.
 
@@ -16,17 +21,8 @@ This mod complies with the Mojang EULA and is for non-commercial use only. Resel
 
 You can freely use this mod in your own modpacks; you may distribute it freely under the premise of non-commercial use.
 
-Official Release Channels
 
-- GitHub: https://github.com/litQA/Croparium
-
-- MCMOD: https://www.mcmod.cn/class/22202.html
-
-- CurseForge: https://www.curseforge.com/minecraft/mc-mods/croparium
-
-- Modrinth: https://modrinth.com/mod/croparium
-
-# 矿石种植工艺 项目
+# 项目
 
 ## 项目简介
 矿石种植工艺是一款为Minecraft设计的实用模组，旨在为玩家提供全新的资源获取方式，丰富游戏体验。
@@ -43,16 +39,6 @@ Official Release Channels
 ## 使用与分发说明
 
 你可以在自己的整合包中随意使用该模组；在非商业使用的前提下，可自由进行分发。
-
-## 官方发布渠道
-
-- GitHub：https://github.com/litQA/Croparium
-
-- MC百科：https://www.mcmod.cn/class/22202.html
-
-- CurseForge：https://www.curseforge.com/minecraft/mc-mods/croparium
-
-- Modrinth：https://modrinth.com/mod/croparium
 
 ## 🌟 自愿赞赏支持
 感谢你体验LitQA的模组！
