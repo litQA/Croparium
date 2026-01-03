@@ -3,7 +3,7 @@
 |Version|1.18.2|1.19.2|1.19.4|1.20.1|
 |:----------:|:--------:|:--------:|:--------:|:--------:|
 |Status|*Major*|*Major*|Patch|*Major*|
-|Latest Stable Version|4.7.1|4.7.1|4.5.3|4.7.1|
+|Latest Stable Version|4.7.2|4.7.1|4.5.3|4.7.1|
 
 ## Minecraft NeoForge (≤ 21.3)
 |Version|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|
