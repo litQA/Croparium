@@ -1,5 +1,5 @@
 
-<img width="2048" height="1152" alt="white bg wide" src="https://github.com/user-attachments/assets/5397d140-df74-4261-ba8a-4d4f78490032" />
+<img width="850" height="" alt="white bg wide" src="https://github.com/user-attachments/assets/5397d140-df74-4261-ba8a-4d4f78490032" />
 
 [<img width="138" height="40" alt="mcmod" src="https://github.com/user-attachments/assets/9dfd1f0f-9a73-4b45-bff7-5ab6f43268e7" />](https://www.mcmod.cn/class/22202.html) [<img width="138" height="40" alt="curseforge" src="https://github.com/user-attachments/assets/bfdca0ad-073c-47fe-9b8f-5bdbbdc5a3a7" />](https://www.curseforge.com/minecraft/mc-mods/croparium) [<img width="138" height="40" alt="modrinth" src="https://github.com/user-attachments/assets/2fe4fdf4-b383-4167-b25b-5ac95ff30dea" />](https://modrinth.com/mod/croparium)
 
@@ -21,6 +21,9 @@ This mod complies with the Mojang EULA and is for non-commercial use only. Resel
 
 You can freely use this mod in your own modpacks; you may distribute it freely under the premise of non-commercial use.
 
+## Donate
+- Thank you for using Croparium! If you enjoy using this mod and would like to help fund its ongoing development, consider making a donation. Every contribution, no matter how small, goes a long way towards motivating me to keep on new features and improvements.
+- [**Donate via PayPal**](https://www.paypal.com/paypalme/litqa?v=1&utm_source=unp&utm_medium=email&utm_campaign=RT000481&utm_unptid=1894623a-e948-11f0-b113-bf54788e6dd5&ppid=RT000481&cnac=C2&rsta=zh_XC%28zh-CN-xbord%29&cust=4PQSLRKG4YK7G&unptid=1894623a-e948-11f0-b113-bf54788e6dd5&calc=f815425577a98&unp_tpcid=ppme-social-business-profile-created&page=main%3Aemail%3ART000481&pgrp=main%3Aemail&e=cl&mchn=em&s=ci&mail=sys&appVersion=1.375.0&tenant_name=PAYPAL&xt=145585%2C154413%2C104038&link_ref=paypalme_litqa)
 
 # 项目
 
