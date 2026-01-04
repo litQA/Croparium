@@ -4,6 +4,9 @@
 [<img width="138" height="40" alt="mcmod" src="https://github.com/user-attachments/assets/9dfd1f0f-9a73-4b45-bff7-5ab6f43268e7" />](https://www.mcmod.cn/class/22202.html) [<img width="138" height="40" alt="curseforge" src="https://github.com/user-attachments/assets/bfdca0ad-073c-47fe-9b8f-5bdbbdc5a3a7" />](https://www.curseforge.com/minecraft/mc-mods/croparium) [<img width="138" height="40" alt="modrinth" src="https://github.com/user-attachments/assets/2fe4fdf4-b383-4167-b25b-5ac95ff30dea" />](https://modrinth.com/mod/croparium)
 
 # Croparium
+<details open>
+<summary>Click to collapse/expand Project Description</summary>
+  
 ## Project Introduction
 Croparium is a practical mod designed for Minecraft, aiming to provide players with a new way to obtain resourses and enrich the gaming experience.
 
@@ -23,10 +26,18 @@ You can freely use this mod in your own modpacks; you may distribute it freely u
 
 ## Donate
 - Thank you for using Croparium! If you enjoy using this mod and would like to help fund its ongoing development, consider making a donation. Every contribution, no matter how small, goes a long way towards motivating me to keep on new features and improvements.
+- You can use all full features of the mod normally without donating.
+- Donation funds will all be used for: **mod maintenance and new feature development**.
+- This mod will remain free for the long term.
 - [**Donate via PayPal**](https://www.paypal.com/paypalme/litqa?v=1&utm_source=unp&utm_medium=email&utm_campaign=RT000481&utm_unptid=1894623a-e948-11f0-b113-bf54788e6dd5&ppid=RT000481&cnac=C2&rsta=zh_XC%28zh-CN-xbord%29&cust=4PQSLRKG4YK7G&unptid=1894623a-e948-11f0-b113-bf54788e6dd5&calc=f815425577a98&unp_tpcid=ppme-social-business-profile-created&page=main%3Aemail%3ART000481&pgrp=main%3Aemail&e=cl&mchn=em&s=ci&mail=sys&appVersion=1.375.0&tenant_name=PAYPAL&xt=145585%2C154413%2C104038&link_ref=paypalme_litqa)
 
-# 项目
+</details>
 
+# 矿石种植工艺
+
+<details>
+<summary>单击以折叠/展开 项目说明（中国大陆地区简体）</summary>
+  
 ## 项目简介
 矿石种植工艺是一款为Minecraft设计的实用模组，旨在为玩家提供全新的资源获取方式，丰富游戏体验。
 
@@ -44,6 +55,9 @@ You can freely use this mod in your own modpacks; you may distribute it freely u
 你可以在自己的整合包中随意使用该模组；在非商业使用的前提下，可自由进行分发。
 
 ## 🌟 自愿赞赏支持
+<details>
+<summary>点击展开/折叠 中国大陆赞赏说明</summary>
+  
 感谢你体验LitQA的模组！
 
 希望每一次更新都能给大家的游戏体验添一份乐趣。这些模组将始终保持免费和开放。你的支持会成为LitQA熬夜打磨新功能的动力。
@@ -60,3 +74,42 @@ You can freely use this mod in your own modpacks; you may distribute it freely u
 |----------|--------|--------|
 | 二维码  |<img width="1037" height="1037" alt="0fd564bc0812c0dfad80006026ed84cb" src="https://github.com/user-attachments/assets/4d38053e-ac8d-4196-920f-ba6dc8997cf5" />|![f5b5c49a98ec39b0c0afad5a0d0b6eef](https://github.com/user-attachments/assets/7e4e7eec-9b2e-40e0-8274-0e3c599328cf)|
 
+</details>
+
+</details>
+
+# 礦石種植工藝
+<details><summary>點擊以收合/展開 專案說明（中国台灣省地区繁體）</summary>
+  
+## 專案簡介
+- 礦石種植工藝是一款為 Minecraft 設計的實用模組，旨在為玩家提供全新的資源獲取方式，豐富遊戲體驗。
+- 本模組遵循 Mojang EULA，僅用於非商業用途，嚴禁轉賣或用於商業獲利。
+## 授權條款
+- 原始碼：保留所有權利
+- 資源檔案（材質、模型等）：採用創用 CC 姓名標示 - 非商業性使用 4.0 國際授權條款授權
+- Jar 檔案：採用創用 CC 姓名標示 - 非商業性使用 4.0 國際授權條款授權
+### 使用與散佈說明
+你可以在自己的整合包中任意使用該模組；在非商業使用的前提下，可自由進行散佈。
+
+</details>
+
+# Ресурсная культивация
+
+<details>
+<summary>Нажмите, чтобы свернуть/развернуть описание проекта</summary>
+  
+## Описание проекта
+Технология выращивания руд — практичный мод для Minecraft, созданный для предоставления игрокам нового способа получения ресурсов и обогащения игрового опыта.
+
+Данный мод соответствует Mojang EULA и предназначен исключительно для некоммерческого использования. Перепродажа или использование в коммерческих целях строго запрещены.
+
+Этот мод-проект будет оставаться бесплатным на долгое время.
+
+## Лицензионные условия
+- Исходный код: **Все права защищены**
+- Ресурсные файлы (текстуры, модели и т.д.): распространяются на условиях **лицензии Creative Commons «Атрибуция — Некоммерческое использование» 4.0 Международная (CC BY-NC 4.0)**
+Файлы Jar: распространяются на условиях **лицензии Creative Commons «Атрибуция — Некоммерческое использование» 4.0 Международная (CC BY-NC 4.0)**
+## Инструкции по использованию и распространению
+Вы можете свободно использовать этот мод в своих мод-паках; при условии некоммерческого использования его можно свободно распространять.
+
+</details>
