@@ -1,4 +1,4 @@
-# New Version Progress
+# New Version Progress丨新版本开发进度
 ## Croparium v5.0
 Progress：████░░░░░░░░░░░  26.67%
 
