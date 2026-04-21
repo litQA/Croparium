@@ -1,3 +1,9 @@
+# New Version Progress
+## Croparium v5.0
+Progress：████░░░░░░░░░░░  26.67%
+
+Supported Versions Estimated: Forge 1.20.1; NeoForge 1.21.1, 1.21.4, 1.21.8, 26.1.2; Fabric 1.21.8, 26.1.2
+
 # Version Support丨版本支持
 ## Minrcraft Forge
 |Minrcraft Version|1.18.2|1.19.2|1.19.4|1.20.1|
