@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cp_lib:block/honeycomb_block_farmland"
+    },
+    "facing=east": {
+      "model": "cp_lib:block/honeycomb_block_farmland",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "cp_lib:block/honeycomb_block_farmland",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cp_lib:block/honeycomb_block_farmland",
+      "y": 270
+    }
+  }
+}

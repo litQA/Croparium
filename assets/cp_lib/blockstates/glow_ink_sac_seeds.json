@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cp_lib:block/glow_ink_sac_seeds"
+    }
+  }
+}
