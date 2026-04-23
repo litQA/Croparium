@@ -1,0 +1,98 @@
+{
+  "homepage": "https://modrinth.com/mod/croparium",
+
+  "versions": [
+    {
+      "version": "5.0.1-alpha",
+      "mcVersion": "1.20.1",
+      "loaders": [
+        "forge"
+      ],
+      "type": "alpha",
+      "url": "https://github.com/litQA/Croparium/releases/download/v5.0.0-alpha/cp_lib-5.0.0-alpha-forge-1.20.1.jar",
+      "changelog": ""
+    },
+    {
+      "version": "4.8.3",
+      "mcVersion": "1.19.4",
+      "loaders": [
+        "forge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    },
+    {
+      "version": "4.8.3",
+      "mcVersion": "1.19.2",
+      "loaders": [
+        "forge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    },
+    {
+      "version": "4.8.3",
+      "mcVersion": "1.18.2",
+      "loaders": [
+        "forge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    },
+
+    
+    {
+      "version": "",
+      "mcVersion": "1.20.4",
+      "loaders": [
+        "neoforge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    },
+    {
+      "version": "",
+      "mcVersion": "1.20.6",
+      "loaders": [
+        "neoforge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    },
+    {
+      "version": "",
+      "mcVersion": "1.21.1",
+      "loaders": [
+        "neoforge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    },
+    {
+      "version": "4.8.3",
+      "mcVersion": "1.21.4",
+      "loaders": [
+        "neoforge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    },
+    {
+      "version": "",
+      "mcVersion": "1.21.8",
+      "loaders": [
+        "neoforge"
+      ],
+      "type": "release",
+      "url": "",
+      "changelog": ""
+    }
+  ]
+}
