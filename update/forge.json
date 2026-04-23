@@ -19,7 +19,7 @@
   "1.19.2": [
     {
       "version": "4.8.3",
-      "url": "",
+      "url": "https://cdn.modrinth.com/data/srNXPOFJ/versions/Sy6vrGNp/cp_lib-4.8.3-build.3416-forge-1.19.2.jar",
       "changelog": "Added sponge crop, sponge chunks and Dragon's Breath Fluid with unique mechanics. Adjusted sponge loot, ender farmland hydration rules, Excessively Sweet Water behavior, and fixed related fluid tag error.",
       "type": "release"
     }
@@ -27,7 +27,7 @@
   "1.18.2": [
     {
       "version": "4.8.3",
-      "url": "",
+      "url": "https://cdn.modrinth.com/data/srNXPOFJ/versions/w6kPbSOh/cp_lib-4.8.3-build.3420-forge-1.18.2.jar",
       "changelog": "Added sponge crop, sponge chunks and Dragon's Breath Fluid with unique mechanics. Adjusted sponge loot, ender farmland hydration rules, Excessively Sweet Water behavior, and fixed related fluid tag error.",
       "type": "release"
     }
