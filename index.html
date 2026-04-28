@@ -1,10 +1,481 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>Croparium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Croparium - Minecraft 矿石种植工艺模组</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 统一的 Tailwind 配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        dark: '#1F2937',
+                        light: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            },
+            darkMode: 'class'
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .transition-all-300 {
+                transition: all 300ms ease-in-out;
+            }
+            .card-hover {
+                @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+            }
+        }
+    </style>
 </head>
-<body>
-    <h1>Hello</h1>
-    <p>Test Text</p>
+<body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-200 transition-all-300">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark/80 backdrop-blur-md shadow-sm transition-all-300">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/aa5ffb91f39c4a37afbaa89cb89fa4a9~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260428234149C83D31AA8DA70F589848&rrcfp=f06b921b&x-expires=1779982960&x-signature=kUqlAC8HDdiPCIT3ku6BGGjua%2Bk%3D" alt="Croparium Logo" class="h-10 w-10 rounded-full">
+                <span class="text-xl font-bold text-primary">Croparium</span>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link font-medium hover:text-primary transition-all-300">首页</a>
+                <a href="#wiki" class="nav-link font-medium hover:text-primary transition-all-300">Wiki</a>
+                <a href="#links" class="nav-link font-medium hover:text-primary transition-all-300">官方链接</a>
+                <a href="#about" class="nav-link font-medium hover:text-primary transition-all-300">关于作者</a>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all-300">
+                    <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
+                    <i class="fa fa-sun-o hidden dark:block text-yellow-400" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all-300">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-md transition-all-300">
+            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+                <a href="#home" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">首页</a>
+                <a href="#wiki" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">Wiki</a>
+                <a href="#links" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">官方链接</a>
+                <a href="#about" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">关于作者</a>
+                <div class="flex justify-end py-2">
+                    <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all-300">
+                        <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
+                        <i class="fa fa-sun-o hidden dark:block text-yellow-400" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 首页 区域 -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-cover bg-center" style="background-image: url('https://p6-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/d2d3cdc8aa82494e92312503bb873592~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260428234149C83D31AA8DA70F589848&rrcfp=f06b921b&x-expires=1779983002&x-signature=W7gqyVyaZppfnPfK1PwSh6YSMNQ%3D');">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- 替换为上传的标题图片 -->
+                <img src="https://private-user-images.githubusercontent.com/202722096/531623976-9e456036-7b9e-474c-9ce4-304d96ffce5f.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzczOTIzMDEsIm5iZiI6MTc3NzM5MjAwMSwicGF0aCI6Ii8yMDI3MjIwOTYvNTMxNjIzOTc2LTllNDU2MDM2LTdiOWUtNDc0Yy05Y2U0LTMwNGQ5NmZmY2U1Zi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQyOFQxNjAwMDFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lNTEyODYxNmYyNjgyNTlmOGQ3YmViMzgwMDk1NTI5MDc0M2JhNTllZjdiNzY4YzJmYjEyMTg0NTEyMzU0Njg5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.OfJPElNRpWg6n_bO1uhaoE4c7qLD-HLJFpVRnjsU99U" alt="Croparium 矿石种植工艺" class="w-full max-w-3xl mx-auto mb-6 animate-float drop-shadow-lg">
+                <p class="text-xl md:text-2xl mb-8 text-shadow">一个为Minecraft带来全新资源提取与种植体验的模组</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#wiki" class="px-8 py-3 bg-primary hover:bg-blue-600 text-white font-medium rounded-lg transition-all-300 shadow-lg">
+                        了解更多
+                    </a>
+                    <a href="#links" class="px-8 py-3 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 font-medium rounded-lg transition-all-300 shadow-lg">
+                        下载模组
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wiki 区域 -->
+    <section id="wiki" class="py-16 bg-white dark:bg-gray-800 transition-all-300">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Wiki</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 可种植资源卡片 -->
+                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="plants">
+                    <img src="https://i.mcmod.cn/editor/upload/20251214/1765718490_838638_AhTM.webp" alt="可种植资源" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">可种植资源 & 获取种子</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">探索模组中的可种植资源及其种子获取方式</p>
+                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 提取矿芯碎片卡片 -->
+                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="extraction">
+                    <img src="https://private-user-images.githubusercontent.com/202722096/529874437-a7b1e024-40a0-4ef1-be22-69ef49f181ac.gif?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzczOTI0NzYsIm5iZiI6MTc3NzM5MjE3NiwicGF0aCI6Ii8yMDI3MjIwOTYvNTI5ODc0NDM3LWE3YjFlMDI0LTQwYTAtNGVmMS1iZTIyLTY5ZWY0OWYxODFhYy5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQyOFQxNjAyNTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05ODU3ODZhODJkNjMyMmIwZTRjZWZjYzk5MzZkZDgwMTRiNjNmN2E1NzkxOTc3Y2M4NWIxOGFhZDYxM2U2MmNhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZnaWYifQ.Sd2P_6VA_-2m0O1OUFHEVitprNck6jKD1yQBHsn_6R8" alt="提取矿芯碎片" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">提取矿芯碎片教程</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">学习如何使用Alpha切石机获取矿芯碎片</p>
+                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 作物种植条件卡片 -->
+                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="farming">
+                    <img src="https://i.mcmod.cn/editor/upload/20251214/1765718490_838638_AhTM.webp" alt="作物种植条件" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">作物种植条件与生长机制</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">了解不同类型作物的种植条件和生长周期</p>
+                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 反应核心使用指南卡片 -->
+                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="reactor">
+                    <img src="https://private-user-images.githubusercontent.com/202722096/530444742-9d833c4a-721e-40c1-817f-d4fc6214a58c.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzczOTI1NTIsIm5iZiI6MTc3NzM5MjI1MiwicGF0aCI6Ii8yMDI3MjIwOTYvNTMwNDQ0NzQyLTlkODMzYzRhLTcyMWUtNDBjMS04MTdmLWQ0ZmM2MjE0YTU4Yy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQyOFQxNjA0MTJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mODc0OWFiMTFiZDMyZjIyZWY2YWMyMWEzNjQ2NTJmMWIyMjMzNTdhOWU4ZGEzNDgxZmUwMDIxZjBkMTgzMzNmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.UyDG-AJ4LWr-cRamq98pULumemwcvRa12AvYoWDQtHA" alt="反应核心" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">反应核心使用指南</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">掌握反应核心的工作原理和应用方法</p>
+                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
+                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 官方链接区域 -->
+    <section id="links" class="py-16 bg-gray-100 dark:bg-gray-900 transition-all-300">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">官方链接</h2>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- MCMod 链接 -->
+                <a href="https://www.mcmod.cn/class/22202.html" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
+                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 dark:bg-blue-900 rounded-full mr-4">
+                        <i class="fa fa-cube text-primary text-2xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-lg">MCMod</h3>
+                        <p class="text-gray-600 dark:text-gray-400">MC模组百科</p>
+                    </div>
+                </a>
+                
+                <!-- GitHub 链接 -->
+                <a href="https://github.com/litQA/Croparium" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
+                    <div class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full mr-4">
+                        <i class="fa fa-github text-gray-800 dark:text-gray-200 text-2xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-lg">GitHub</h3>
+                        <p class="text-gray-600 dark:text-gray-400">源代码</p>
+                    </div>
+                </a>
+                
+                <!-- Modrinth 链接 -->
+                <a href="https://modrinth.com/mod/croparium" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
+                    <div class="w-12 h-12 flex items-center justify-center bg-purple-100 dark:bg-purple-900 rounded-full mr-4">
+                        <i class="fa fa-download text-purple-600 dark:text-purple-400 text-2xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-lg">Modrinth</h3>
+                        <p class="text-gray-600 dark:text-gray-400">模组下载</p>
+                    </div>
+                </a>
+                
+                <!-- CurseForge 链接 -->
+                <a href="https://www.curseforge.com/minecraft/mc-mods/croparium" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
+                    <div class="w-12 h-12 flex items-center justify-center bg-orange-100 dark:bg-orange-900 rounded-full mr-4">
+                        <i class="fa fa-fire text-orange-600 dark:text-orange-400 text-2xl"></i>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="font-bold text-lg">CurseForge</h3>
+                        <p class="text-gray-600 dark:text-gray-400">模组下载</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于作者区域 -->
+    <section id="about" class="py-16 bg-white dark:bg-gray-800 transition-all-300">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">关于作者</h2>
+            
+            <div class="max-w-3xl mx-auto bg-gray-50 dark:bg-gray-700 rounded-xl p-8 shadow-md">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+                    <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-white text-3xl font-bold shadow-lg">
+                        RC
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3 class="text-2xl font-bold mb-2">Qa</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">
+                            Qa（2001年10月4日-），中国江苏丹阳人。
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300">
+                            如有任何问题或建议，欢迎通过GitHub或其他官方渠道联系我。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/aa5ffb91f39c4a37afbaa89cb89fa4a9~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260428234149C83D31AA8DA70F589848&rrcfp=f06b921b&x-expires=1779982960&x-signature=kUqlAC8HDdiPCIT3ku6BGGjua%2Bk%3D" alt="Croparium Logo" class="h-8 w-8 rounded-full">
+                        <span class="text-lg font-bold">Croparium</span>
+                    </div>
+                    <p class="text-gray-400 mt-2">© 2026 Croparium 团队. 保留所有权利.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-primary transition-all-300">
+                        <i class="fa fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-primary transition-all-300">
+                        <i class="fa fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-primary transition-all-300">
+                        <i class="fa fa-discord text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 详情模态框 -->
+    <div id="details-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 id="modal-title" class="text-2xl font-bold"></h3>
+                    <button id="close-modal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 主题切换
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            
+            // 检查本地存储中的主题设置
+            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // 主题切换函数
+            function toggleTheme() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                }
+            }
+            
+            // 绑定主题切换事件
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            // 移动端菜单
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // 关闭移动端菜单
+                    mobileMenu.classList.add('hidden');
+                    
+                    // 滚动到目标位置
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // 减去导航栏高度
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 导航栏滚动效果
+            const header = document.querySelector('header');
+            let lastScrollTop = 0;
+            
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                if (scrollTop > 100) {
+                    header.classList.add('shadow-md');
+                    header.classList.remove('py-4');
+                    header.classList.add('py-2');
+                } else {
+                    header.classList.remove('shadow-md');
+                    header.classList.remove('py-2');
+                    header.classList.add('py-4');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+            
+            // Wiki 详情模态框
+            const modal = document.getElementById('details-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            const closeModal = document.getElementById('close-modal');
+            const viewDetailsButtons = document.querySelectorAll('.view-details');
+            
+            // Wiki 内容数据 - 已改为占位符，方便你直接填写
+            const wikiContent = {
+                plants: {
+                    title: "可种植资源 & 获取种子",
+                    content: `
+                        <!-- 在此处添加图片，格式示例：
+                        <img src="你的图片URL" alt="可种植资源" class="w-full h-auto rounded-lg mb-6">
+                        -->
+                        
+                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
+                        <p class="mb-4">在此处添加模组可种植资源的介绍...</p>
+                    `
+                },
+                extraction: {
+                    title: "提取矿芯碎片教程",
+                    content: `
+                        <!-- 在此处添加图片，格式示例：
+                        <img src="你的图片URL" alt="提取矿芯碎片" class="w-full h-auto rounded-lg mb-6">
+                        -->
+                        
+                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
+                        <p class="mb-4">在此处添加矿芯碎片提取教程...</p>
+                    `
+                },
+                farming: {
+                    title: "作物种植条件与生长机制",
+                    content: `
+                        <!-- 在此处添加图片，格式示例：
+                        <img src="你的图片URL" alt="作物种植条件" class="w-full h-auto rounded-lg mb-6">
+                        -->
+                        
+                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
+                        <p class="mb-4">在此处添加作物种植条件与生长机制的介绍...</p>
+                    `
+                },
+                reactor: {
+                    title: "反应核心使用指南",
+                    content: `
+                        <!-- 在此处添加图片，格式示例：
+                        <img src="你的图片URL" alt="反应核心" class="w-full h-auto rounded-lg mb-6">
+                        -->
+                        
+                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
+                        <p class="mb-4">在此处添加反应核心使用指南...</p>
+                    `
+                }
+            };
+            
+            // 打开模态框
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const card = this.closest('.wiki-card');
+                    const id = card.dataset.id;
+                    const content = wikiContent[id];
+                    
+                    if (content) {
+                        modalTitle.textContent = content.title;
+                        modalContent.innerHTML = content.content;
+                        modal.classList.remove('hidden');
+                        document.body.style.overflow = 'hidden'; // 防止背景滚动
+                    }
+                });
+            });
+            
+            // 关闭模态框
+            closeModal.addEventListener('click', function() {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // 恢复背景滚动
+            });
+            
+            // 点击模态框外部关闭
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // 图片懒加载
+            const lazyImages = document.querySelectorAll('img');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // 回退方案
+                lazyImages.forEach(img => {
+                    img.src = img.dataset.src || img.src;
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
