@@ -3,10 +3,46 @@
 ### Progress
 ████░░░░░░░░░░░  26.67%
 
-### Supported Versions Estimated
-- Forge 1.20.1
-- NeoForge 1.21.1, 1.21.4, 1.21.8, 26.1.2
-- ***Fabric 26.1.2***
+### Tasks
+
+#### Main Mod Compatibility
+
+* [x] Main Mod \- Forge 1\.20\.1
+
+* [x] Main Mod \- NeoForge 1\.21\.1
+
+* [ ] Main Mod \- NeoForge 1\.21\.4
+
+* [ ] Main Mod \- NeoForge 1\.21\.8
+
+* [ ] Main Mod \- NeoForge 26\.1\.2
+
+* [x] Main Mod \- Fabric 1\.21\.8
+
+* [ ] Main Mod \- Fabric 26\.1\.2
+
+#### Expansion Mod Compatibility
+
+* [x] Expansion Mod \- Aether
+
+* [x] Expansion Mod \- Arphex
+
+* [ ] Expansion Mod \- Composite Material
+
+* [ ] Expansion Mod \- Confluence Otherworld
+
+* [ ] Expansion Mod \- Create
+
+* [ ] Expansion Mod \- L\_Enders Cataclysm
+
+* [ ] Expansion Mod \- Mekanism
+
+* [ ] Expansion Mod \- Twilight Forest
+
+* [ ] Expansion Mod \- BOP Legacy Reborn
+
+* [ ] Expansion Mod \- Thermal \(Newly Supported\)
+
 
 # Version Support丨版本支持
 ## Minrcraft Forge
