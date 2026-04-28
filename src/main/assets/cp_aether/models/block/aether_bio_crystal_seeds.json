@@ -1,8 +1,0 @@
-{
-  "parent": "block/cross",
-  "textures": {
-    "cross": "cp_aether:block/crop_bio_crystal_0",
-    "particle": "cp_aether:block/crop_bio_crystal_0"
-  },
-  "render_type": "cutout"
-}
