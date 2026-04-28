@@ -1,0 +1,16 @@
+{
+  "item_group.cp_aether.croparium_aether": "矿石种植工艺：天境",
+  "block.cp_aether.aether_ambrosium_shard_seeds": "神能晶片种子",
+  "block.cp_aether.aether_zanite_gemstone_seeds": "紫晶石种子",
+  "block.cp_aether.aether_enchanted_gravitite_seeds": "神炼重力晶矿种子",
+  "block.cp_aether.aether_skyjade_gemstone_seeds": "穹玉晶石种子",
+  "block.cp_aether.aether_bio_crystal_seeds": "生物晶种子",
+  "block.cp_aether.aether_squall_plate_seeds": "风暴种子",
+  "condition.growth.aether": "种植在天境农田上",
+  "block.cp_aether.aether_ambrosium_shard_crop": "神能晶片植株",
+  "block.cp_aether.aether_zanite_gemstone_crop": "紫金石植株",
+  "block.cp_aether.aether_enchanted_gravitite_crop": "神炼重力晶矿植株",
+  "block.cp_aether.aether_skyjade_gemstone_crop": "穹玉晶石植株",
+  "block.cp_aether.aether_bio_crystal_crop": "生物晶植株",
+  "block.cp_aether.aether_squall_plate_crop": "风暴植株"
+}
