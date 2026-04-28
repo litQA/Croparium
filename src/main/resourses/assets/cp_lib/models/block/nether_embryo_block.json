@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "cp_lib:block/embryo_shard_nether_block",
+    "particle": "cp_lib:block/embryo_shard_nether_block"
+  },
+  "render_type": "solid"
+}

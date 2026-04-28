@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/farmland",
+  "textures": {
+    "all": "cp_lib:block/farmland_deepslate_side_moist",
+    "particle": "cp_lib:block/farmland_deepslate_top",
+    "side": "minecraft:block/cobbled_deepslate",
+    "buttom": "minecraft:block/cobbled_deepslate",
+    "top": "cp_lib:block/farmland_deepslate_top"
+  },
+  "render_type": "solid"
+}

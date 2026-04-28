@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/farmland",
+  "textures": {
+    "all": "cp_lib:block/farmland_andesite_top",
+    "particle": "cp_lib:block/farmland_andesite_top_moist",
+    "side": "minecraft:block/andesite",
+    "buttom": "minecraft:block/andesite",
+    "top": "cp_lib:block/farmland_andesite_top"
+  },
+  "render_type": "solid"
+}

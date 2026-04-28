@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/farmland",
+  "textures": {
+    "all": "cp_lib:block/farmland_crawlingslate_top",
+    "particle": "cp_lib:block/farmland_crawlingslate_top_moist",
+    "side": "cp_lib:block/farmland_crawlingslate_side",
+    "buttom": "cp_lib:block/farmland_crawlingslate_side",
+    "top": "cp_lib:block/farmland_crawlingslate_top"
+  },
+  "render_type": "solid"
+}

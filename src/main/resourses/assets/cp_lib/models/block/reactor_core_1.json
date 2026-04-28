@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "cp_lib:block/reactor_core_stage_1",
+    "particle": "cp_lib:block/reactor_core_stage_2"
+  },
+  "render_type": "solid"
+}

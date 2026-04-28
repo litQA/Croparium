@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/moist",
+  "textures": {
+    "all": "cp_lib:block/farmland_obsidian_top_moist",
+    "particle": "cp_lib:block/farmland_obsidian_top_moist",
+    "top moist": "cp_lib:block/farmland_obsidian_top_moist",
+    "side": "minecraft:block/obsidian",
+    "buttom": "minecraft:block/obsidian"
+  },
+  "render_type": "solid"
+}

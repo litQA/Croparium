@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cp_lib:item/seeds_lapis"
+  },
+  "render_type": "translucent"
+}

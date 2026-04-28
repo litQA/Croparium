@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cp_lib:block/crop_sponge_3",
+    "particle": "cp_lib:block/crop_sponge_0"
+  },
+  "render_type": "cutout"
+}

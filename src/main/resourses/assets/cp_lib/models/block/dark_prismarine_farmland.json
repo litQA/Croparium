@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/lowfarmland",
+  "textures": {
+    "all": "cp_lib:block/farmland_dark_prismarine_top_moist",
+    "particle": "cp_lib:block/farmland_dark_prismarine_top_moist",
+    "side": "minecraft:block/dark_prismarine",
+    "buttom": "minecraft:block/dark_prismarine",
+    "top": "cp_lib:block/farmland_dark_prismarine_top_moist"
+  },
+  "render_type": "solid"
+}

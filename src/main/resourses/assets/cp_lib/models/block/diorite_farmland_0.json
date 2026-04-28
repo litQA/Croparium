@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/farmland",
+  "textures": {
+    "all": "cp_lib:block/farmland_diorite_side_moist",
+    "particle": "cp_lib:block/farmland_diorite_top_moist",
+    "side": "minecraft:block/diorite",
+    "buttom": "minecraft:block/diorite",
+    "top": "cp_lib:block/farmland_diorite_top"
+  },
+  "render_type": "solid"
+}

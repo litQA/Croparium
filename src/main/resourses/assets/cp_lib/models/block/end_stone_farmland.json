@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/moist",
+  "textures": {
+    "all": "cp_lib:block/farmland_endstone_top_moist",
+    "particle": "cp_lib:block/farmland_endstone_top_moist",
+    "top moist": "cp_lib:block/farmland_endstone_top_moist",
+    "side": "cp_lib:block/farmland_endstone_side_moist",
+    "buttom": "cp_lib:block/farmland_endstone_side_moist"
+  },
+  "render_type": "solid"
+}

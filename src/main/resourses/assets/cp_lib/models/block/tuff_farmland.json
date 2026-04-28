@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/moist",
+  "textures": {
+    "all": "cp_lib:block/farmland_tuff_top_moist",
+    "particle": "cp_lib:block/farmland_tuff_top_moist",
+    "top moist": "cp_lib:block/farmland_tuff_top_moist",
+    "side": "minecraft:block/tuff",
+    "buttom": "minecraft:block/tuff"
+  },
+  "render_type": "solid"
+}

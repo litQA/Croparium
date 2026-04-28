@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cp_lib:block/crop_emerald_2",
+    "particle": "cp_lib:block/crop_emerald_0"
+  },
+  "render_type": "cutout"
+}

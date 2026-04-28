@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/farmland",
+  "textures": {
+    "all": "cp_lib:block/farmland_holystone_top",
+    "particle": "cp_lib:block/farmland_holystone_top_moist",
+    "side": "cp_lib:block/farmland_holystone_side",
+    "buttom": "cp_lib:block/farmland_holystone_side",
+    "top": "cp_lib:block/farmland_holystone_top"
+  },
+  "render_type": "solid"
+}

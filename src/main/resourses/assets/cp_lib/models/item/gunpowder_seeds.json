@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "cp_lib:item/seeds_gunpowder"
+  }
+}

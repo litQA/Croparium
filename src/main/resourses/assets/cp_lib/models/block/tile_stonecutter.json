@@ -1,0 +1,13 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "cp_lib:block/stonecutter_bottom",
+    "up": "cp_lib:block/stonecutter_top",
+    "north": "cp_lib:block/stonecutter_side",
+    "east": "cp_lib:block/stonecutter_other_side",
+    "south": "cp_lib:block/stonecutter_other_side",
+    "west": "cp_lib:block/stonecutter_other_side",
+    "particle": "cp_lib:block/stonecutter_bottom"
+  },
+  "render_type": "solid"
+}

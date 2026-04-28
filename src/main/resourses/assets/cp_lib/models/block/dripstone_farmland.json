@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/moist",
+  "textures": {
+    "all": "cp_lib:block/farmland_dripstone_top_moist",
+    "particle": "cp_lib:block/farmland_dripstone_top_moist",
+    "top moist": "cp_lib:block/farmland_dripstone_top_moist",
+    "side": "minecraft:block/dripstone_block",
+    "buttom": "minecraft:block/dripstone_block"
+  },
+  "render_type": "solid"
+}

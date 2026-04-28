@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=north,moisture=0": {
+      "model": "cp_lib:block/cobblestone_farmland_0"
+    },
+    "facing=north,moisture=1": {
+      "model": "cp_lib:block/cobblestone_farmland"
+    },
+    "facing=north,moisture=3": {
+      "model": "cp_lib:block/cobblestone_farmland"
+    },
+    "facing=north,moisture=2": {
+      "model": "cp_lib:block/cobblestone_farmland"
+    },
+    "facing=north,moisture=5": {
+      "model": "cp_lib:block/cobblestone_farmland"
+    },
+    "facing=north,moisture=4": {
+      "model": "cp_lib:block/cobblestone_farmland"
+    },
+    "facing=north,moisture=7": {
+      "model": "cp_lib:block/cobblestone_farmland"
+    },
+    "facing=north,moisture=6": {
+      "model": "cp_lib:block/cobblestone_farmland"
+    },
+    "facing=east,moisture=0": {
+      "model": "cp_lib:block/cobblestone_farmland_0",
+      "y": 90
+    },
+    "facing=east,moisture=1": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 90
+    },
+    "facing=east,moisture=3": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 90
+    },
+    "facing=east,moisture=2": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 90
+    },
+    "facing=east,moisture=5": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 90
+    },
+    "facing=east,moisture=4": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 90
+    },
+    "facing=east,moisture=7": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 90
+    },
+    "facing=east,moisture=6": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 90
+    },
+    "facing=south,moisture=0": {
+      "model": "cp_lib:block/cobblestone_farmland_0",
+      "y": 180
+    },
+    "facing=south,moisture=1": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 180
+    },
+    "facing=south,moisture=3": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 180
+    },
+    "facing=south,moisture=2": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 180
+    },
+    "facing=south,moisture=5": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 180
+    },
+    "facing=south,moisture=4": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 180
+    },
+    "facing=south,moisture=7": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 180
+    },
+    "facing=south,moisture=6": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 180
+    },
+    "facing=west,moisture=0": {
+      "model": "cp_lib:block/cobblestone_farmland_0",
+      "y": 270
+    },
+    "facing=west,moisture=1": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 270
+    },
+    "facing=west,moisture=3": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 270
+    },
+    "facing=west,moisture=2": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 270
+    },
+    "facing=west,moisture=5": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 270
+    },
+    "facing=west,moisture=4": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 270
+    },
+    "facing=west,moisture=7": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 270
+    },
+    "facing=west,moisture=6": {
+      "model": "cp_lib:block/cobblestone_farmland",
+      "y": 270
+    }
+  }
+}

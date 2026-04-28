@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cp_lib:block/echo_shard_seeds"
+    }
+  }
+}

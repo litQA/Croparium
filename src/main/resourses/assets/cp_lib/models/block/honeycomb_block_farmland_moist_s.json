@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/moist",
+  "textures": {
+    "all": "cp_lib:block/farmland_honeycomb_top_moist_royal",
+    "particle": "cp_lib:block/farmland_honeycomb_top_moist_royal",
+    "top moist": "cp_lib:block/farmland_honeycomb_top_moist_royal",
+    "side": "cp_lib:block/farmland_honeycomb_side_moist_royal",
+    "buttom": "cp_lib:block/farmland_honeycomb_side_moist_royal"
+  },
+  "render_type": "solid"
+}

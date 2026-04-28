@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cp_lib:block/crop_copper_1",
+    "particle": "cp_lib:block/crop_copper_0"
+  },
+  "render_type": "cutout"
+}

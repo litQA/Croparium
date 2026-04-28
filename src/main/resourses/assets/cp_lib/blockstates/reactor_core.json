@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "state=active": {
+      "model": "cp_lib:block/reactor_core_0"
+    },
+    "state=working": {
+      "model": "cp_lib:block/reactor_core_1"
+    },
+    "state=inactive": {
+      "model": "cp_lib:block/reactor_core"
+    }
+  }
+}

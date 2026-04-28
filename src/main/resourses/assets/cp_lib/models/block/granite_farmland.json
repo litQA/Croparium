@@ -1,0 +1,11 @@
+{
+  "parent": "cp_lib:custom/moist",
+  "textures": {
+    "all": "cp_lib:block/farmland_granite_top_moist",
+    "particle": "cp_lib:block/farmland_granite_top_moist",
+    "top moist": "cp_lib:block/farmland_granite_top_moist",
+    "side": "minecraft:block/granite",
+    "buttom": "minecraft:block/granite"
+  },
+  "render_type": "solid"
+}

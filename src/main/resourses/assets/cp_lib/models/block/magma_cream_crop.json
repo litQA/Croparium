@@ -1,0 +1,8 @@
+{
+  "parent": "block/crop",
+  "textures": {
+    "crop": "cp_lib:block/crop_magma_cream_0",
+    "particle": "cp_lib:block/crop_magma_cream_0"
+  },
+  "render_type": "cutout"
+}
