@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Croparium - Minecraft 矿石种植工艺模组</title>
-    <!-- Tailwind CSS -->
+    <title>Croparium模组官网</title>
+    <!-- Tailwind CSS v3 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -15,20 +14,23 @@
                 extend: {
                     colors: {
                         primary: '#3B82F6',
-                        secondary: '#10B981',
-                        dark: '#1F2937',
-                        light: '#F3F4F6'
+                        secondary: '#1E40AF',
+                        dark: {
+                            primary: '#60A5FA',
+                            background: '#111827',
+                            card: '#1F2937'
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'system-ui', 'sans-serif'],
                     },
                     animation: {
-                        'float': 'float 3s ease-in-out infinite',
+                        'scroll': 'scroll 30s linear infinite',
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
                         }
                     }
                 }
@@ -38,209 +40,358 @@
     </script>
     <style type="text/tailwindcss">
         @layer utilities {
-            .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            .content-auto {
+                content-visibility: auto;
             }
-            .transition-all-300 {
-                transition: all 300ms ease-in-out;
+            .glass-effect {
+                @apply bg-white/70 dark:bg-dark-card/70 backdrop-blur-md border border-white/20 dark:border-dark-card/20 shadow-lg;
             }
-            .card-hover {
-                @apply transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+            .glass-effect-light {
+                @apply bg-white/40 dark:bg-dark-card/40 backdrop-blur-sm border border-white/10 dark:border-dark-card/10;
+            }
+            .text-balance {
+                text-wrap: balance;
             }
         }
     </style>
+    <style>
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(59, 130, 246, 0.7);
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 深浅色模式切换动画 */
+        .dark-transition {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+        
+        /* 卡片悬停效果 */
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* 按钮波纹效果 */
+        .btn-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-ripple:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            transform: scale(10, 10);
+            opacity: 0;
+            transition: transform .5s, opacity 1s;
+        }
+        
+        .btn-ripple:active:after {
+            transform: scale(0, 0);
+            opacity: .3;
+            transition: 0s;
+        }
+    </style>
 </head>
-<body class="bg-light dark:bg-dark text-gray-800 dark:text-gray-200 transition-all-300">
+<body class="bg-gray-50 dark:bg-dark-background text-gray-900 dark:text-gray-100 dark-transition min-h-screen">
     <!-- 导航栏 -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-dark/80 backdrop-blur-md shadow-sm transition-all-300">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-effect-light dark-transition">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/aa5ffb91f39c4a37afbaa89cb89fa4a9~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260428234149C83D31AA8DA70F589848&rrcfp=f06b921b&x-expires=1779982960&x-signature=kUqlAC8HDdiPCIT3ku6BGGjua%2Bk%3D" alt="Croparium Logo" class="h-10 w-10 rounded-full">
-                <span class="text-xl font-bold text-primary">Croparium</span>
+                <img src="src\assets\logo-400.png" alt="Logo" class="h-10 w-10">
+                <span class="text-xl font-bold text-primary dark:text-dark-primary">Croparium</span>
             </div>
             
-            <!-- 桌面导航 -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="nav-link font-medium hover:text-primary transition-all-300">首页</a>
-                <a href="#wiki" class="nav-link font-medium hover:text-primary transition-all-300">Wiki</a>
-                <a href="#links" class="nav-link font-medium hover:text-primary transition-all-300">官方链接</a>
-                <a href="#about" class="nav-link font-medium hover:text-primary transition-all-300">关于作者</a>
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all-300">
+            <div class="hidden md:flex space-x-8">
+                <a href="#intro" class="hover:text-primary dark:hover:text-dark-primary transition-colors">简介</a>
+                <a href="#compatibility" class="hover:text-primary dark:hover:text-dark-primary transition-colors">联动模组</a>
+                <a href="#links" class="hover:text-primary dark:hover:text-dark-primary transition-colors">官方链接</a>
+                <a href="#about" class="hover:text-primary dark:hover:text-dark-primary transition-colors">关于作者</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                     <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
-                    <i class="fa fa-sun-o hidden dark:block text-yellow-400" aria-hidden="true"></i>
+                    <i class="fa fa-sun-o hidden dark:block text-yellow-300" aria-hidden="true"></i>
+                </button>
+                
+                <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
                 </button>
             </div>
-            
-            <!-- 移动端菜单按钮 -->
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-all-300">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </button>
-        </nav>
+        </div>
         
-        <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white dark:bg-gray-800 shadow-md transition-all-300">
-            <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
-                <a href="#home" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">首页</a>
-                <a href="#wiki" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">Wiki</a>
-                <a href="#links" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">官方链接</a>
-                <a href="#about" class="mobile-nav-link py-2 font-medium hover:text-primary transition-all-300">关于作者</a>
-                <div class="flex justify-end py-2">
-                    <button id="mobile-theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-all-300">
-                        <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
-                        <i class="fa fa-sun-o hidden dark:block text-yellow-400" aria-hidden="true"></i>
-                    </button>
-                </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden glass-effect-light dark-transition">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#intro" class="hover:text-primary dark:hover:text-dark-primary transition-colors">简介</a>
+                <a href="#compatibility" class="hover:text-primary dark:hover:text-dark-primary transition-colors">联动模组</a>
+                <a href="#links" class="hover:text-primary dark:hover:text-dark-primary transition-colors">官方链接</a>
+                <a href="#about" class="hover:text-primary dark:hover:text-dark-primary transition-colors">关于作者</a>
             </div>
+        </div>
+    </nav>
+
+    <!-- 标题部分 -->
+    <header class="h-screen flex items-center justify-center pt-16 dark-transition">
+        <div class="container mx-auto px-4 text-center">
+            <img src="src\assets\logo-400.png" alt="Logo" class="h-32 w-32 mx-auto mb-8">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-balance">矿石种植工艺</h1>
+            <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12 text-balance">
+                众所周知，手挖是一种极其不健康的行为
+            </p>
+            <a href="#intro" class="inline-block px-8 py-3 bg-primary hover:bg-secondary text-white font-medium rounded-lg transition-colors btn-ripple">
+                了解更多
+            </a>
         </div>
     </header>
 
-    <!-- 首页 区域 -->
-    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-cover bg-center" style="background-image: url('https://p6-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/d2d3cdc8aa82494e92312503bb873592~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260428234149C83D31AA8DA70F589848&rrcfp=f06b921b&x-expires=1779983002&x-signature=W7gqyVyaZppfnPfK1PwSh6YSMNQ%3D');">
+    <!-- 简介部分 -->
+    <section id="intro" class="py-24 dark-transition">
         <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <!-- 替换为上传的标题图片 -->
-                <img src="https://private-user-images.githubusercontent.com/202722096/531623976-9e456036-7b9e-474c-9ce4-304d96ffce5f.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzczOTIzMDEsIm5iZiI6MTc3NzM5MjAwMSwicGF0aCI6Ii8yMDI3MjIwOTYvNTMxNjIzOTc2LTllNDU2MDM2LTdiOWUtNDc0Yy05Y2U0LTMwNGQ5NmZmY2U1Zi5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQyOFQxNjAwMDFaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1lNTEyODYxNmYyNjgyNTlmOGQ3YmViMzgwMDk1NTI5MDc0M2JhNTllZjdiNzY4YzJmYjEyMTg0NTEyMzU0Njg5JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.OfJPElNRpWg6n_bO1uhaoE4c7qLD-HLJFpVRnjsU99U" alt="Croparium 矿石种植工艺" class="w-full max-w-3xl mx-auto mb-6 animate-float drop-shadow-lg">
-                <p class="text-xl md:text-2xl mb-8 text-shadow">一个为Minecraft带来全新资源提取与种植体验的模组</p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#wiki" class="px-8 py-3 bg-primary hover:bg-blue-600 text-white font-medium rounded-lg transition-all-300 shadow-lg">
-                        了解更多
-                    </a>
-                    <a href="#links" class="px-8 py-3 bg-white/80 dark:bg-gray-800/80 hover:bg-white dark:hover:bg-gray-700 font-medium rounded-lg transition-all-300 shadow-lg">
-                        下载模组
-                    </a>
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">模组简介</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-primary dark:text-dark-primary">关于 矿石种植工艺</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">
+                        想在Minecraft中像种农作物一样轻松培育各种资源吗？矿石种植工艺模组使它成为可能！它为获取矿石和各类资源提供了新的途径，让你像种植农作物一样种植各种资源！
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">
+                        本模组长期免费。本模组遵循Mojang EULA，仅用于非商业用途，严禁倒卖或用于商业盈利。你可以在自己的整合包中随意使用该模组；在非商业使用的前提下，可自由进行分发。
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200 rounded-full text-sm">农业</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200 rounded-full text-sm">实用</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-200 rounded-full text-sm">库</span>
+                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 rounded-full text-sm">科技</span>
+                    </div>
                 </div>
+                
+                <div class="glass-effect rounded-xl overflow-hidden">
+                    <img src="src\assets\bg.png" alt="游戏画面" class="w-full h-auto">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 联动模组部分 -->
+    <section id="compatibility" class="py-24 bg-gray-100 dark:bg-gray-900/50 dark-transition">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">联动模组</h2>
+            
+            <!-- 排序控制 -->
+            <div class="flex justify-end mb-8">
+                <div class="inline-flex rounded-md shadow-sm" role="group">
+                    <button id="sort-name" class="px-4 py-2 text-sm font-medium bg-white dark:bg-dark-card text-primary dark:text-dark-primary rounded-l-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 focus:z-10 focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary">
+                        按名称排序
+                    </button>
+                    <button id="sort-date" class="px-4 py-2 text-sm font-medium bg-white dark:bg-dark-card text-gray-700 dark:text-gray-300 rounded-r-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 focus:z-10 focus:ring-2 focus:ring-primary dark:focus:ring-dark-primary">
+                        按更新时间排序
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 联动模组卡片 -->
+            <div id="mods-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- 联动模组卡片 - 可以复制这些块来添加更多卡片 -->
+
+                <div class="glass-effect rounded-xl p-6 card-hover" data-name="天境/深入天境" data-date="2025-06-15">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden mr-4">
+                            <img src="src\assets\litqa.png" alt="Dynamic Sword Skills" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold">天境/深入天境</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        这里是简介。
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">更新时间: 2026-04-30</span>
+                        <a href="#" class="text-primary dark:text-dark-primary hover:underline text-sm">访问链接</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-xl p-6 card-hover" data-name="节肢生物恐惧" data-date="2025-05-20">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden mr-4">
+                            <img src="src\assets\litqa.png" alt="Pixelmon" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold">节肢生物恐惧</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        这里是简介。
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">更新时间: 2026-05-01</span>
+                        <a href="#" class="text-primary dark:text-dark-primary hover:underline text-sm">访问链接</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-xl p-6 card-hover" data-name="复合材料" data-date="2025-04-10">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden mr-4">
+                            <img src="src\assets\litqa.png" alt="Still Hungry" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold">复合材料</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                       这里是简介。
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">更新时间: 2026-14-10</span>
+                        <a href="#" class="text-primary dark:text-dark-primary hover:underline text-sm">访问链接</a>
+                    </div>
+                </div>
+                
+                <div class="glass-effect rounded-xl p-6 card-hover" data-name="联动模组" data-date="2026-13-05">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden mr-4">
+                            <img src="src\assets\litqa.png" alt="Fairy Tale" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold">联动模组</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        这里是简介。
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">更新时间: 2025-03-05</span>
+                        <a href="#" class="text-primary dark:text-dark-primary hover:underline text-sm">访问链接</a>
+                    </div>
+                </div>
+                
+                <!-- 复制以下代码块来添加更多联动模组卡片 -->
+                <!--
+                <div class="glass-effect rounded-xl p-6 card-hover" data-name="模组名称" data-date="2025-01-01">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-lg overflow-hidden mr-4">
+                            <img src="模组图标URL" alt="模组名称" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="text-lg font-semibold">模组名称</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                        模组简短描述
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs text-gray-500 dark:text-gray-400">更新时间: 2025-01-01</span>
+                        <a href="#" class="text-primary dark:text-dark-primary hover:underline text-sm">访问链接</a>
+                    </div>
+                </div>
+                -->
             </div>
         </div>
     </section>
 
-    <!-- Wiki 区域 -->
-    <section id="wiki" class="py-16 bg-white dark:bg-gray-800 transition-all-300">
+    <!-- 官方链接部分 -->
+    <section id="links" class="py-24 dark-transition">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">Wiki</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">官方链接</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- 可种植资源卡片 -->
-                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="plants">
-                    <img src="https://i.mcmod.cn/editor/upload/20251214/1765718490_838638_AhTM.webp" alt="可种植资源" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">可种植资源 & 获取种子</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">探索模组中的可种植资源及其种子获取方式</p>
-                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
-                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- 提取矿芯碎片卡片 -->
-                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="extraction">
-                    <img src="https://private-user-images.githubusercontent.com/202722096/529874437-a7b1e024-40a0-4ef1-be22-69ef49f181ac.gif?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzczOTI0NzYsIm5iZiI6MTc3NzM5MjE3NiwicGF0aCI6Ii8yMDI3MjIwOTYvNTI5ODc0NDM3LWE3YjFlMDI0LTQwYTAtNGVmMS1iZTIyLTY5ZWY0OWYxODFhYy5naWY_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQyOFQxNjAyNTZaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05ODU3ODZhODJkNjMyMmIwZTRjZWZjYzk5MzZkZDgwMTRiNjNmN2E1NzkxOTc3Y2M4NWIxOGFhZDYxM2U2MmNhJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZnaWYifQ.Sd2P_6VA_-2m0O1OUFHEVitprNck6jKD1yQBHsn_6R8" alt="提取矿芯碎片" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">提取矿芯碎片教程</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">学习如何使用Alpha切石机获取矿芯碎片</p>
-                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
-                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- 作物种植条件卡片 -->
-                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="farming">
-                    <img src="https://i.mcmod.cn/editor/upload/20251214/1765718490_838638_AhTM.webp" alt="作物种植条件" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">作物种植条件与生长机制</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">了解不同类型作物的种植条件和生长周期</p>
-                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
-                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- 反应核心使用指南卡片 -->
-                <div class="wiki-card bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden shadow-md card-hover" data-id="reactor">
-                    <img src="https://private-user-images.githubusercontent.com/202722096/530444742-9d833c4a-721e-40c1-817f-d4fc6214a58c.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NzczOTI1NTIsIm5iZiI6MTc3NzM5MjI1MiwicGF0aCI6Ii8yMDI3MjIwOTYvNTMwNDQ0NzQyLTlkODMzYzRhLTcyMWUtNDBjMS04MTdmLWQ0ZmM2MjE0YTU4Yy5wbmc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYwNDI4JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MDQyOFQxNjA0MTJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mODc0OWFiMTFiZDMyZjIyZWY2YWMyMWEzNjQ2NTJmMWIyMjMzNTdhOWU4ZGEzNDgxZmUwMDIxZjBkMTgzMzNmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZwbmcifQ.UyDG-AJ4LWr-cRamq98pULumemwcvRa12AvYoWDQtHA" alt="反应核心" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">反应核心使用指南</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">掌握反应核心的工作原理和应用方法</p>
-                        <button class="view-details text-primary hover:text-blue-700 font-medium flex items-center">
-                            查看详情 <i class="fa fa-arrow-right ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 官方链接卡片 -->
 
-    <!-- 官方链接区域 -->
-    <section id="links" class="py-16 bg-gray-100 dark:bg-gray-900 transition-all-300">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">官方链接</h2>
-            
-            <div class="flex flex-wrap justify-center gap-6">
-                <!-- MCMod 链接 -->
-                <a href="https://www.mcmod.cn/class/22202.html" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
-                    <div class="w-12 h-12 flex items-center justify-center bg-blue-100 dark:bg-blue-900 rounded-full mr-4">
-                        <i class="fa fa-cube text-primary text-2xl"></i>
+                <a href="https://www.mcmod.cn/class/22202.html" target="_blank" rel="noopener noreferrer" class="glass-effect rounded-xl p-8 text-center hover:bg-white/90 dark:hover:bg-dark-card/90 transition-colors card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary dark:text-dark-primary text-3xl">
+                        <img src="src\assets\logo_mcmod.png" alt="mcmod logo" class="w-full h-full object-cover">
                     </div>
-                    <div class="text-left">
-                        <h3 class="font-bold text-lg">MCMod</h3>
-                        <p class="text-gray-600 dark:text-gray-400">MC模组百科</p>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-2">MC百科</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        在MC百科上查看本模组。
+                    </p>
                 </a>
                 
-                <!-- GitHub 链接 -->
-                <a href="https://github.com/litQA/Croparium" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
-                    <div class="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full mr-4">
-                        <i class="fa fa-github text-gray-800 dark:text-gray-200 text-2xl"></i>
+                <a href="https://modrinth.com/mod/croparium" target="_blank" rel="noopener noreferrer" class="glass-effect rounded-xl p-8 text-center hover:bg-white/90 dark:hover:bg-dark-card/90 transition-colors card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary dark:text-dark-primary text-3xl">
+                        <img src="src\assets\logo_modrinth.png" alt="curseforge logo" class="w-full h-full object-cover">
                     </div>
-                    <div class="text-left">
-                        <h3 class="font-bold text-lg">GitHub</h3>
-                        <p class="text-gray-600 dark:text-gray-400">源代码</p>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Modrinth</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        在Modrinth上查看本模组。
+                    </p>
                 </a>
                 
-                <!-- Modrinth 链接 -->
-                <a href="https://modrinth.com/mod/croparium" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
-                    <div class="w-12 h-12 flex items-center justify-center bg-purple-100 dark:bg-purple-900 rounded-full mr-4">
-                        <i class="fa fa-download text-purple-600 dark:text-purple-400 text-2xl"></i>
+                <a href="https://www.curseforge.com/minecraft/mc-mods/croparium" target="_blank" rel="noopener noreferrer" class="glass-effect rounded-xl p-8 text-center hover:bg-white/90 dark:hover:bg-dark-card/90 transition-colors card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary dark:text-dark-primary text-3xl">
+                        <img src="src\assets\logo_curseforge.png" alt="curseforge logo" class="w-full h-full object-cover">
                     </div>
-                    <div class="text-left">
-                        <h3 class="font-bold text-lg">Modrinth</h3>
-                        <p class="text-gray-600 dark:text-gray-400">模组下载</p>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-2">CurseForge</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        在CurseForge上查看本模组。
+                    </p>
                 </a>
                 
-                <!-- CurseForge 链接 -->
-                <a href="https://www.curseforge.com/minecraft/mc-mods/croparium" target="_blank" class="link-card flex items-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all-300 w-full md:w-auto">
-                    <div class="w-12 h-12 flex items-center justify-center bg-orange-100 dark:bg-orange-900 rounded-full mr-4">
-                        <i class="fa fa-fire text-orange-600 dark:text-orange-400 text-2xl"></i>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="glass-effect rounded-xl p-8 text-center hover:bg-white/90 dark:hover:bg-dark-card/90 transition-colors card-hover">
+                    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary dark:text-dark-primary text-3xl">
+                        <i class="fa fa-wiki" aria-hidden="true"></i>
                     </div>
-                    <div class="text-left">
-                        <h3 class="font-bold text-lg">CurseForge</h3>
-                        <p class="text-gray-600 dark:text-gray-400">模组下载</p>
-                    </div>
+                    <h3 class="text-xl font-semibold mb-2">GitHub</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        在GitHub上提交问题以及查看更新日志。
+                    </p>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- 关于作者区域 -->
-    <section id="about" class="py-16 bg-white dark:bg-gray-800 transition-all-300">
+    <!-- 关于作者部分 -->
+    <section id="about" class="py-24 bg-gray-100 dark:bg-gray-900/50 dark-transition">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">关于作者</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">关于作者</h2>
             
-            <div class="max-w-3xl mx-auto bg-gray-50 dark:bg-gray-700 rounded-xl p-8 shadow-md">
-                <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-                    <div class="w-24 h-24 rounded-full bg-primary flex items-center justify-center text-white text-3xl font-bold shadow-lg">
-                        RC
+            <div class="glass-effect rounded-xl p-8 max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+                    <div class="w-32 h-32 rounded-full overflow-hidden flex-shrink-0">
+                        <img src="src\assets\litqa.png" class="w-full h-full object-cover">
                     </div>
-                    <div class="text-center md:text-left">
-                        <h3 class="text-2xl font-bold mb-2">Qa</h3>
-                        <p class="text-gray-600 dark:text-gray-300 mb-4">
-                            Qa（2001年10月4日-），中国江苏丹阳人。
+                    
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-4">Croparium 开发团队</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-6">
+                            Qa（2001年10月4日-），中国人。
                         </p>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            如有任何问题或建议，欢迎通过GitHub或其他官方渠道联系我。
+                        <p class="text-gray-700 dark:text-gray-300 mb-6">
+                            我们的团队简介。
                         </p>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-primary dark:text-dark-primary hover:underline">
+                                <i class="fa fa-twitter" aria-hidden="true"></i> Twitter
+                            </a>
+                            <a href="#" class="text-primary dark:text-dark-primary hover:underline">
+                                <i class="fa fa-github" aria-hidden="true"></i> GitHub
+                            </a>
+                            <a href="#" class="text-primary dark:text-dark-primary hover:underline">
+                                <i class="fa fa-envelope" aria-hidden="true"></i> 联系我们
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -248,232 +399,162 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="py-12 bg-gray-900 dark:bg-black text-gray-400 dark-transition">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <div class="flex items-center space-x-2">
-                        <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/aa5ffb91f39c4a37afbaa89cb89fa4a9~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=20260428234149C83D31AA8DA70F589848&rrcfp=f06b921b&x-expires=1779982960&x-signature=kUqlAC8HDdiPCIT3ku6BGGjua%2Bk%3D" alt="Croparium Logo" class="h-8 w-8 rounded-full">
-                        <span class="text-lg font-bold">Croparium</span>
-                    </div>
-                    <p class="text-gray-400 mt-2">© 2026 Croparium 团队. 保留所有权利.</p>
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="src\assets\logo-400.png" alt="Logo" class="h-8 w-8">
+                    <span class="text-lg font-bold text-white">Croparium</span>
                 </div>
+                
+                <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-6 md:mb-0">
+                    <a href="#intro" class="hover:text-white transition-colors">简介</a>
+                    <a href="#compatibility" class="hover:text-white transition-colors">联动模组</a>
+                    <a href="#links" class="hover:text-white transition-colors">官方链接</a>
+                    <a href="#about" class="hover:text-white transition-colors">关于作者</a>
+                </div>
+                
                 <div class="flex space-x-4">
-                    <a href="#" class="hover:text-primary transition-all-300">
-                        <i class="fa fa-github text-xl"></i>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
                     </a>
-                    <a href="#" class="hover:text-primary transition-all-300">
-                        <i class="fa fa-twitter text-xl"></i>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <i class="fa fa-github" aria-hidden="true"></i>
                     </a>
-                    <a href="#" class="hover:text-primary transition-all-300">
-                        <i class="fa fa-discord text-xl"></i>
+                    <a href="#" class="hover:text-white transition-colors">
+                        <i class="fa fa-discord" aria-hidden="true"></i>
                     </a>
                 </div>
+            </div>
+            
+            <hr class="border-gray-800 my-8">
+            
+            <div class="text-center text-sm">
+                <p>© 2026 Croparium 开发团队. 保留所有权利.</p>
+                <p class="mt-2">
+                    Minecraft 是 Mojang Studios 的注册商标. 本网站与 Mojang Studios 无关.
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- 详情模态框 -->
-    <div id="details-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                    <button id="close-modal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
-                        <i class="fa fa-times text-xl"></i>
-                    </button>
-                </div>
-                <div id="modal-content"></div>
-            </div>
-        </div>
-    </div>
-
+    <!-- JavaScript -->
     <script>
-        // 页面加载完成后执行
-        document.addEventListener('DOMContentLoaded', function() {
-            // 主题切换
-            const themeToggle = document.getElementById('theme-toggle');
-            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+        // 主题切换
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 检查本地存储中的主题偏好
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+        } else {
+            html.classList.remove('dark');
+        }
+        
+        // 主题切换按钮点击事件
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
             
-            // 检查本地存储中的主题设置
-            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
+            // 保存主题偏好到本地存储
+            if (html.classList.contains('dark')) {
+                localStorage.theme = 'dark';
             } else {
-                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
             }
-            
-            // 主题切换函数
-            function toggleTheme() {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                }
-            }
-            
-            // 绑定主题切换事件
-            themeToggle.addEventListener('click', toggleTheme);
-            mobileThemeToggle.addEventListener('click', toggleTheme);
-            
-            // 移动端菜单
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 移动端菜单
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 点击移动端菜单项后关闭菜单
+        const mobileMenuItems = mobileMenu.querySelectorAll('a');
+        mobileMenuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
             });
+        });
+        
+        // 联动模组排序功能
+        const sortNameButton = document.getElementById('sort-name');
+        const sortDateButton = document.getElementById('sort-date');
+        const modsContainer = document.getElementById('mods-container');
+        let currentSort = 'name'; // 默认按名称排序
+        
+        // 排序函数
+        function sortMods(sortBy) {
+            const mods = Array.from(modsContainer.children);
             
-            // 平滑滚动
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // 关闭移动端菜单
-                    mobileMenu.classList.add('hidden');
-                    
-                    // 滚动到目标位置
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80, // 减去导航栏高度
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // 导航栏滚动效果
-            const header = document.querySelector('header');
-            let lastScrollTop = 0;
-            
-            window.addEventListener('scroll', function() {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                if (scrollTop > 100) {
-                    header.classList.add('shadow-md');
-                    header.classList.remove('py-4');
-                    header.classList.add('py-2');
-                } else {
-                    header.classList.remove('shadow-md');
-                    header.classList.remove('py-2');
-                    header.classList.add('py-4');
-                }
-                
-                lastScrollTop = scrollTop;
-            });
-            
-            // Wiki 详情模态框
-            const modal = document.getElementById('details-modal');
-            const modalTitle = document.getElementById('modal-title');
-            const modalContent = document.getElementById('modal-content');
-            const closeModal = document.getElementById('close-modal');
-            const viewDetailsButtons = document.querySelectorAll('.view-details');
-            
-            // Wiki 内容数据 - 已改为占位符，方便你直接填写
-            const wikiContent = {
-                plants: {
-                    title: "可种植资源 & 获取种子",
-                    content: `
-                        <!-- 在此处添加图片，格式示例：
-                        <img src="你的图片URL" alt="可种植资源" class="w-full h-auto rounded-lg mb-6">
-                        -->
-                        
-                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
-                        <p class="mb-4">在此处添加模组可种植资源的介绍...</p>
-                    `
-                },
-                extraction: {
-                    title: "提取矿芯碎片教程",
-                    content: `
-                        <!-- 在此处添加图片，格式示例：
-                        <img src="你的图片URL" alt="提取矿芯碎片" class="w-full h-auto rounded-lg mb-6">
-                        -->
-                        
-                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
-                        <p class="mb-4">在此处添加矿芯碎片提取教程...</p>
-                    `
-                },
-                farming: {
-                    title: "作物种植条件与生长机制",
-                    content: `
-                        <!-- 在此处添加图片，格式示例：
-                        <img src="你的图片URL" alt="作物种植条件" class="w-full h-auto rounded-lg mb-6">
-                        -->
-                        
-                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
-                        <p class="mb-4">在此处添加作物种植条件与生长机制的介绍...</p>
-                    `
-                },
-                reactor: {
-                    title: "反应核心使用指南",
-                    content: `
-                        <!-- 在此处添加图片，格式示例：
-                        <img src="你的图片URL" alt="反应核心" class="w-full h-auto rounded-lg mb-6">
-                        -->
-                        
-                        <!-- 在此处添加详细描述文本，可使用<p>、<ul>、<h4>等标签 -->
-                        <p class="mb-4">在此处添加反应核心使用指南...</p>
-                    `
-                }
-            };
-            
-            // 打开模态框
-            viewDetailsButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const card = this.closest('.wiki-card');
-                    const id = card.dataset.id;
-                    const content = wikiContent[id];
-                    
-                    if (content) {
-                        modalTitle.textContent = content.title;
-                        modalContent.innerHTML = content.content;
-                        modal.classList.remove('hidden');
-                        document.body.style.overflow = 'hidden'; // 防止背景滚动
-                    }
-                });
-            });
-            
-            // 关闭模态框
-            closeModal.addEventListener('click', function() {
-                modal.classList.add('hidden');
-                document.body.style.overflow = ''; // 恢复背景滚动
-            });
-            
-            // 点击模态框外部关闭
-            modal.addEventListener('click', function(e) {
-                if (e.target === modal) {
-                    modal.classList.add('hidden');
-                    document.body.style.overflow = '';
+            mods.sort((a, b) => {
+                if (sortBy === 'name') {
+                    const nameA = a.dataset.name.toLowerCase();
+                    const nameB = b.dataset.name.toLowerCase();
+                    return nameA.localeCompare(nameB);
+                } else if (sortBy === 'date') {
+                    const dateA = new Date(a.dataset.date);
+                    const dateB = new Date(b.dataset.date);
+                    return dateB - dateA; // 降序排列，最新的在前
                 }
             });
             
-            // 图片懒加载
-            const lazyImages = document.querySelectorAll('img');
+            // 清空容器并重新添加排序后的模组卡片
+            modsContainer.innerHTML = '';
+            mods.forEach(mod => {
+                modsContainer.appendChild(mod);
+            });
             
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src || img.src;
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(img => {
-                    imageObserver.observe(img);
-                });
+            // 更新按钮样式
+            if (sortBy === 'name') {
+                sortNameButton.classList.add('text-primary', 'dark:text-dark-primary');
+                sortNameButton.classList.remove('text-gray-700', 'dark:text-gray-300');
+                sortDateButton.classList.add('text-gray-700', 'dark:text-gray-300');
+                sortDateButton.classList.remove('text-primary', 'dark:text-dark-primary');
             } else {
-                // 回退方案
-                lazyImages.forEach(img => {
-                    img.src = img.dataset.src || img.src;
-                });
+                sortDateButton.classList.add('text-primary', 'dark:text-dark-primary');
+                sortDateButton.classList.remove('text-gray-700', 'dark:text-gray-300');
+                sortNameButton.classList.add('text-gray-700', 'dark:text-gray-300');
+                sortNameButton.classList.remove('text-primary', 'dark:text-dark-primary');
             }
+            
+            currentSort = sortBy;
+        }
+        
+        // 初始排序
+        sortMods(currentSort);
+        
+        // 排序按钮点击事件
+        sortNameButton.addEventListener('click', () => {
+            if (currentSort !== 'name') {
+                sortMods('name');
+            }
+        });
+        
+        sortDateButton.addEventListener('click', () => {
+            if (currentSort !== 'date') {
+                sortMods('date');
+            }
+        });
+        
+        // 导航栏滚动效果
+        const nav = document.querySelector('nav');
+        let lastScrollTop = 0;
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+            
+            lastScrollTop = scrollTop;
         });
     </script>
 
