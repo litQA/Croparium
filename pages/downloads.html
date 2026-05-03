@@ -110,7 +110,7 @@
         // 解析CSV文件
         async function loadVersionsCSV() {
             try {
-                const response = await fetch('src/data/versions.csv');
+                const response = await fetch('https://github.com/litQA/Croparium/blob/page/src/data/versions.csv');
                 if (!response.ok) throw new Error('无法加载');
                 
                 const csvText = await response.text();
