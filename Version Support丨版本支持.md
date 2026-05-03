@@ -1,7 +1,7 @@
 # New Version Progress丨新版本开发进度
 ## Croparium v5.0
 ### Progress
-████░░░░░░░░░░░  26.67%
+██████░░░░░░░░░░ 35.29%
 
 ### Tasks
 
@@ -27,7 +27,7 @@
 
 * [x] Expansion Mod \- Arphex
 
-* [ ] Expansion Mod \- Composite Material
+* [x] Expansion Mod \- Composite Material
 
 * [ ] Expansion Mod \- Confluence Otherworld
 
