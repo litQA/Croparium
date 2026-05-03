@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Croparium模组官网</title>
+    <title>Croparium</title>
     <!-- Tailwind CSS v3 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
@@ -119,6 +119,21 @@
             opacity: .3;
             transition: 0s;
         }
+
+        /* 滚动滑入动画基础样式 */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px); /* 初始从下方偏移 */
+            transition: 
+                opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* 滑入后可见状态 */
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-dark-background text-gray-900 dark:text-gray-100 dark-transition min-h-screen">
@@ -160,7 +175,7 @@
         </div>
     </nav>
 
-    <!-- 标题部分 -->
+    <!-- 标题部分（不添加动画） -->
     <header class="h-screen flex items-center justify-center pt-16 dark-transition">
         <div class="container mx-auto px-4 text-center">
             <img src="src\assets\logo-400.png" alt="Logo" class="h-32 w-32 mx-auto mb-8">
@@ -168,14 +183,14 @@
             <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12 text-balance">
                 众所周知，手挖是一种极其不健康的行为
             </p>
-            <a href="#intro" class="inline-block px-8 py-3 bg-primary hover:bg-secondary text-white font-medium rounded-lg transition-colors btn-ripple">
-                了解更多
+            <a href="pages/downloads.html" class="inline-block px-8 py-3 bg-primary hover:bg-secondary text-white font-medium rounded-lg transition-colors btn-ripple">
+                下载模组
             </a>
         </div>
     </header>
 
-    <!-- 简介部分 -->
-    <section id="intro" class="py-24 dark-transition">
+    <!-- 简介部分（添加动画类） -->
+    <section id="intro" class="py-24 dark-transition animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">模组简介</h2>
             
@@ -204,8 +219,8 @@
         </div>
     </section>
 
-    <!-- 联动模组部分 -->
-    <section id="compatibility" class="py-24 bg-gray-100 dark:bg-gray-900/50 dark-transition">
+    <!-- 联动模组部分（添加动画类） -->
+    <section id="compatibility" class="py-24 bg-gray-100 dark:bg-gray-900/50 dark-transition animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">联动模组</h2>
             
@@ -223,8 +238,6 @@
             
             <!-- 联动模组卡片 -->
             <div id="mods-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <!-- 联动模组卡片 - 可以复制这些块来添加更多卡片 -->
-
                 <div class="glass-effect rounded-xl p-6 card-hover" data-name="天境/深入天境" data-date="2025-06-15">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 rounded-lg overflow-hidden mr-4">
@@ -288,37 +301,16 @@
                         <a href="#" class="text-primary dark:text-dark-primary hover:underline text-sm">访问链接</a>
                     </div>
                 </div>
-                
-                <!-- 复制以下代码块来添加更多联动模组卡片 -->
-                <!--
-                <div class="glass-effect rounded-xl p-6 card-hover" data-name="模组名称" data-date="2025-01-01">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-lg overflow-hidden mr-4">
-                            <img src="模组图标URL" alt="模组名称" class="w-full h-full object-cover">
-                        </div>
-                        <h3 class="text-lg font-semibold">模组名称</h3>
-                    </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                        模组简短描述
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs text-gray-500 dark:text-gray-400">更新时间: 2025-01-01</span>
-                        <a href="#" class="text-primary dark:text-dark-primary hover:underline text-sm">访问链接</a>
-                    </div>
-                </div>
-                -->
             </div>
         </div>
     </section>
 
-    <!-- 官方链接部分 -->
-    <section id="links" class="py-24 dark-transition">
+    <!-- 官方链接部分（添加动画类） -->
+    <section id="links" class="py-24 dark-transition animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">官方链接</h2>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- 官方链接卡片 -->
-
                 <a href="https://www.mcmod.cn/class/22202.html" target="_blank" rel="noopener noreferrer" class="glass-effect rounded-xl p-8 text-center hover:bg-white/90 dark:hover:bg-dark-card/90 transition-colors card-hover">
                     <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center text-primary dark:text-dark-primary text-3xl">
                         <img src="src\assets\logo_mcmod.png" alt="mcmod logo" class="w-full h-full object-cover">
@@ -362,8 +354,8 @@
         </div>
     </section>
 
-    <!-- 关于作者部分 -->
-    <section id="about" class="py-24 bg-gray-100 dark:bg-gray-900/50 dark-transition">
+    <!-- 关于作者部分（添加动画类） -->
+    <section id="about" class="py-24 bg-gray-100 dark:bg-gray-900/50 dark-transition animate-on-scroll">
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">关于作者</h2>
             
@@ -398,8 +390,8 @@
         </div>
     </section>
 
-    <!-- 页脚 -->
-    <footer class="py-12 bg-gray-900 dark:bg-black text-gray-400 dark-transition">
+    <!-- 页脚（添加动画类） -->
+    <footer class="py-12 bg-gray-900 dark:bg-black text-gray-400 dark-transition animate-on-scroll">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-6 md:mb-0">
@@ -556,6 +548,29 @@
             
             lastScrollTop = scrollTop;
         });
+
+        // 新增：滚动动画检测逻辑
+        // 检测元素是否进入可视区域
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            // 触发阈值：元素顶部进入视口85%高度时触发
+            return rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.85 && rect.bottom >= 0;
+        }
+
+        // 处理滚动动画
+        function handleScrollAnimations() {
+            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+            animatedElements.forEach(el => {
+                if (isElementInViewport(el) && !el.classList.contains('visible')) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+
+        // 初始加载时触发一次（处理首屏可见元素）
+        window.addEventListener('DOMContentLoaded', handleScrollAnimations);
+        // 滚动时持续检测
+        window.addEventListener('scroll', handleScrollAnimations);
     </script>
 
 </body>
