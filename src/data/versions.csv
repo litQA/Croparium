@@ -134,7 +134,7 @@
 1.21.1,neoforge,2025/12/10,4.3.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/48W5s6Tr/cp_lib-4.3.2-build.672-neoforge-1.21.1.jar,release
 1.21.1,neoforge,2025/12/13,4.4.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/OuL2sOmB/cp_lib-4.4.0-build.919-neoforge-1.21.1.jar,release
 1.21.1,neoforge,2025/12/14,4.5.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/VQrWPQS3/cp_lib-4.5.0-build.1024-neoforge-1.21.1.jar,beta
-1.21.2,neoforge,2025/12/19,4.6.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/S8fr6djc/cp_lib-4.6.1-build.1158-neoforge-1.21.1.jar,beta
+1.21.1,neoforge,2025/12/19,4.6.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/S8fr6djc/cp_lib-4.6.1-build.1158-neoforge-1.21.1.jar,beta
 1.21.1,neoforge,2025/12/20,4.6.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/aaVU1gn2/cp_lib-4.6.2-build.1160-neoforge-1.21.1.jar,beta
 1.21.1,neoforge,2025/12/23,4.6.4,https://cdn.modrinth.com/data/srNXPOFJ/versions/8lsp3KUR/cp_lib-4.6.4-build.1314-neoforge-1.21.1.jar,release
 1.21.1,neoforge,2025/12/26,4.6.7,https://cdn.modrinth.com/data/srNXPOFJ/versions/umKvZpQE/cp_lib-4.6.7-build.1504-neoforge-1.21.1.jar,beta
@@ -149,7 +149,11 @@
 1.21.1,neoforge,2026/1/24,4.7.10,https://cdn.modrinth.com/data/srNXPOFJ/versions/nPrGs4Ai/cp_lib-4.7.10-build.2822-neoforge-1.21.1.jar,release
 1.21.1,neoforge,2026/1/27,4.7.11,https://cdn.modrinth.com/data/srNXPOFJ/versions/515gGDgE/cp_lib-4.7.11-build.2934-neoforge-1.21.1.jar,release
 1.21.1,neoforge,2026/1/29,4.7.12,https://cdn.modrinth.com/data/srNXPOFJ/versions/wT8wQaQd/cp_lib-4.7.12-build.2955-neoforge-1.21.1.jar,release
-1.21.1,neoforge,2026/2/5,4.8.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/aaoCqX0Y/cp_lib-4.8.0-build.3096-neoforge-1.21.1.jar,release
+1.21.1,neoforge,2026/2/5,4.8.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/aaoCqX0Y/cp_lib-4.8.0-build.3096-neoforge-1.21.1.jar,recommend
+1.21.1,neoforge,2026/4/26,5.0.1,https://github.com/litQA/Croparium/releases/download/v5.0.1-alpha/cp_lib-5.0.1-alpha-neoforge-1.21.1.jar,alpha
+1.21.1,neoforge,2026/4/26,5.0.2,https://github.com/litQA/Croparium/releases/download/v5.0.2-alpha/cp_lib-5.0.2-alpha-neoforge-1.21.1.jar,alpha
+1.21.1,neoforge,2026/4/27,5.0.3,https://github.com/litQA/Croparium/releases/download/v5.0.3-alpha/cp_lib-5.0.3-alpha-neoforge-1.21.1.jar,alpha
+1.21.1,neoforge,2026/4/30,5.0.6,https://github.com/litQA/Croparium/releases/download/v5.0.6-alpha/cp_lib-5.0.6-alpha-neoforge-1.21.1.jar,alpha
 1.21.2,neoforge,2025/9/22,1.0.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/VPzbrcJO/croparium-1.0-neoforge-1.21.2-4.jar,release
 1.21.2,neoforge,2025/9/23,1.2.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/eaHQ2XFX/croparium-1.2.0-neoforge-1.21.%282%2C4%29.jar,release
 1.21.2,neoforge,2025/9/29,2.1.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/6yqcO6vN/croparium-2.1.1-neoforge-1.21.2-4.jar,release
