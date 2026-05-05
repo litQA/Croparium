@@ -6,27 +6,24 @@
   <title>下载Croparium模组</title>
   <!-- 引入Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- 引入Font Awesome图标（仅用于默认图标和其他UI元素） -->
+  <!-- 引入Font Awesome图标 -->
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- Tailwind配置：深浅色、自定义颜色、动画 -->
+  <!-- Tailwind配置 -->
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            // 状态专属颜色（调整Beta色避免与主色调冲突）
             alpha: '#64748b',
             beta: '#0ea5e9',
             release: '#10b981',
             recommend: '#f59e0b',
-            // 全局主色调改为专业蓝色
             primary: '#2563eb',
           },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
-          // 上浮动画配置
           animation: {
             'float-up': 'floatUp 0.5s ease-out forwards',
           },
@@ -42,41 +39,42 @@
   </script>
   <style type="text/tailwindcss">
     @layer utilities {
-      .content-auto {
-        content-visibility: auto;
-      }
-      .card-shadow {
-        @apply shadow-md hover:shadow-lg transition-shadow duration-300;
-      }
-      .scrollbar-hide {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-      .scrollbar-hide::-webkit-scrollbar {
-        display: none;
-      }
-      .loader {
-        @apply w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin;
-      }
-      .version-selected {
-        @apply bg-primary/15 dark:bg-primary/20 text-primary font-bold text-lg rounded-xl;
-      }
-      /* 加载器Logo统一样式 */
-      .loader-logo {
-        @apply w-4 h-4 object-contain flex-shrink-0;
-      }
+      .content-auto { content-visibility: auto; }
+      .card-shadow { @apply shadow-md hover:shadow-lg transition-shadow duration-300; }
+      .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      .scrollbar-hide::-webkit-scrollbar { display: none; }
+      .loader { @apply w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin; }
+      .version-selected { @apply bg-primary/15 dark:bg-primary/20 text-primary font-bold text-lg rounded-xl; }
+      .loader-logo { @apply w-4 h-6 object-contain flex-shrink-0; }
+      .status-tag { @apply inline-block w-16 text-center; }
+      /* 移动端侧边栏动画 */
+      .sidebar-transition { @apply transition-all duration-300 ease-in-out; }
+    }
+    /* 全局禁止滚动，固定页面高度 */
+    html, body {
+      overflow: hidden !important;
+      height: 100vh !important;
     }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen transition-colors duration-300">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+  <!-- 遮罩层（移动端折叠菜单用） -->
+  <div id="overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
   <!-- 顶部导航栏 -->
   <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-2">
-        <i class="fa fa-download text-primary text-xl"></i>
-        <h1 class="text-xl font-bold">下载Croparium模组</h1>
+      <!-- 左侧：菜单按钮 + 标题 -->
+      <div class="flex items-center gap-3">
+        <button id="menu-btn" class="lg:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+          <i class="fa fa-bars text-xl text-gray-700 dark:text-gray-200"></i>
+        </button>
+        <div class="flex items-center gap-2">
+          <i class="fa fa-download text-primary text-xl"></i>
+          <h1 class="text-xl font-bold">下载Croparium模组</h1>
+        </div>
       </div>
-      <!-- 深浅色切换按钮 -->
+      <!-- 深浅色切换 -->
       <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
         <i class="fa fa-moon-o dark:hidden text-gray-600"></i>
         <i class="fa fa-sun-o hidden dark:inline text-yellow-400"></i>
@@ -84,48 +82,61 @@
     </div>
   </header>
 
-  <!-- 主内容区 -->
-  <main class="container mx-auto px-4 py-6">
-    <div class="flex flex-col lg:flex-row gap-6">
-      <!-- 左侧：MC版本选择栏 -->
-      <div class="lg:w-1/4 w-full">
-        <div class="bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 card-shadow h-[calc(100vh-120px)] sticky top-20">
-          <h2 class="text-lg font-semibold mb-4 flex items-center gap-2">
+  <!-- 主内容区：固定高度，禁止外层滚动 -->
+  <main class="container mx-auto px-4 py-6 h-[calc(100vh-88px)]">
+    <div class="flex flex-col lg:flex-row gap-6 h-full">
+      <!-- 左侧：MC版本选择栏（独立滚动） -->
+      <div id="sidebar" class="lg:w-1/4 w-full lg:static fixed inset-y-0 left-0 z-50 sidebar-transition translate-x-[-100%] lg:translate-x-0">
+        <div class="bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-4 card-shadow h-full w-[280px] lg:w-full flex flex-col">
+          <h2 class="text-lg font-semibold mb-4 flex items-center gap-2 flex-shrink-0">
             <i class="fa fa-gamepad text-primary"></i>选择Minecraft版本
           </h2>
-          <!-- 加载提示 -->
-          <div id="version-loader" class="flex justify-center py-10">
+          <!-- 版本列表：独立滚动区域 -->
+          <div id="version-loader" class="flex justify-center py-10 flex-shrink-0">
             <div class="loader"></div>
           </div>
-          <!-- 版本列表 -->
-          <div id="version-list" class="space-y-2 overflow-y-auto scrollbar-hide h-[calc(100%-40px)] hidden"></div>
+          <div id="version-list" class="space-y-2 overflow-y-auto scrollbar-hide flex-1 hidden"></div>
         </div>
       </div>
 
-      <!-- 右侧：下载内容区 -->
-      <div class="lg:w-3/4 w-full">
-        <div class="bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-6 card-shadow min-h-[calc(100vh-120px)]">
-          <h2 class="text-lg font-semibold mb-6 flex items-center gap-2">
+      <!-- 右侧：下载内容区（固定头部，历史版本独立滚动） -->
+      <div class="lg:w-3/4 w-full h-full">
+        <div class="bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl p-6 card-shadow h-full flex flex-col">
+          <h2 class="text-lg font-semibold mb-6 flex items-center gap-2 flex-shrink-0">
             <i class="fa fa-box text-primary"></i>模组列表
           </h2>
+
           <!-- 默认提示 -->
-          <div id="download-empty" class="flex flex-col items-center justify-center py-20 text-gray-50 dark:text-gray-400">
+          <div id="download-empty" class="flex flex-col items-center justify-center py-20 text-gray-50 dark:text-gray-400 flex-1">
             <i class="fa fa-hand-pointer-o text-3xl mb-4"></i>
             <p class="text-center">请在左侧选择 Minecraft 版本</p>
           </div>
           <!-- 加载提示 -->
-          <div id="download-loader" class="hidden flex justify-center py-20">
+          <div id="download-loader" class="hidden flex justify-center py-20 flex-shrink-0">
             <div class="loader"></div>
           </div>
-          <!-- 下载卡片容器 -->
-          <div id="download-container" class="space-y-6 hidden"></div>
+
+          <!-- 模组内容容器：头部固定 + 历史版本滚动 -->
+          <div id="download-container" class="hidden flex flex-col flex-1 overflow-hidden">
+            <!-- 固定区域：标题、推荐版、最新版、历史版本标题 -->
+            <div class="flex-shrink-0 space-y-6 pb-4">
+              <div id="version-title" class="text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3 mb-4 pb-3 border-b border-gray-300 dark:border-gray-700 opacity-0 animate-float-up"></div>
+              <div id="top-cards" class="space-y-6"></div>
+              <h3 id="history-title" class="text-md font-semibold mt-2 mb-3 flex items-center gap-2 opacity-0 animate-float-up">
+                <i class="fa fa-history text-gray-50"></i> 历史版本
+              </h3>
+            </div>
+
+            <!-- 独立滚动区域：仅历史版本小卡片滚动 -->
+            <div id="history-container" class="space-y-2 overflow-y-auto scrollbar-hide flex-1"></div>
+          </div>
         </div>
       </div>
     </div>
   </main>
 
   <!-- 页脚 -->
-  <footer class="bg-white dark:bg-gray-800 mt-8 py-4 shadow-sm">
+  <footer class="bg-white dark:bg-gray-800 py-4 shadow-sm flex-shrink-0">
     <div class="container mx-auto px-4 text-center text-gray-50 dark:text-gray-400 text-sm">
       <p>© 2026 Croparium 开发团队. 保留所有权利.</p>
     </div>
@@ -133,36 +144,33 @@
 
   <script>
     // ===================== 核心配置 =====================
-    // CSV文件链接（可自行修改）
-    const CSV_URL = 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/data/versions.csv';
-    
-    // ✅ 加载器Logo统一配置（Forge支持深浅色双链接）
+    const CSV_URL = 'https://raw.githubusercontent.com/litQA/Croparium/refs/heads/page/src/data/versions.csv';
     const LOADER_LOGOS = {
       fabric: 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/logo_fabric.png',
-      // Forge 配置：浅色模式 / 深色模式 分别填写对应图标链接
-      forge: {
-        light: 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/logo_forge.png',
-        dark: 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/logo_forge_darkmode.png'
-      },
+      forge: { light: 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/logo_forge.png', dark: 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/logo_forge_darkmode.png' },
       neoforge: 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/logo_neoforge.png',
       quilt: 'https://raw.githubusercontent.com/litQA/Croparium/page/src/assets/logo_quilt.png',
-      // 未知加载器默认图标
       default: 'https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/fonts/fontawesome-webfont.svg#cube'
     };
-    
-    // 加载器排序优先级（固定）
     const LOADER_ORDER = { fabric: 1, forge: 2, neoforge: 3, quilt: 4 };
-    
-    // 预设CSV数据（新格式：mc版本，加载器，发行日期，模组版本号，标签）
     const PRESET_DATA = `
-1.21,Fabric,2025-02-01,1.3.0,recommend
-1.21,Forge,2025-02-02,1.3.1,recommend
-1.20.6,NeoForge,2025-01-25,1.2.5,recommend
-1.20.4,Fabric,2025-01-20,1.2.0,release
-1.20.4,NeoForge,2025-01-22,1.2.1,recommend
-1.20.1,Fabric,2025-01-15,1.0.0,recommend
-1.20.1,Quilt,2025-01-15,1.0.0,recommend
-1.20.1,Forge,2025-01-16,1.0.1,recommend
+1.18.2,forge,2025/12/26,4.6.5,https://cdn.modrinth.com/data/srNXPOFJ/versions/jhtn122e/cp_lib-4.6.5-build.1428-forge-1.18.2.jar,beta
+1.18.2,forge,2025/12/26,4.6.7,https://cdn.modrinth.com/data/srNXPOFJ/versions/tbrvK9Hh/cp_lib-4.6.7-build.1501-forge-1.18.2.jar,beta
+1.18.2,forge,2025/12/28,4.6.8,https://cdn.modrinth.com/data/srNXPOFJ/versions/Cy9W3fKE/cp_lib-4.6.8-build.1540-forge-1.18.2.jar,beta
+1.18.2,forge,2026/1/1,4.7.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/MrZMvcIH/cp_lib-4.7.0-build.1549-forge-1.18.2.jar,release
+1.18.2,forge,2026/1/3,4.7.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/fnPaPZm0/cp_lib-4.7.1-build.1582-forge-1.18.2.jar,release
+1.18.2,forge,2026/1/4,4.7.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/WwDVBZrz/cp_lib-4.7.2-build.1583-forge-1.18.2.jar,release
+1.18.2,forge,2026/1/9,4.7.5,https://cdn.modrinth.com/data/srNXPOFJ/versions/6lKJtSgC/cp_lib-4.7.5-build.2042-forge-1.18.2.jar,beta
+1.18.2,forge,2026/1/13,4.7.6,https://cdn.modrinth.com/data/srNXPOFJ/versions/T2q4iwPO/cp_lib-4.7.6-build.2186-forge-1.18.2.jar,beta
+1.18.2,forge,2026/1/16,4.7.7,https://cdn.modrinth.com/data/srNXPOFJ/versions/vIjfoX9X/cp_lib-4.7.7-build.2463-forge-1.18.2.jar,beta
+1.18.2,forge,2026/1/21,4.7.8,https://cdn.modrinth.com/data/srNXPOFJ/versions/lkLe62g3/cp_lib-4.7.8-build.2626-forge-1.18.2.jar,beta
+1.18.2,forge,2026/1/22,4.7.9,https://cdn.modrinth.com/data/srNXPOFJ/versions/JrKe0tcK/cp_lib-4.7.9-build.2770-forge-1.18.2.jar,beta
+1.18.2,forge,2026/1/24,4.7.10,https://cdn.modrinth.com/data/srNXPOFJ/versions/GkOGFqF9/cp_lib-4.7.10-build.2824-forge-1.18.2.jar,release
+1.18.2,forge,2026/1/29,4.7.12,https://cdn.modrinth.com/data/srNXPOFJ/versions/jNLmmA5Z/cp_lib-4.7.12-build.2984-forge-1.18.2.jar,release
+1.18.2,forge,2026/2/6,4.8.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/YgKShd5l/cp_lib-4.8.0-build.3122-forge-1.18.2.jar,release
+1.18.2,forge,2026/2/24,4.8.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/KoTAhGxy/cp_lib-4.8.1-build.3327-forge-1.18.2.jar,beta
+1.18.2,forge,2026/3/6,4.8.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/FV2BHksX/cp_lib-4.8.2-build.3420-forge-1.18.2.jar,beta
+1.18.2,forge,2026/4/9,4.8.3,https://cdn.modrinth.com/data/srNXPOFJ/versions/w6kPbSOh/cp_lib-4.8.3-build.3420-forge-1.18.2.jar,recommend
 `;
 
     // ===================== 全局变量 =====================
@@ -172,275 +180,190 @@
     let currentSelectedVersion = '';
     let lastSelectedVersionBtn = null;
     const html = document.documentElement;
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    const menuBtn = document.getElementById('menu-btn');
 
     // ===================== 深浅色切换 =====================
     const themeToggle = document.getElementById('theme-toggle');
-    // 初始化主题
     if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       html.classList.add('dark');
     }
 
+    // ===================== 移动端侧边栏控制 =====================
+    function openSidebar() { sidebar.classList.remove('translate-x-[-100%]'); overlay.classList.remove('hidden'); }
+    function closeSidebar() { sidebar.classList.add('translate-x-[-100%]'); overlay.classList.add('hidden'); }
+    menuBtn.addEventListener('click', () => { sidebar.classList.contains('translate-x-[-100%]') ? openSidebar() : closeSidebar(); });
+    overlay.addEventListener('click', closeSidebar);
+    window.addEventListener('resize', () => { if (window.innerWidth >= 1024) closeSidebar(); });
+
     // ===================== 工具函数 =====================
-    // 版本号比较
     function compareVersions(verA, verB) {
-      const a = verA.split('.').map(Number);
-      const b = verB.split('.').map(Number);
+      const a = verA.split('.').map(Number); const b = verB.split('.').map(Number);
       for (let i = 0; i < Math.max(a.length, b.length); i++) {
-        const numA = a[i] || 0;
-        const numB = b[i] || 0;
-        if (numA > numB) return -1;
-        if (numA < numB) return 1;
+        const numA = a[i] || 0; const numB = b[i] || 0;
+        if (numA > numB) return -1; if (numA < numB) return 1;
       }
       return 0;
     }
 
-    // 解析加载器+版本（适配新格式的组合字符串 [loader] mcVersion）
+    // 加载器名称格式化（首字母大写，neoforge→NeoForge）
+    function formatLoaderName(loader) {
+      const loaderMap = {
+        fabric: 'Fabric',
+        forge: 'Forge',
+        neoforge: 'NeoForge',
+        quilt: 'Quilt'
+      };
+      return loaderMap[loader.toLowerCase()] || loader;
+    }
+
     function parseMcVersion(fullVersion) {
       const loaderMatch = fullVersion.match(/\[(.*?)\]/);
       const loader = loaderMatch ? loaderMatch[1].toLowerCase() : 'unknown';
       const version = fullVersion.replace(/\[.*?\]/, '').trim();
-      return { loader, version, full: fullVersion };
+      return { loader, version, full: fullVersion, formattedLoader: formatLoaderName(loader) };
     }
 
-    // ✅ 自动根据深浅色模式获取图标
     function getLoaderLogo(loader) {
       const isDarkMode = html.classList.contains('dark');
       const logo = LOADER_LOGOS[loader.toLowerCase()];
-      
-      // Forge：深浅色切换图标
-      if (loader.toLowerCase() === 'forge' && typeof logo === 'object') {
-        return isDarkMode ? logo.dark : logo.light;
-      }
-      // 其他加载器：固定图标
+      if (loader.toLowerCase() === 'forge' && typeof logo === 'object') return isDarkMode ? logo.dark : logo.light;
       return logo || LOADER_LOGOS.default;
     }
 
-    // 解析CSV（适配新格式：mc版本，加载器，发行日期，模组版本号，标签）
     function parseCSV(csvText) {
-      return csvText.split('\n')
-        .filter(line => line.trim() !== '')
-        .map(line => {
-          // 拆分CSV行（处理可能的空值，确保长度一致）
-          const [mcVersion, loader, time, modVersion, status] = line.split(',').map(item => item.trim());
-          // 组合成原格式的 mcVersion 字段：[loader] mcVersion
-          const combinedMcVersion = `[${loader}] ${mcVersion}`;
-          return { 
-            mcVersion: combinedMcVersion, // 前端展示用的组合字段
-            rawMcVersion: mcVersion, // 原始MC版本（备用）
-            loader: loader.toLowerCase(), // 原始加载器（备用）
-            time, 
-            modVersion, 
-            status: status || 'release' // 默认标签为release
-          };
-        });
+      return csvText.split('\n').filter(line => line.trim() !== '').map(line => {
+        const [mcVersion, loader, time, modVersion, downloadUrl, status] = line.split(',').map(item => item.trim());
+        return { mcVersion: `[${loader}] ${mcVersion}`, rawMcVersion: mcVersion, loader: loader.toLowerCase(), time, modVersion, downloadUrl: downloadUrl || '', status: status || 'release' };
+      });
+    }
+
+    // 日期格式化（月份、日期自动补零为两位数）
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const [year, month, day] = dateStr.split('/').map(Number);
+      // 补零：个位数前加0，保证两位显示
+      const formattedMonth = String(month).padStart(2, '0');
+      const formattedDay = String(day).padStart(2, '0');
+      return `${year}年${formattedMonth}月${formattedDay}日`;
     }
 
     // ===================== 数据处理 =====================
     async function loadVersionData() {
-      try {
-        const response = await fetch(CSV_URL);
-        if (!response.ok) throw new Error('CSV获取失败');
-        const csvText = await response.text();
-        allVersions = parseCSV(csvText);
-      } catch (error) {
-        console.warn('使用预设数据', error);
-        allVersions = parseCSV(PRESET_DATA);
-      }
-      groupAndSortData();
-      renderVersionList();
+      try { const response = await fetch(CSV_URL); if (!response.ok) throw new Error(); allVersions = parseCSV(await response.text()); }
+      catch (error) { allVersions = parseCSV(PRESET_DATA); }
+      groupAndSortData(); renderVersionList();
     }
 
-    // 分组排序
     function groupAndSortData() {
-      versionGroups = {};
-      allVersions.forEach(item => {
-        if (!versionGroups[item.mcVersion]) versionGroups[item.mcVersion] = [];
-        versionGroups[item.mcVersion].push(item);
-      });
-
+      versionGroups = {}; allVersions.forEach(item => { !versionGroups[item.mcVersion] && (versionGroups[item.mcVersion] = []); versionGroups[item.mcVersion].push(item); });
       sortedVersionKeys = Object.keys(versionGroups).sort((a, b) => {
-        const verA = parseMcVersion(a);
-        const verB = parseMcVersion(b);
+        const verA = parseMcVersion(a); const verB = parseMcVersion(b);
         const verCompare = compareVersions(verA.version, verB.version);
-        if (verCompare !== 0) return verCompare;
-        return (LOADER_ORDER[verA.loader] || 99) - (LOADER_ORDER[verB.loader] || 99);
+        return verCompare !== 0 ? verCompare : (LOADER_ORDER[verA.loader] || 99) - (LOADER_ORDER[verB.loader] || 99);
       });
     }
 
     // ===================== 渲染函数 =====================
-    // 渲染版本列表
     function renderVersionList() {
       const versionListEl = document.getElementById('version-list');
       const loaderEl = document.getElementById('version-loader');
+      loaderEl.classList.add('hidden'); versionListEl.classList.remove('hidden'); versionListEl.innerHTML = '';
       
-      loaderEl.classList.add('hidden');
-      versionListEl.classList.remove('hidden');
-      versionListEl.innerHTML = '';
-
       sortedVersionKeys.forEach(version => {
-        const { loader } = parseMcVersion(version);
-        const logoPath = getLoaderLogo(loader);
-        
+        const { loader, formattedLoader, version: mcVer } = parseMcVersion(version);
         const card = document.createElement('button');
         card.className = 'w-full text-left px-4 py-3 rounded-lg hover:bg-gray-200/70 dark:hover:bg-gray-700/70 transition-all cursor-pointer';
-        card.innerHTML = `
-          <div class="flex items-center gap-2">
-            <img src="${logoPath}" alt="${loader}" class="loader-logo">
-            <span>${version}</span>
-          </div>
-        `;
-        card.addEventListener('click', () => selectVersion(version, card));
+        card.innerHTML = `<div class="flex items-center gap-2"><img src="${getLoaderLogo(loader)}" alt="${formattedLoader}" class="loader-logo"><span>[${formattedLoader}] ${mcVer}</span></div>`;
+        card.addEventListener('click', () => { selectVersion(version, card); closeSidebar(); });
         versionListEl.appendChild(card);
       });
     }
 
-    // 选中版本
     function selectVersion(version, cardBtn) {
-      if (lastSelectedVersionBtn) lastSelectedVersionBtn.classList.remove('version-selected');
-      cardBtn.classList.add('version-selected');
-      lastSelectedVersionBtn = cardBtn;
+      lastSelectedVersionBtn?.classList.remove('version-selected');
+      cardBtn.classList.add('version-selected'); lastSelectedVersionBtn = cardBtn; currentSelectedVersion = version;
 
-      currentSelectedVersion = version;
-      const emptyEl = document.getElementById('download-empty');
-      const containerEl = document.getElementById('download-container');
-      const loaderEl = document.getElementById('download-loader');
-
-      emptyEl.classList.add('hidden');
-      containerEl.classList.add('hidden');
-      loaderEl.classList.remove('hidden');
+      document.getElementById('download-empty').classList.add('hidden');
+      document.getElementById('download-container').classList.add('hidden');
+      document.getElementById('download-loader').classList.remove('hidden');
 
       setTimeout(() => {
-        loaderEl.classList.add('hidden');
-        containerEl.classList.remove('hidden');
+        document.getElementById('download-loader').classList.add('hidden');
+        document.getElementById('download-container').classList.remove('hidden');
         renderDownloadCards(version);
       }, 300);
     }
 
-    // 渲染下载卡片
     function renderDownloadCards(mcVersion) {
-      const container = document.getElementById('download-container');
-      container.innerHTML = '';
       const dataList = versionGroups[mcVersion];
-      
-      const { loader } = parseMcVersion(mcVersion);
+      const { loader, formattedLoader, version: mcVer } = parseMcVersion(mcVersion);
       const logoPath = getLoaderLogo(loader);
-      
-      const versionTitle = document.createElement('div');
-      versionTitle.className = 'text-2xl font-bold text-gray-800 dark:text-gray-100 flex items-center gap-3 mb-4 pb-3 border-b border-gray-300 dark:border-gray-700 opacity-0 animate-float-up';
-      versionTitle.style.animationDelay = '0ms';
-      versionTitle.innerHTML = `
-        <img src="${logoPath}" alt="${loader}" class="w-6 h-6 object-contain">
-        <span>${mcVersion}</span>
-      `;
-      container.appendChild(versionTitle);
-
       const recommendVer = dataList.find(item => item.status === 'recommend');
       const latestVer = [...dataList].sort((a, b) => compareVersions(a.modVersion, b.modVersion))[0];
-      const otherVers = dataList
-        .filter(item => item !== recommendVer && item !== latestVer)
-        .sort((a, b) => compareVersions(a.modVersion, b.modVersion));
+      const otherVers = dataList.filter(item => item !== recommendVer && item !== latestVer).sort((a, b) => compareVersions(a.modVersion, b.modVersion));
 
-      if (recommendVer) container.appendChild(createLargeCard(recommendVer, '推荐版', 'recommend', 0));
-      if (latestVer && latestVer !== recommendVer) container.appendChild(createLargeCard(latestVer, '最新版', 'latest', 150));
+      // 渲染固定头部
+      document.getElementById('version-title').style.animationDelay = '0ms';
+      document.getElementById('version-title').innerHTML = `<img src="${logoPath}" alt="${formattedLoader}" class="w-6 h-6 object-contain"><span>[${formattedLoader}] ${mcVer}</span>`;
+      document.getElementById('version-title').classList.remove('opacity-0');
+      
+      const topCards = document.getElementById('top-cards');
+      topCards.innerHTML = '';
+      recommendVer && topCards.appendChild(createLargeCard(recommendVer, '推荐版', 'recommend', 0));
+      latestVer && latestVer !== recommendVer && topCards.appendChild(createLargeCard(latestVer, '最新版', 'latest', 150));
+      
+      document.getElementById('history-title').style.animationDelay = '300ms';
+      document.getElementById('history-title').classList.remove('opacity-0');
 
-      if (otherVers.length > 0) {
-        const title = document.createElement('h3');
-        title.className = 'text-md font-semibold mt-8 mb-3 flex items-center gap-2 opacity-0 animate-float-up';
-        title.style.animationDelay = '300ms';
-        title.innerHTML = '<i class="fa fa-history text-gray-50"></i> 历史版本';
-        container.appendChild(title);
-
-        const otherContainer = document.createElement('div');
-        otherContainer.className = 'space-y-2';
-        otherVers.forEach((item, index) => {
-          const delay = 400 + index * 100;
-          otherContainer.appendChild(createSmallCard(item, delay));
-        });
-        container.appendChild(otherContainer);
-      }
+      // 渲染历史版本（独立滚动区域）
+      const historyContainer = document.getElementById('history-container');
+      historyContainer.innerHTML = '';
+      otherVers.forEach((item, index) => historyContainer.appendChild(createSmallCard(item, 400 + index * 100)));
     }
 
     // 创建大卡片
     function createLargeCard(data, title, type, delay = 0) {
       const card = document.createElement('div');
-      card.className = `bg-white dark:bg-gray-800 rounded-2xl p-6 card-shadow cursor-pointer transition-all duration-300 hover:scale-[1.01] opacity-0 animate-float-up`;
+      card.className = `bg-white dark:bg-gray-800 rounded-2xl p-6 card-shadow cursor-pointer transition-all duration-300 hover:scale-105 opacity-0 animate-float-up`;
       card.style.animationDelay = `${delay}ms`;
-      // 注意：原代码中缺失下载链接字段，如需添加可在CSV中补充url列后修改此处
-      card.onclick = () => {
-        // 如需下载链接，可在CSV中添加url列，然后修改为 window.open(data.url, '_blank')
-        alert(`准备下载 ${data.mcVersion} - v${data.modVersion}`);
-      };
-      
-      const statusColor = {
-        alpha: 'bg-alpha/10 text-alpha',
-        beta: 'bg-beta/10 text-beta',
-        release: 'bg-release/10 text-release',
-        recommend: 'bg-recommend/10 text-recommend font-bold',
-      }[data.status];
-
+      card.onclick = () => data.downloadUrl ? window.open(data.downloadUrl, '_blank') : alert(`暂无下载链接`);
+      const statusColor = { alpha: 'bg-alpha/10 text-alpha', beta: 'bg-beta/10 text-beta', release: 'bg-release/10 text-release', recommend: 'bg-recommend/10 text-recommend font-bold' }[data.status];
+      // 浅色模式日期浅灰色，深色模式灰色
       card.innerHTML = `
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div class="space-y-2">
-            <div class="flex items-center gap-2">
-              <span class="px-3 py-1 rounded-full text-xs ${statusColor}">${data.status.toUpperCase()}</span>
-              <span class="text-lg font-bold text-primary">${title}</span>
-            </div>
+            <div class="flex items-center gap-2"><span class="px-3 py-1 rounded-full text-xs ${statusColor}">${data.status.toUpperCase()}</span><span class="text-lg font-bold text-primary">${title}</span></div>
             <div class="text-xl font-bold">模组版本: ${data.modVersion}</div>
-            <div class="text-gray-600 dark:text-gray-400">
-              <i class="fa fa-calendar-o mr-1"></i> ${data.time}
-            </div>
           </div>
-          <div class="flex items-center gap-2 text-primary font-semibold">
-            <i class="fa fa-download text-lg"></i>
-            <span>点击下载</span>
-          </div>
-        </div>
-      `;
+          <div class="text-gray-600 dark:text-gray-400 font-semibold">${formatDate(data.time)}</div>
+        </div>`;
       return card;
     }
 
     // 创建小卡片
     function createSmallCard(data, delay = 0) {
       const card = document.createElement('div');
-      card.className = `bg-white dark:bg-gray-800 rounded-lg p-4 card-shadow cursor-pointer transition-all duration-300 opacity-0 animate-float-up`;
+      card.className = `bg-white dark:bg-gray-800 rounded-lg p-4 card-shadow cursor-pointer transition-all duration-300 hover:scale-105 opacity-0 animate-float-up`;
       card.style.animationDelay = `${delay}ms`;
-      // 注意：原代码中缺失下载链接字段，如需添加可在CSV中补充url列后修改此处
-      card.onclick = () => {
-        // 如需下载链接，可在CSV中添加url列，然后修改为 window.open(data.url, '_blank')
-        alert(`准备下载 ${data.mcVersion} - v${data.modVersion}`);
-      };
-      
-      const statusColor = {
-        alpha: 'bg-alpha/10 text-alpha',
-        beta: 'bg-beta/10 text-beta',
-        release: 'bg-release/10 text-release',
-        recommend: 'bg-recommend/10 text-recommend',
-      }[data.status];
-
+      card.onclick = () => data.downloadUrl ? window.open(data.downloadUrl, '_blank') : alert(`暂无下载链接`);
+      const statusColor = { alpha: 'bg-alpha/10 text-alpha', beta: 'bg-beta/10 text-beta', release: 'bg-release/10 text-release', recommend: 'bg-recommend/10 text-recommend' }[data.status];
+      // 浅色模式日期浅灰色，深色模式灰色
       card.innerHTML = `
         <div class="flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <span class="px-2 py-0.5 rounded-full text-xs ${statusColor}">${data.status.toUpperCase()}</span>
-            <span class="font-medium">v${data.modVersion}</span>
-            <span class="text-gray-50 dark:text-gray-400 text-sm">${data.time}</span>
-          </div>
-          <i class="fa fa-download text-primary"></i>
-        </div>
-      `;
+          <div class="flex items-center gap-3"><span class="px-2 py-0.5 rounded-full text-xs ${statusColor} status-tag">${data.status.toUpperCase()}</span><span class="font-medium">v${data.modVersion}</span></div>
+          <span class="text-gray-600 dark:text-gray-400 text-sm">${formatDate(data.time)}</span>
+        </div>`;
       return card;
     }
 
-    // ===================== 主题切换后刷新图标 =====================
+    // ===================== 初始化 =====================
     themeToggle.addEventListener('click', () => {
       html.classList.toggle('dark');
       localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
-      // 切换主题后重新渲染版本列表，自动更新Forge图标
-      renderVersionList();
-      // 重新渲染当前选中版本的卡片，更新标题图标
-      if (currentSelectedVersion) renderDownloadCards(currentSelectedVersion);
+      renderVersionList(); currentSelectedVersion && renderDownloadCards(currentSelectedVersion);
     });
-
-    // ===================== 初始化 =====================
     window.addEventListener('DOMContentLoaded', loadVersionData);
   </script>
 </body>
