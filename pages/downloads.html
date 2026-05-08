@@ -117,10 +117,11 @@
         .tag-recommend { background-color: #60A5FA; color: white; }
         .tag-latest-recommend { background-color: #8B5CF6; color: white; } /* 新增最新·推荐标签样式 */
         
-        /* 版本选择侧边栏激活样式 */
+        /* 版本选择侧边栏激活样式 + 选中加粗 */
         .version-selector-active {
             background-color: rgba(0, 113, 223, 0.1);
             border-left: 3px solid #0071e3;
+            font-weight: 700 !important;
         }
         /* 分页按钮样式 */
         .page-btn {
@@ -382,9 +383,6 @@
 1.20.1,forge,2026/4/26,5.0.2,https://github.com/litQA/Croparium/releases/download/v5.0.2-alpha/cp_lib-5.0.2-alpha-forge-1.20.1.jar,alpha
 1.20.1,forge,2026/4/27,5.0.3,https://github.com/litQA/Croparium/releases/download/v5.0.3-alpha/cp_lib-5.0.3-alpha-forge-1.20.1.jar,alpha
 1.20.1,forge,2026/4/30,5.0.6,https://github.com/litQA/Croparium/releases/download/v5.0.6-alpha/cp_lib-5.0.6-alpha-forge-1.20.1.jar,alpha
-
-
-
 `;
 
             // 获取加载器图片（自动适配深浅色）
@@ -401,7 +399,7 @@
                 });
             }
 
-            // CSV解析/版本排序/数据获取（不变）
+            // CSV解析/版本排序/数据获取
             function parseCSV(csvText) {
                 const lines = csvText.trim().split('\n');
                 const data = [];
@@ -413,15 +411,26 @@
                 });
                 return data;
             }
+            
+            // 从GitHub获取CSV数据
             async function getModData() {
-                try { return parseCSV(fallbackCSV); } 
-                catch (error) { console.error('获取数据失败', error); return parseCSV(fallbackCSV); }
+                try {
+                    const csvUrl = 'https://raw.githubusercontent.com/litQA/Croparium/refs/heads/page.dev/resourses/data/versions.csv';
+                    const response = await fetch(csvUrl);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const csvText = await response.text();
+                    return parseCSV(csvText);
+                } catch (error) {
+                    console.error('从GitHub获取CSV数据失败，使用本地默认数据:', error);
+                    return parseCSV(fallbackCSV);
+                }
             }
+            
             function formatVersionForSort(version) {
                 return version.split('.').map(num => num.padStart(3, '0')).join('.');
             }
 
-            // 渲染版本列表（图片Logo替换）
+            // ========================== 核心优化：左侧版本选择栏渲染 ==========================
             function renderVersionList(data) {
                 const versionList = document.getElementById('version-list');
                 const groupedByMCVersion = {};
@@ -445,11 +454,15 @@
                         const loaderFormatted = loaderNameMap[item.loader];
                         const isFirst = index === 0;
                         const versionKey = `${mcVersion}-${item.loader}`;
+                        // 优化点1：去除[]  2：版本号右对齐  3：选中项加粗
                         html += `
                             <div class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer ${isFirst ? 'version-selector-active' : ''}" data-version-key="${versionKey}">
-                                <div class="flex items-center">
-                                    <img src="${getLoaderImage(item.loader)}" data-loader="${item.loader}" class="loader-img">
-                                    <span>[${loaderFormatted}] ${mcVersion}</span>
+                                <div class="flex items-center justify-between w-full">
+                                    <div class="flex items-center gap-1">
+                                        <img src="${getLoaderImage(item.loader)}" data-loader="${item.loader}" class="loader-img">
+                                        <span>${loaderFormatted}</span>
+                                    </div>
+                                    <span class="font-semibold text-base">${mcVersion}</span>
                                 </div>
                             </div>`;
                     });
@@ -463,7 +476,7 @@
                         versionItems.forEach(i => i.classList.remove('version-selector-active'));
                         this.classList.add('version-selector-active');
                         const [mcVersion, loader] = this.getAttribute('data-version-key').split('-');
-                        currentPage = 1; // 切换版本重置页码
+                        currentPage = 1;
                         renderDownloadList(data, mcVersion, loader);
                     });
                 });
@@ -487,12 +500,11 @@
                 prevBtn.disabled = currentPage === 1;
                 nextBtn.disabled = currentPage === totalPages;
 
-                // 分页事件
                 prevBtn.onclick = () => { currentPage--; renderAllVersions(); };
                 nextBtn.onclick = () => { currentPage++; renderAllVersions(); };
             }
 
-            // 渲染所有版本（分页逻辑）- 互换版本号和标签位置
+            // 渲染所有版本
             function renderAllVersions() {
                 const totalPages = Math.ceil(allVersionData.length / PAGE_SIZE);
                 const start = (currentPage - 1) * PAGE_SIZE;
@@ -502,7 +514,6 @@
 
                 let html = '';
                 paginatedData.forEach(item => {
-                    // 核心修改：标签在前，版本号在后
                     html += `
                         <div class="version-card" data-download-url="${item.downloadUrl}">
                             <div class="flex flex-wrap justify-between items-center">
@@ -525,18 +536,16 @@
                 });
                 container.innerHTML = html;
 
-                // 绑定下载事件
                 container.querySelectorAll('.version-card').forEach(card => {
                     card.addEventListener('click', () => window.open(card.dataset.downloadUrl, '_blank'));
                 });
                 renderPagination(allVersionData.length);
             }
 
-            // 渲染下载列表（核心逻辑）- 新增合并最新·推荐版逻辑
+            // 渲染下载列表
             function renderDownloadList(data, targetMCVersion, targetLoader) {
                 const filteredData = data.filter(item => item.mcVersion === targetMCVersion && item.loader === targetLoader);
                 if (filteredData.length === 0) {
-                    // 隐藏所有版本容器
                     document.getElementById('recommend-version').classList.add('hidden');
                     document.getElementById('latest-version').classList.add('hidden');
                     document.getElementById('latest-recommend-version').classList.add('hidden');
@@ -546,38 +555,30 @@
                     return;
                 }
 
-                // 推荐版本
                 const recommendVersion = filteredData.filter(item => item.tag === 'recommend').sort((a, b) => 
                     formatVersionForSort(b.modVersion).localeCompare(formatVersionForSort(a.modVersion))
                 )[0];
                 
-                // 最新版本
                 const latestVersion = filteredData.sort((a, b) => 
                     formatVersionForSort(b.modVersion).localeCompare(formatVersionForSort(a.modVersion))
                 )[0];
 
-                // 判断是否为同一版本
                 const isSameVersion = recommendVersion && latestVersion && 
                     recommendVersion.modVersion === latestVersion.modVersion &&
                     recommendVersion.mcVersion === latestVersion.mcVersion &&
                     recommendVersion.loader === latestVersion.loader;
 
-                // 处理合并逻辑
                 if (isSameVersion) {
-                    // 显示合并版，隐藏单独的推荐和最新版
                     document.getElementById('latest-recommend-version').classList.remove('hidden');
                     document.getElementById('recommend-version').classList.add('hidden');
                     document.getElementById('latest-version').classList.add('hidden');
                     
-                    // 复制最新版本并修改标签为最新·推荐
                     const latestRecommendVersion = {...latestVersion, tag: 'latest-recommend'};
                     document.getElementById('latest-recommend-card').innerHTML = renderVersionCard(latestRecommendVersion);
                     document.getElementById('latest-recommend-card').onclick = () => window.open(latestRecommendVersion.downloadUrl, '_blank');
                 } else {
-                    // 隐藏合并版，显示单独的版本
                     document.getElementById('latest-recommend-version').classList.add('hidden');
                     
-                    // 渲染推荐版本
                     if (recommendVersion) {
                         document.getElementById('recommend-version').classList.remove('hidden');
                         document.getElementById('recommend-card').innerHTML = renderVersionCard(recommendVersion);
@@ -586,20 +587,18 @@
                         document.getElementById('recommend-version').classList.add('hidden');
                     }
 
-                    // 渲染最新版本
                     document.getElementById('latest-version').classList.remove('hidden');
                     document.getElementById('latest-card').innerHTML = renderVersionCard(latestVersion);
                     document.getElementById('latest-card').onclick = () => window.open(latestVersion.downloadUrl, '_blank');
                 }
 
-                // 所有版本（赋值全局数据+渲染分页）
                 allVersionData = filteredData.sort((a, b) => 
                     formatVersionForSort(b.modVersion).localeCompare(formatVersionForSort(a.modVersion))
                 );
                 renderAllVersions();
             }
 
-            // 渲染版本卡片（推荐/最新/合并版）
+            // 渲染版本卡片
             function renderVersionCard(item) {
                 return `
                     <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
