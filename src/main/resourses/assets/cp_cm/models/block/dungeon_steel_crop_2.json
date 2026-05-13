@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cp_cm:block/crop_dungeon_steel_ingot_2",
+    "particle": "cp_cm:block/crop_dungeon_steel_ingot_0"
+  },
+  "render_type": "cutout"
+}

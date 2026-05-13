@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cp_bop:block/ruby_ore"
+    }
+  }
+}

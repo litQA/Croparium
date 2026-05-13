@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "cp_bop:block/deep_ruby",
+    "particle": "cp_bop:block/deep_ruby"
+  },
+  "render_type": "solid"
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "cp_bop:block/ore-topaz_ore",
+    "particle": "cp_bop:block/ore-topaz_ore"
+  },
+  "render_type": "solid"
+}

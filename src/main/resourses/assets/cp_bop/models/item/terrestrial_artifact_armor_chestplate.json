@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "cp_bop:item/tdbj_chest"
+  }
+}
