@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "cp_bop:block/ore-biome_block",
+    "particle": "cp_bop:block/ore-biome_block"
+  },
+  "render_type": "solid"
+}

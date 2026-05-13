@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cp_cm:block/crop_perkin_3",
+    "particle": "cp_cm:block/crop_perkin_0"
+  },
+  "render_type": "cutout"
+}

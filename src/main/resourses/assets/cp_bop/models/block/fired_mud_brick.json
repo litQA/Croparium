@@ -1,0 +1,9 @@
+{
+  "parent": "cp_bop:custom/fired_mudbrick",
+  "textures": {
+    "all": "cp_bop:block/fired_mudbrick",
+    "particle": "cp_bop:block/fired_mudbrick",
+    "0": "cp_bop:block/mudbrick"
+  },
+  "render_type": "solid"
+}

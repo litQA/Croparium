@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "cp_cm:block/crop_etherite_2",
+    "particle": "cp_cm:block/crop_prismarine_alloy_ingot_0"
+  },
+  "render_type": "cutout"
+}

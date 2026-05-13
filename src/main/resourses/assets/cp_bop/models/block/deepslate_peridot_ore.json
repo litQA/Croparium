@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "cp_bop:block/deep_peridot",
+    "particle": "cp_bop:block/deep_peridot"
+  },
+  "render_type": "solid"
+}

@@ -13,7 +13,7 @@
 
 * [ ] Main Mod \- NeoForge 1\.21\.4
 
-* [ ] Main Mod \- NeoForge 1\.21\.8
+* [x] Main Mod \- NeoForge 1\.21\.8
 
 * [ ] Main Mod \- NeoForge 26\.1\.2
 
@@ -39,7 +39,7 @@
 
 * [ ] Expansion Mod \- Twilight Forest
 
-* [ ] Expansion Mod \- BOP Legacy Reborn
+* [x] Expansion Mod \- BOP Legacy Reborn
 
 * [ ] Expansion Mod \- Thermal \(Newly Supported\)
 

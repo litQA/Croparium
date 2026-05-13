@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "cp_bop:item/copper_scythe"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cp_bop:block/fired_mud_brick"
+    },
+    "facing=east": {
+      "model": "cp_bop:block/fired_mud_brick",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "cp_bop:block/fired_mud_brick",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cp_bop:block/fired_mud_brick",
+      "y": 270
+    }
+  }
+}
