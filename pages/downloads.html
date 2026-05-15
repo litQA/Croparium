@@ -93,6 +93,22 @@
             .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
                 background: #6d6d6d;
             }
+            /* 苹果风格下拉菜单样式 */
+            .apple-select-container {
+                @apply relative w-full max-w-md;
+            }
+            .apple-select-trigger {
+                @apply w-full py-3 px-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-darkSecondary text-left flex items-center justify-between cursor-pointer transition-all duration-200 hover:border-primary dark:hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary;
+            }
+            .apple-select-dropdown {
+                @apply absolute top-full left-0 right-0 mt-1 bg-white dark:bg-darkSecondary border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-40 overflow-hidden custom-scrollbar max-h-60 overflow-y-auto;
+            }
+            .apple-select-option {
+                @apply px-4 py-3 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer border-b border-gray-100 dark:border-gray-800 last:border-0;
+            }
+            .apple-select-option-active {
+                @apply bg-primary/10 text-primary dark:bg-primary/20;
+            }
         }
     </style>
     <style>
@@ -130,7 +146,7 @@
     </style>
 </head>
 <body class="font-sans bg-gray-50 dark:bg-dark text-gray-900 dark:text-darkText transition-colors duration-300">
-    <!-- 导航栏（完全不变） -->
+    <!-- 导航栏 -->
     <header class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-200 dark:border-gray-800">
         <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
             <a href="../index.html" class="flex items-center space-x-2">
@@ -172,8 +188,16 @@
     <main class="pt-16 pb-20">
         <section class="py-8 bg-white dark:bg-darkSecondary border-b border-gray-200 dark:border-gray-800">
             <div class="container mx-auto px-4">
-                <h1 class="text-3xl md:text-4xl font-bold">下载模组</h1>
-                <p class="text-gray-600 dark:text-gray-400 mt-2">选择适合的 Minecraft 版本和加载器下载对应模组</p>
+                <!-- 替换原有标题为苹果风格模组下拉选择菜单 -->
+                <div class="apple-select-container">
+                    <div id="mod-select-trigger" class="apple-select-trigger">
+                        <span id="selected-mod-name">矿石种植工艺</span>
+                        <i class="fa fa-chevron-down text-gray-500 dark:text-gray-400 transition-transform duration-200"></i>
+                    </div>
+                    <div id="mod-select-dropdown" class="apple-select-dropdown hidden">
+                        <!-- 动态加载模组列表 -->
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -241,7 +265,7 @@
         </section>
     </main>
 
-    <!-- 页脚（完全不变） -->
+    <!-- 页脚 -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -275,7 +299,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({duration: 800, easing: 'ease-in-out', once: true});
             
-            // 移动端/深色模式/滚动逻辑（完全不变）
+            // 移动端/深色模式/滚动逻辑
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -296,7 +320,7 @@
             const header = document.querySelector('header');
             window.addEventListener('scroll', () => header.classList.toggle('shadow-md', window.scrollY > 50));
 
-            // ========================== 核心修改：本地加载器Logo路径 ==========================
+            // ========================== 核心修改：模组选择逻辑 ==========================
             // 已适配 pages/downloads.html 层级，使用相对根目录的本地路径
             const loaderImageMap = {
                 fabric: { 
@@ -322,69 +346,112 @@
             const PAGE_SIZE = 20;
             let currentPage = 1;
             let allVersionData = [];
+            // 模组列表相关
+            let modList = [];
+            let currentMod = null;
+            // 模组列表CSV地址
+            const MOD_LIST_CSV_URL = 'https://raw.githubusercontent.com/litQA/Croparium/refs/heads/page/resourses/data/versions_list';
+            // 默认模组数据（fallback）
+            const DEFAULT_MOD_DATA = [
+                { modId: 'cp_lib', cnName: '矿石种植工艺', enName: 'Croparium', versionCsvUrl: 'https://raw.githubusercontent.com/litQA/Croparium/refs/heads/page/resourses/data/versions/cp_lib.csv' }
+            ];
 
             // 加载器基础配置
             const loaderPriority = ['fabric', 'forge', 'neoforge', 'quilt'];
             const loaderNameMap = { fabric: 'Fabric', forge: 'Forge', neoforge: 'NeoForge', quilt: 'Quilt' };
-            const fallbackCSV = `
+            // 移除原有fallbackCSV，改为动态加载
 
-1.20.1,forge,2025/9/20,0.1.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/U3i96tXQ/croparium-0.1-forge-1.20.1.jar,alpha
-1.20.1,forge,2025/9/20,0.1.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/FHBio7se/croparium-25w38a-1201-forge-1.20.1.jar,alpha
-1.20.1,forge,2025/9/20,0.1.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/iI459YAa/croparium-25w38b-1201-forge-1.20.1.jar,beta
-1.20.1,forge,2025/9/21,0.1.3,https://cdn.modrinth.com/data/srNXPOFJ/versions/vmOYfANo/croparium-25w39a-forge-1.20.1.jar,beta
-1.20.1,forge,2025/9/22,1.0.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/lPsoYY54/croparium-1.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/9/22,1.0.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/rj2SbWQu/croparium-1.0.1-forge-1.20.1.jar,release
-1.20.1,forge,2025/9/23,1.2.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/kqwxeIM2/croparium-1.2.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/9/25,1.3.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/rGaaB5m1/croparium-1.3.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/9/27,2.0.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/oPHiSIAc/croparium-2.0.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/9/28,2.1.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/Ibv0bEVE/croparium-2.1.0-forge-1.20.1.jar,beta
-1.20.1,forge,2025/9/29,2.1.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/pviAkwPS/croparium-2.1.1-forge-1.20.1.jar,release
-1.20.1,forge,2025/9/29,2.1.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/qjrO9tmm/croparium-2.1.2-forge-1.20.1.jar,release
-1.20.1,forge,2025/10/1,2.2.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/kQWfnLjr/croparium-2.2.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/10/19,3.0.6,https://cdn.modrinth.com/data/srNXPOFJ/versions/MgLHjNRt/cp_lib-3.0.6-forge-1.20.1.jar,alpha
-1.20.1,forge,2025/10/21,3.1.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/a7F2U8I5/cp_lib-3.1.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/10/21,3.1.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/qvM8mqg2/cp_lib-3.1.1-forge-1.20.1.jar,release
-1.20.1,forge,2025/11/1,3.2.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/sczJDDMu/cp_lib-3.2.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/11/2,3.2.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/75qviwDN/cp_lib-3.2.1-forge-1.20.1.jar,release
-1.20.1,forge,2025/11/10,3.3.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/VQ96zASR/cp_lib-3.3.0-forge-1.20.1.jar,release
-1.20.1,forge,2025/11/19,3.3.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/dVyFXxoW/cp_lib-3.3.1-forge-1.20.1.jar,release
-1.20.1,forge,2025/11/30,4.0.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/CrcE0RN7/cp_lib-4.0.1-build.119-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/1,4.1.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/WRVSyb07/cp_lib-4.1.0-build.201-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/1,4.1.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/D2WAcwtQ/cp_lib-4.1.1-build.203-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/2,4.2.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/g67Iy3Q8/cp_lib-4.2.0-build.346-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/9,4.3.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/LocJhCMA/cp_lib-4.3.0-build.587-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/9,4.3.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/gdBOilDG/cp_lib-4.3.1-build.590-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/10,4.3.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/qimHW5h3/cp_lib-4.3.2-build.660-forge-1.20.1.jar,release
-1.20.1,forge,2025/12/13,4.4.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/keQCrG7p/cp_lib-4.4.0-build.917-forge-1.20.1.jar,release
-1.20.1,forge,2025/12/14,4.5.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/DpAW995N/cp_lib-4.5.0-build.1022-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/19,4.6.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/qHZwFzlr/cp_lib-4.6.0-build.1141-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/19,4.6.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/r3M6fWb0/cp_lib-4.6.1-build.1152-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/20,4.6.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/vH0DxHzd/cp_lib-4.6.2-build.1183-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/22,4.6.3,https://cdn.modrinth.com/data/srNXPOFJ/versions/Jbauygmn/cp_lib-4.6.3-build.1308-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/23,4.6.4,https://cdn.modrinth.com/data/srNXPOFJ/versions/1A6RwGZg/cp_lib-4.6.4-build.1314-forge-1.20.1.jar,release
-1.20.1,forge,2025/12/23,4.6.5,https://cdn.modrinth.com/data/srNXPOFJ/versions/5kocVZzA/cp_lib-4.6.5-build.1407-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/25,4.6.6,https://cdn.modrinth.com/data/srNXPOFJ/versions/lCxPcZZu/cp_lib-4.6.6-build.1473-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/26,4.6.7,https://cdn.modrinth.com/data/srNXPOFJ/versions/fNwLUFid/cp_lib-4.6.7-build.1486-forge-1.20.1.jar,beta
-1.20.1,forge,2025/12/28,4.6.8,https://cdn.modrinth.com/data/srNXPOFJ/versions/lfJ7x9NJ/cp_lib-4.6.8-build.1530-forge-1.20.1.jar,beta
-1.20.1,forge,2026/1/1,4.7.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/BMBx0Irr/cp_lib-4.7.0-build.1537-forge-1.20.1.jar,release
-1.20.1,forge,2026/1/3,4.7.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/7Wruv9ub/cp_lib-4.7.1-build.1577-forge-1.20.1.jar,release
-1.20.1,forge,2026/1/8,4.7.4,https://cdn.modrinth.com/data/srNXPOFJ/versions/nLJxJ5aC/cp_lib-4.7.4-build.2016-forge-1.20.1.jar,beta
-1.20.1,forge,2026/1/9,4.7.5,https://cdn.modrinth.com/data/srNXPOFJ/versions/OstmYgwO/cp_lib-4.7.5-build.2026-forge-1.20.1.jar,beta
-1.20.1,forge,2026/1/13,4.7.6,https://cdn.modrinth.com/data/srNXPOFJ/versions/ZfqZP67q/cp_lib-4.7.6-build.2175-forge-1.20.1.jar,beta
-1.20.1,forge,2026/1/16,4.7.7,https://cdn.modrinth.com/data/srNXPOFJ/versions/HEhW3XPz/cp_lib-4.7.7-build.2454-forge-1.20.1.jar,beta
-1.20.1,forge,2026/1/21,4.7.8,https://cdn.modrinth.com/data/srNXPOFJ/versions/7lz6sZo8/cp_lib-4.7.8-build.2617-forge-1.20.1.jar,beta
-1.20.1,forge,2026/1/22,4.7.9,https://cdn.modrinth.com/data/srNXPOFJ/versions/QEJ7oLrt/cp_lib-4.7.9-build.2761-forge-1.20.1.jar,beta
-1.20.1,forge,2026/1/24,4.7.10,https://cdn.modrinth.com/data/srNXPOFJ/versions/OSMuP8mP/cp_lib-4.7.10-build.2810-forge-1.20.1.jar,release
-1.20.1,forge,2026/1/27,4.7.11,https://cdn.modrinth.com/data/srNXPOFJ/versions/r9bVupRi/cp_lib-4.7.11-build.2931-forge-1.20.1.jar,release
-1.20.1,forge,2026/1/29,4.7.12,https://cdn.modrinth.com/data/srNXPOFJ/versions/kKyXzqkG/cp_lib-4.7.12-build.2952-forge-1.20.1.jar,release
-1.20.1,forge,2026/2/5,4.8.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/LGYuIGEo/cp_lib-4.8.0-build.3094-forge-1.20.1.jar,recommend
-1.20.1,forge,2026/4/20,5.0.0,https://github.com/litQA/Croparium/releases/download/v5.0.0-alpha/cp_lib-5.0.0-alpha-forge-1.20.1.jar,alpha
-1.20.1,forge,2026/4/26,5.0.1,https://github.com/litQA/Croparium/releases/download/v5.0.1-alpha/cp_lib-5.0.1-alpha-forge-1.20.1.jar,alpha
-1.20.1,forge,2026/4/26,5.0.2,https://github.com/litQA/Croparium/releases/download/v5.0.2-alpha/cp_lib-5.0.2-alpha-forge-1.20.1.jar,alpha
-1.20.1,forge,2026/4/27,5.0.3,https://github.com/litQA/Croparium/releases/download/v5.0.3-alpha/cp_lib-5.0.3-alpha-forge-1.20.1.jar,alpha
-1.20.1,forge,2026/4/30,5.0.6,https://github.com/litQA/Croparium/releases/download/v5.0.6-alpha/cp_lib-5.0.6-alpha-forge-1.20.1.jar,alpha
-`;
+            // ========================== 模组列表相关方法 ==========================
+            // 解析模组列表CSV
+            function parseModListCSV(csvText) {
+                const lines = csvText.trim().split('\n');
+                const data = [];
+                lines.forEach(line => {
+                    const [modId, cnName, enName, versionCsvUrl] = line.split(',').map(item => item.trim());
+                    if (modId && cnName && versionCsvUrl) {
+                        data.push({ modId, cnName, enName, versionCsvUrl });
+                    }
+                });
+                return data.length > 0 ? data : DEFAULT_MOD_DATA;
+            }
 
+            // 获取模组列表
+            async function getModList() {
+                try {
+                    const response = await fetch(MOD_LIST_CSV_URL);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const csvText = await response.text();
+                    modList = parseModListCSV(csvText);
+                } catch (error) {
+                    console.error('从GitHub获取模组列表CSV失败，使用默认数据:', error);
+                    modList = DEFAULT_MOD_DATA;
+                }
+                // 初始化下拉菜单
+                renderModSelectDropdown();
+                // 设置默认选中第一个模组
+                currentMod = modList[0];
+                updateSelectedModDisplay();
+                // 加载该模组的版本数据
+                loadModVersionData(currentMod.versionCsvUrl);
+            }
+
+            // 渲染模组下拉菜单
+            function renderModSelectDropdown() {
+                const dropdown = document.getElementById('mod-select-dropdown');
+                let html = '';
+                modList.forEach((mod, index) => {
+                    html += `
+                        <div class="apple-select-option ${index === 0 ? 'apple-select-option-active' : ''}" data-mod-index="${index}">
+                            ${mod.cnName}
+                        </div>
+                    `;
+                });
+                dropdown.innerHTML = html;
+
+                // 绑定下拉选项点击事件
+                dropdown.querySelectorAll('.apple-select-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        const modIndex = parseInt(this.dataset.modIndex);
+                        currentMod = modList[modIndex];
+                        // 更新选中样式
+                        dropdown.querySelectorAll('.apple-select-option').forEach(opt => {
+                            opt.classList.remove('apple-select-option-active');
+                        });
+                        this.classList.add('apple-select-option-active');
+                        // 更新显示文本
+                        updateSelectedModDisplay();
+                        // 加载新版本数据
+                        loadModVersionData(currentMod.versionCsvUrl);
+                        // 关闭下拉菜单
+                        toggleModDropdown(false);
+                    });
+                });
+            }
+
+            // 更新选中模组的显示文本
+            function updateSelectedModDisplay() {
+                document.getElementById('selected-mod-name').textContent = currentMod.cnName;
+            }
+
+            // 切换模组下拉菜单显示/隐藏
+            function toggleModDropdown(show) {
+                const dropdown = document.getElementById('mod-select-dropdown');
+                const chevron = document.querySelector('#mod-select-trigger .fa-chevron-down');
+                if (show === undefined) {
+                    dropdown.classList.toggle('hidden');
+                    chevron.classList.toggle('rotate-180');
+                } else {
+                    if (show) {
+                        dropdown.classList.remove('hidden');
+                        chevron.classList.add('rotate-180');
+                    } else {
+                        dropdown.classList.add('hidden');
+                        chevron.classList.remove('rotate-180');
+                    }
+                }
+            }
+
+            // ========================== 原有方法适配 ==========================
             // 获取加载器图片（自动适配深浅色）
             function getLoaderImage(loader) {
                 const isDark = document.documentElement.classList.contains('dark');
@@ -400,29 +467,47 @@
             }
 
             // CSV解析/版本排序/数据获取
-            function parseCSV(csvText) {
+            function parseVersionCSV(csvText) {
                 const lines = csvText.trim().split('\n');
                 const data = [];
                 lines.forEach(line => {
                     const [mcVersion, loader, releaseTime, modVersion, downloadUrl, tag] = line.split(',');
                     if (mcVersion && loader && modVersion) {
-                        data.push({mcVersion: mcVersion.trim(), loader: loader.trim().toLowerCase(), releaseTime: releaseTime.trim(), modVersion: modVersion.trim(), downloadUrl: downloadUrl.trim(), tag: tag?.trim().toLowerCase() || 'release'});
+                        data.push({
+                            mcVersion: mcVersion.trim(), 
+                            loader: loader.trim().toLowerCase(), 
+                            releaseTime: releaseTime.trim(), 
+                            modVersion: modVersion.trim(), 
+                            downloadUrl: downloadUrl.trim(), 
+                            tag: tag?.trim().toLowerCase() || 'release'
+                        });
                     }
                 });
                 return data;
             }
             
-            // 从GitHub获取CSV数据
-            async function getModData() {
+            // 加载模组版本数据
+            async function loadModVersionData(csvUrl) {
                 try {
-                    const csvUrl = 'https://raw.githubusercontent.com/litQA/Croparium/refs/heads/page.dev/resourses/data/versions.csv';
                     const response = await fetch(csvUrl);
                     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     const csvText = await response.text();
-                    return parseCSV(csvText);
+                    const versionData = parseVersionCSV(csvText);
+                    // 重新渲染版本列表
+                    renderVersionList(versionData);
                 } catch (error) {
-                    console.error('从GitHub获取CSV数据失败，使用本地默认数据:', error);
-                    return parseCSV(fallbackCSV);
+                    console.error('加载模组版本数据失败:', error);
+                    // 使用原有fallback数据作为兜底
+                    const fallbackCSV = `
+1.20.1,forge,2026/2/5,4.8.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/LGYuIGEo/cp_lib-4.8.0-build.3094-forge-1.20.1.jar,recommend
+1.20.1,forge,2026/4/20,5.0.0,https://github.com/litQA/Croparium/releases/download/v5.0.0-alpha/cp_lib-5.0.0-alpha-forge-1.20.1.jar,alpha
+1.20.1,forge,2026/4/26,5.0.1,https://github.com/litQA/Croparium/releases/download/v5.0.1-alpha/cp_lib-5.0.1-alpha-forge-1.20.1.jar,alpha
+1.20.1,forge,2026/4/26,5.0.2,https://github.com/litQA/Croparium/releases/download/v5.0.2-alpha/cp_lib-5.0.2-alpha-forge-1.20.1.jar,alpha
+1.20.1,forge,2026/4/27,5.0.3,https://github.com/litQA/Croparium/releases/download/v5.0.3-alpha/cp_lib-5.0.3-alpha-forge-1.20.1.jar,alpha
+1.20.1,forge,2026/4/30,5.0.6,https://github.com/litQA/Croparium/releases/download/v5.0.6-alpha/cp_lib-5.0.6-alpha-forge-1.20.1.jar,alpha
+`;
+                    const versionData = parseVersionCSV(fallbackCSV);
+                    renderVersionList(versionData);
                 }
             }
             
@@ -430,7 +515,7 @@
                 return version.split('.').map(num => num.padStart(3, '0')).join('.');
             }
 
-            // ========================== 核心优化：左侧版本选择栏渲染 ==========================
+            // 左侧版本选择栏渲染
             function renderVersionList(data) {
                 const versionList = document.getElementById('version-list');
                 const groupedByMCVersion = {};
@@ -454,7 +539,6 @@
                         const loaderFormatted = loaderNameMap[item.loader];
                         const isFirst = index === 0;
                         const versionKey = `${mcVersion}-${item.loader}`;
-                        // 优化点1：去除[]  2：版本号右对齐  3：选中项加粗
                         html += `
                             <div class="px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer ${isFirst ? 'version-selector-active' : ''}" data-version-key="${versionKey}">
                                 <div class="flex items-center justify-between w-full">
@@ -621,8 +705,19 @@
                     </div>`;
             }
 
-            // 初始化
-            getModData().then(data => renderVersionList(data));
+            // ========================== 初始化 ==========================
+            // 绑定模组下拉菜单触发事件
+            document.getElementById('mod-select-trigger').addEventListener('click', () => toggleModDropdown());
+            // 点击页面其他区域关闭下拉菜单
+            document.addEventListener('click', function(e) {
+                const trigger = document.getElementById('mod-select-trigger');
+                const dropdown = document.getElementById('mod-select-dropdown');
+                if (!trigger.contains(e.target) && !dropdown.contains(e.target)) {
+                    toggleModDropdown(false);
+                }
+            });
+            // 初始化加载模组列表
+            getModList();
         });
     </script>
 </body>
