@@ -15,6 +15,7 @@
 1.18.2,forge,2026/2/24,4.8.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/KoTAhGxy/cp_lib-4.8.1-build.3327-forge-1.18.2.jar,beta
 1.18.2,forge,2026/3/6,4.8.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/FV2BHksX/cp_lib-4.8.2-build.3420-forge-1.18.2.jar,beta
 1.18.2,forge,2026/4/9,4.8.3,https://cdn.modrinth.com/data/srNXPOFJ/versions/w6kPbSOh/cp_lib-4.8.3-build.3420-forge-1.18.2.jar,recommend
+1.18.2,forge,2026/5/15,5.0.8,https://github.com/litQA/Croparium/releases/download/v5.0.8-alpha/cp_lib-5.0.8-alpha-forge-1.18.2.jar,alpha
 1.19.2,forge,2025/12/20,4.6.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/efTk2bIy/cp_lib-4.6.2-build.1188-forge-1.19.2.jar,beta
 1.19.2,forge,2025/12/22,4.6.3,https://cdn.modrinth.com/data/srNXPOFJ/versions/rY9WDhe4/cp_lib-4.6.3-build.1311-forge-1.19.2.jar,beta
 1.19.2,forge,2025/12/23,4.6.4,https://cdn.modrinth.com/data/srNXPOFJ/versions/VJyUwVuO/cp_lib-4.6.4-build.1314-forge-1.19.2.jar,release
@@ -50,6 +51,7 @@
 1.19.4,forge,2026/2/24,4.8.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/IgZte1s9/cp_lib-4.8.1-build.3402-forge-1.19.4.jar,beta
 1.19.4,forge,2026/3/6,4.8.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/N800HINk/cp_lib-4.8.2-build.3402-forge-1.19.4.jar,beta
 1.19.4,forge,2026/4/16,4.8.3,https://cdn.modrinth.com/data/srNXPOFJ/versions/oges9h3z/cp_lib-4.8.3-build.3402-forge-1.19.4.jar,recommend
+1.19.4,forge,2026/5/15,5.0.8,https://github.com/litQA/Croparium/releases/download/v5.0.8-alpha/cp_lib-5.0.8-alpha-forge-1.19.4.jar,alpha
 1.20.4,neoforge,2025/9/27,2.0.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/dHrnpUVQ/croparium-2.0.0-neoforge-1.20.4.jar,release
 1.20.4,neoforge,2025/10/1,2.2.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/37tjJMuy/croparium-2.2.0-neoforge-1.20.4.jar,release
 1.20.4,neoforge,2025/10/21,3.1.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/yVzd05nI/cp_lib-3.1.0-neoforge-1.20.4.jar,release
@@ -154,6 +156,8 @@
 1.21.1,neoforge,2026/4/26,5.0.2,https://github.com/litQA/Croparium/releases/download/v5.0.2-alpha/cp_lib-5.0.2-alpha-neoforge-1.21.1.jar,alpha
 1.21.1,neoforge,2026/4/27,5.0.3,https://github.com/litQA/Croparium/releases/download/v5.0.3-alpha/cp_lib-5.0.3-alpha-neoforge-1.21.1.jar,alpha
 1.21.1,neoforge,2026/4/30,5.0.6,https://github.com/litQA/Croparium/releases/download/v5.0.6-alpha/cp_lib-5.0.6-alpha-neoforge-1.21.1.jar,alpha
+1.21.1,neoforge,2026/5/15,5.0.7,https://github.com/litQA/Croparium/releases/download/v5.0.7-alpha/cp_lib-5.0.7-alpha-neoforge-1.21.1.jar,alpha
+1.21.1,neoforge,2026/5/16,5.0.8,https://github.com/litQA/Croparium/releases/download/v5.0.8-alpha/cp_lib-5.0.8-alpha-neoforge-1.21.1.jar,alpha
 1.21.2,neoforge,2025/9/22,1.0.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/VPzbrcJO/croparium-1.0-neoforge-1.21.2-4.jar,release
 1.21.2,neoforge,2025/9/23,1.2.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/eaHQ2XFX/croparium-1.2.0-neoforge-1.21.%282%2C4%29.jar,release
 1.21.2,neoforge,2025/9/29,2.1.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/6yqcO6vN/croparium-2.1.1-neoforge-1.21.2-4.jar,release
@@ -281,6 +285,8 @@
 1.21.8,fabric,2026/4/27,5.0.5,https://cdn.modrinth.com/data/srNXPOFJ/versions/BGKgBKD1/cp_lib-5.0.5-alpha-fabric-1.21.8.jar,alpha
 1.21.8,quilt,2026/4/27,5.0.4,https://cdn.modrinth.com/data/srNXPOFJ/versions/ewfcci2j/cp_lib-5.0.4-alpha-fabric-1.21.8.jar,alpha
 1.21.8,quilt,2026/4/27,5.0.5,https://cdn.modrinth.com/data/srNXPOFJ/versions/BGKgBKD1/cp_lib-5.0.5-alpha-fabric-1.21.8.jar,alpha
+1.21.8,neoforge,2026/5/14,5.0.7,https://github.com/litQA/Croparium/releases/download/v5.0.7-alpha/cp_lib-5.0.7-alpha-neoforge-1.21.8.jar,alpha
+1.21.8,neoforge,2026/5/15,5.0.8,https://github.com/litQA/Croparium/releases/download/v5.0.8-alpha/cp_lib-5.0.8-alpha-neoforge-1.21.8.jar,alpha
 1.20.1,forge,2025/9/20,0.1.0,https://cdn.modrinth.com/data/srNXPOFJ/versions/U3i96tXQ/croparium-0.1-forge-1.20.1.jar,alpha
 1.20.1,forge,2025/9/20,0.1.1,https://cdn.modrinth.com/data/srNXPOFJ/versions/FHBio7se/croparium-25w38a-1201-forge-1.20.1.jar,alpha
 1.20.1,forge,2025/9/20,0.1.2,https://cdn.modrinth.com/data/srNXPOFJ/versions/iI459YAa/croparium-25w38b-1201-forge-1.20.1.jar,beta
@@ -336,3 +342,5 @@
 1.20.1,forge,2026/4/26,5.0.2,https://github.com/litQA/Croparium/releases/download/v5.0.2-alpha/cp_lib-5.0.2-alpha-forge-1.20.1.jar,alpha
 1.20.1,forge,2026/4/27,5.0.3,https://github.com/litQA/Croparium/releases/download/v5.0.3-alpha/cp_lib-5.0.3-alpha-forge-1.20.1.jar,alpha
 1.20.1,forge,2026/4/30,5.0.6,https://github.com/litQA/Croparium/releases/download/v5.0.6-alpha/cp_lib-5.0.6-alpha-forge-1.20.1.jar,alpha
+1.20.1,forge,2026/5/14,5.0.7,https://github.com/litQA/Croparium/releases/download/v5.0.7-alpha/cp_lib-5.0.7-alpha-forge-1.20.1.jar,alpha
+1.20.1,forge,2026/5/15,5.0.8,https://github.com/litQA/Croparium/releases/download/v5.0.8-alpha/cp_lib-5.0.8-alpha-forge-1.20.1.jar,alpha
