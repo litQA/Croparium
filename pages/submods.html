@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联动模组 - 矿石种植工艺</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0071e3',
+                        secondary: '#34c759',
+                        dark: '#121212',
+                        darkSecondary: '#1e1e1e',
+                        darkText: '#f5f5f7'
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    },
+                    backdropBlur: {
+                        xs: '2px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 8px rgba(0, 0, 0, 1);
+            }
+            .glass-effect {
+                @apply bg-white/70 dark:bg-darkSecondary/70 backdrop-blur-md;
+            }
+            /* 亚克力透明胶囊按钮 - 统一尺寸 */
+            .acrylic-btn {
+                @apply rounded-full glass-effect border border-white/20 dark:border-gray-700/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:scale-105 text-center;
+                @apply w-[calc(50%-4px)] py-2.5 text-sm font-medium;
+            }
+            .nav-link {
+                @apply relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-primary dark:hover:text-primary;
+            }
+            .nav-link::after {
+                content: '';
+                @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .feature-card {
+                @apply relative overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:shadow-lg dark:hover:shadow-primary/20;
+            }
+            .feature-card::before {
+                content: '';
+                @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 dark:from-primary/10 dark:to-secondary/10 opacity-0 transition-opacity duration-500;
+            }
+            .feature-card:hover::before {
+                @apply opacity-100;
+            }
+            /* 核心：卡片强制等高 + Grid布局适配 */
+            .submod-card {
+                @apply relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 transition-all duration-500 hover:shadow-xl dark:hover:shadow-primary/20 hover:-translate-y-1 h-full flex flex-col;
+            }
+            /* 无模糊背景层 - 未悬浮显示，悬浮渐隐 */
+            .submod-card-bg {
+                @apply absolute inset-0 z-10 transition-opacity duration-500;
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            .submod-card:hover .submod-card-bg {
+                @apply opacity-0;
+            }
+            /* 底部白色标题 - 未悬浮显示，悬浮隐藏 */
+            .submod-card-bottom-title {
+                @apply absolute bottom-4 left-0 right-0 px-6 text-white text-xl font-bold text-shadow transition-opacity duration-500 z-20;
+            }
+            .submod-card:hover .submod-card-bottom-title {
+                @apply opacity-0;
+            }
+            /* 卡片内容层 - 未悬浮完全隐藏，悬浮显示亚克力背景 */
+            .submod-card-content {
+                @apply relative z-30 flex flex-col flex-1 h-full p-6 opacity-0 transition-opacity duration-500;
+            }
+            .submod-card:hover .submod-card-content {
+                @apply opacity-100 glass-effect;
+            }
+            /* 卡片背景暗化层 */
+            .submod-card::before {
+                content: '';
+                @apply absolute inset-0 bg-black/30 z-0 transition-all duration-500;
+            }
+            /* 统一标题高度 */
+            .card-title-fixed {
+                @apply h-[28px] flex items-center;
+            }
+            /* 悬浮显示内容 */
+            .submod-card-hidden-content {
+                @apply opacity-0 pointer-events-none transition-opacity duration-500 flex-1 flex flex-col;
+            }
+            .submod-card:hover .submod-card-hidden-content {
+                @apply opacity-100 pointer-events-auto;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-dark text-gray-900 dark:text-darkText transition-colors duration-300">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-200 dark:border-gray-800">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center space-x-2">
+                <img src="../resourses/assets/icons/logo-400.png" alt="Logo" class="h-10 w-10">
+                <span class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">矿石种植工艺</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-1">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="downloads.html" class="nav-link">下载模组</a>
+                <a href="submods.html" class="nav-link text-primary">联动模组</a>
+                <a href="wiki.html" class="nav-link">百科</a>
+                <a href="donate.html" class="nav-link">捐赠</a>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:hover:bg-gray-700 transition-colors">
+                    <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
+                    <i class="fa fa-sun-o hidden dark:block text-yellow-400" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </nav>
+        
+        <div id="mobile-menu" class="md:hidden hidden glass-effect border-t border-gray-200 dark:border-gray-800">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="downloads.html" class="nav-link">下载模组</a>
+                <a href="submods.html" class="nav-link text-primary">联动模组</a>
+                <a href="wiki.html" class="nav-link">百科</a>
+                <a href="donate.html" class="nav-link">捐赠</a>
+                <button id="mobile-theme-toggle" class="flex items-center justify-center p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fa fa-moon-o dark:hidden mr-2"></i>
+                    <i class="fa fa-sun-o hidden dark:block text-yellow-400 mr-2"></i>
+                    <span>切换主题</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <!-- 英雄区域 -->
+        <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="../resourses/assets/pictures/bg_submods.png" alt="联动模组背景" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
+            </div>
+            <div class="container mx-auto px-4 z-10 text-center" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 text-shadow">联动模组</h1>
+                <p class="text-xl md:text-2xl text-gray-20 mb-8 max-w-3xl mx-auto">
+                    拓展矿石种植工艺的边界，与热门模组深度联动，解锁更多独特作物与玩法
+                </p>
+                <a href="#submod-list" class="px-8 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 border border-white/40">
+                    浏览所有联动模组
+                </a>
+            </div>
+        </section>
+
+        <!-- 联动模组介绍 -->
+        <section class="py-16 bg-white dark:bg-darkSecondary">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">什么是联动模组？</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                        联动模组为矿石种植工艺增加了对其他Minecraft模组的支持，为每个联动模组专属定制了独特的矿石作物，让你的资源农场更加多样化。
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center" data-aos="fade-up">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4">深度整合，无缝体验</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-6">
+                           所有作物都拥有专属的纹理和生长特性。
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span>与原版矿石种植工艺数据互通</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span>保留原模组的平衡性与特色</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span>支持自动化与自定义配置</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-secondary mt-1 mr-3"></i>
+                                <span>定期更新，支持更多热门模组</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <img src="../resourses/assets/pictures/submods-integrate.png" alt="模组联动展示" class="rounded-2xl shadow-xl w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 动态联动模组列表 -->
+        <section id="submod-list" class="py-20 bg-gray-50 dark:bg-dark">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">已支持的联动模组</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                        以下是当前已发布的联动模组，点击按钮下载或查看相关链接
+                    </p>
+                </div>
+                <!-- 卡片容器：Grid布局自动等高 -->
+                <div id="submod-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 grid-auto-rows: 1fr;">
+                    <!-- 卡片由JS动态生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 安装说明 -->
+        <section class="py-20 bg-white dark:bg-darkSecondary">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">联动模组安装说明</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                        正确安装联动模组，确保最佳体验
+                    </p>
+                </div>
+                <div class="max-w-3xl mx-auto" data-aos="fade-up">
+                    <div class="bg-gray-50 dark:bg-dark rounded-2xl p-8 shadow-lg">
+                        <ol class="space-y-6">
+                            <li class="flex">
+                                <span class="flex-shrink-0 h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-4 mt-0.5">1</span>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-2">安装基础模组</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">首先确保已安装最新版本的「矿石种植工艺」基础模组，以及对应版本的Minecraft Forge/Fabric加载器。</p>
+                                </div>
+                            </li>
+                            <li class="flex">
+                                <span class="flex-shrink-0 h-8 w-8 rounded-full bg-primary text-white font-bold flex items-center justify-center mr-4 mt-0.5">2</span>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-2">安装对应原版模组</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">下载并安装联动模组对应的原版模组，确保版本与联动模组兼容。</p>
+                                </div>
+                            </li>
+                            <li class="flex">
+                                <span class="flex-shrink-0 h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-4 mt-0.5">3</span>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-2">安装联动模组</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">将下载的联动模组jar文件放入mods文件夹，无需解压，启动游戏即可自动加载。</p>
+                                </div>
+                            </li>
+                            <li class="flex">
+                                <span class="flex-shrink-0 h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center mr-4 mt-0.5">4</span>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-2">配置与验证</h4>
+                                    <p class="text-gray-600 dark:text-gray-400">首次启动游戏后，可在配置文件中调整联动模组的参数，进入游戏创建新世界验证作物是否正常生成。</p>
+                                </div>
+                            </li>
+                        </ol>
+                        <div class="mt-8 p-4 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                            <div class="flex items-start">
+                                <i class="fa fa-exclamation-triangle text-yellow-500 mt-1 mr-3 text-xl"></i>
+                                <p class="text-gray-700 dark:text-gray-300">注意：联动模组必须与基础模组和对应原版模组版本匹配，否则可能导致游戏崩溃或功能异常。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 反馈与建议 -->
+        <section class="py-20 bg-gradient-to-br from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">想要更多联动模组？</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="100">
+                    如果你希望我们支持某个热门模组的联动，或者发现了联动模组的BUG，欢迎提交反馈
+                </p>
+                <div class="flex justify-center" data-aos="fade-up" data-aos-delay="200">
+                    <a href="https://github.com/litQA/Croparium/issues" target="_blank" class="px-8 py-4 bg-primary hover:bg-primary/90 text-white font-medium rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        提交建议或反馈问题
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="../resourses/assets/icons/logo-400.png" alt="矿石种植工艺 Logo" class="h-10 w-10">
+                        <span class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">矿石种植工艺</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">矿石种植工艺 模组提供了丰富的功能和内容，让你的 Minecraft 冒险更加精彩。</p>
+                </div>
+                <div>
+                    <ul class="flex flex-wrap gap-6 justify-center md:justify-end">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="downloads.html" class="text-gray-400 hover:text-white transition-colors">下载模组</a></li>
+                        <li><a href="submods.html" class="text-gray-400 hover:text-white transition-colors">联动模组</a></li>
+                        <li><a href="wiki.html" class="text-gray-400 hover:text-white transition-colors">百科</a></li>
+                        <li><a href="donate.html" class="text-gray-400 hover:text-white transition-colors">捐赠</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">&copy; 2026 矿石种植工艺. 保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // 初始化 AOS 动画
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+
+            // 移动端菜单
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            // 深色模式
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            }
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+
+            // 导航栏滚动效果
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => header.classList.toggle('shadow-md', window.scrollY > 50));
+
+            // ==============================================
+            // 联动模组 CSV 数据加载与卡片生成
+            // ==============================================
+            const CSV_URL = "https://raw.githubusercontent.com/litQA/Croparium/refs/heads/page/resourses/data/submod_list";
+            const cardContainer = document.getElementById('submod-container');
+            let delay = 100;
+
+            // 模拟CSV数据（加载失败时备用）
+            const mockCSV = `
+cp_bop,超多生物群系往昔重生,复刻回归了超多生物群系旧版里失传的九类矿石与材料，新增多样装备。安装矿石种植工艺模组可实现矿石种植玩法，玩家可制作专属矿石农田，兼顾怀旧挖矿趣味与休闲种植。,*,*,https://www.mcmod.cn/class/22899.html,https://modrinth.com/mod/bop-legacy-reborn-croparium,https://www.curseforge.com/minecraft/mc-mods/bop-legacy-reborn-croparium
+cp_arphex,矿石种植工艺：恐惧节肢,优化Arphex模组中生物质资源获取方式。原版模组中各类生物质只能挑战高难度BOSS少量掉落。此模组新增生物质种植途径，玩家无需反复挑战强敌。,*,*,*,https://modrinth.com/mod/croparium-arphex,https://www.curseforge.com/minecraft/mc-mods/croparium-arphex
+cp_aether,矿石种植工艺：天境,将天境和深入天境模组中的各类矿石变为可种植作物，玩家手持镐右键圣石，就能将其转化为专属种植耕地。,*,*,*,https://modrinth.com/mod/croparium-aether,https://www.curseforge.com/minecraft/mc-mods/croparium-aether
+cp_cm,矿石种植工艺：复合材料,让玩家能像种植农作物一样培育复合材料模组中的珍贵材料，改变传统资源收集方式。,*,*,*,*,https://www.curseforge.com/minecraft/mc-mods/croparium-confluence
+cp_hlls,矿石种植工艺：汇流来世,实现汇流来世模组内28种矿物的种植培育，大幅简化矿物收集流程。,*,*,*,https://modrinth.com/mod/croparium-confluence,https://www.curseforge.com/minecraft/mc-mods/croparium-confluence
+cp_create,矿石种植工艺：机械动力,把机械动力模组中的五种资源转化为可种植作物，包含安山合金、锌锭、黄铜锭、蔷薇石英与异色复合物。,*,*,*,https://modrinth.com/mod/croparium-create,*
+cp_tf,矿石种植工艺：暮色森林,添加了了暮色森林各类原材料的获取新途径，玩家无需冒险探索搜集，可将其当作农作物种植培育。种植条件十分特殊，需用钻石或下界合金镐，将黑曜石、哭泣黑曜石、死岩开垦为专用硬质耕地。,*,*,https://www.mcmod.cn/class/22482.html,https://modrinth.com/mod/croparium-the-twilight-forest,https://www.curseforge.com/minecraft/mc-mods/croparium-twilight-forest
+cp_mek,矿石种植工艺：通用机械,将通用机械模组内十种矿物与材料转化为可种植作物，让玩家依靠农耕方式获取各类科技资源。,*,*,*,https://modrinth.com/mod/croparium-mekanism,https://www.curseforge.com/minecraft/mc-mods/croparium-mekanism
+cp_zb,矿石种植工艺：灾变,将灾变模组内9种稀有矿物与材料改为可种植作物，告别反复刷图、挑战boss搜集物资的繁琐玩法，只需初次获取材料，便能循环种植采收。,*,*,*,https://modrinth.com/mod/croparium-cataclysm,https://www.curseforge.com/minecraft/mc-mods/croparium-cataclysm
+`;
+
+            // 解析CSV数据
+            function parseCSV(csv) {
+                const lines = csv.split('\n').filter(line => line.trim() !== '');
+                return lines.map(line => {
+                    const values = line.split(',');
+                    return {
+                        id: values[0].trim(),        // 模组标识符
+                        title: values[1].trim(),     // 标题
+                        desc: values[2].trim(),      // 描述
+                        github: values[3].trim(),    // GitHub
+                        mcmod: values[4].trim(),     // mcmod
+                        modrinth: values[5].trim(),  // modrinth
+                        curseforge: values[6].trim() // curseforge
+                    };
+                });
+            }
+
+            // 生成单个卡片
+            function createCard(data, index) {
+                const card = document.createElement('div');
+                card.className = 'submod-card';
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', delay);
+                delay += 100;
+
+                const links = [];
+                if (data.github !== '*') links.push({ name: 'GitHub', url: data.github });
+                if (data.mcmod !== '*') links.push({ name: 'MC百科', url: data.mcmod });
+                if (data.modrinth !== '*') links.push({ name: 'Modrinth', url: data.modrinth });
+                if (data.curseforge !== '*') links.push({ name: 'CurseForge', url: data.curseforge });
+
+                const downloadUrl = `../pages/downloads.html?mod=${data.id}`;
+
+                // 最终卡片结构
+                card.innerHTML = `
+                    <div class="submod-card-bg" style="background-image: url('../resourses/assets/pictures/bg_submod_${data.id}.png');"></div>
+                    <div class="submod-card-bottom-title">${data.title}</div>
+                    <div class="submod-card-content">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <img src="../resourses/assets/icons/icon_submod_${data.id}.png" alt="${data.title}" class="h-16 w-16 rounded-lg object-contain">
+                            <h3 class="text-xl font-bold card-title-fixed">${data.title}</h3>
+                        </div>
+                        <div class="submod-card-hidden-content">
+                            <p class="text-gray-600 dark:text-gray-400 mb-8 flex-grow">${data.desc}</p>
+                            <div class="space-y-3 mt-auto">
+                                <div class="flex justify-start">
+                                    <a href="${downloadUrl}" target="_blank" class="acrylic-btn text-primary">立即下载</a>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    ${links.map(link => `<a href="${link.url}" target="_blank" class="acrylic-btn">${link.name}</a>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return card;
+            }
+
+            // 渲染所有卡片
+            function renderCards(dataList) {
+                cardContainer.innerHTML = '';
+                dataList.forEach((data, index) => {
+                    cardContainer.appendChild(createCard(data, index));
+                });
+            }
+
+            // 加载CSV数据
+            fetch(CSV_URL)
+                .then(res => res.text())
+                .then(csv => renderCards(parseCSV(csv)))
+                .catch(err => {
+                    console.error('CSV加载失败，使用备用数据', err);
+                    renderCards(parseCSV(mockCSV));
+                });
+        });
+    </script>
+</body>
+</html>
