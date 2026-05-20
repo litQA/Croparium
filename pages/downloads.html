@@ -156,9 +156,9 @@
             <div class="hidden md:flex items-center space-x-1">
                 <a href="../index.html" class="nav-link">首页</a>
                 <a href="#" class="nav-link text-primary">下载模组</a>
-                <a href="#" class="nav-link">联动模组</a>
-                <a href="#" class="nav-link">百科</a>
-                <a href="#" class="nav-link">捐赠</a>
+                <a href="submods.html" class="nav-link">联动模组</a>
+                <a href="wiki.html" class="nav-link">百科</a>
+                <a href="donate.html" class="nav-link">捐赠</a>
                 <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                     <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
                     <i class="fa fa-sun-o hidden dark:block text-yellow-400" aria-hidden="true"></i>
@@ -355,6 +355,9 @@
             const DEFAULT_MOD_DATA = [
                 { modId: 'cp_lib', cnName: '矿石种植工艺', enName: 'Croparium', versionCsvUrl: 'https://raw.githubusercontent.com/litQA/Croparium/refs/heads/page/resourses/data/versions/cp_lib.csv' }
             ];
+            // 解析URL查询参数，获取模组标识符（默认cp_lib）
+            const urlParams = new URLSearchParams(window.location.search);
+            const targetModId = urlParams.get('mod') || 'cp_lib';
 
             // 加载器基础配置
             const loaderPriority = ['fabric', 'forge', 'neoforge', 'quilt'];
@@ -388,11 +391,40 @@
                 }
                 // 初始化下拉菜单
                 renderModSelectDropdown();
-                // 设置默认选中第一个模组
-                currentMod = modList[0];
-                updateSelectedModDisplay();
+                // 根据URL参数选择模组（找不到则用默认cp_lib）
+                setCurrentModByModId(targetModId);
                 // 加载该模组的版本数据
                 loadModVersionData(currentMod.versionCsvUrl);
+            }
+
+            // 根据modId设置当前选中的模组
+            function setCurrentModByModId(modId) {
+                // 查找匹配的模组
+                const matchedMod = modList.find(mod => mod.modId === modId);
+                // 找不到则用默认cp_lib（优先从modList找，没有则用DEFAULT_MOD_DATA）
+                if (matchedMod) {
+                    currentMod = matchedMod;
+                } else {
+                    const defaultMod = modList.find(mod => mod.modId === 'cp_lib') || DEFAULT_MOD_DATA[0];
+                    currentMod = defaultMod;
+                }
+                // 更新显示文本
+                updateSelectedModDisplay();
+                // 更新下拉菜单选中状态
+                updateModDropdownSelectedState();
+            }
+
+            // 更新下拉菜单选中状态
+            function updateModDropdownSelectedState() {
+                const dropdown = document.getElementById('mod-select-dropdown');
+                const options = dropdown.querySelectorAll('.apple-select-option');
+                options.forEach((option, index) => {
+                    if (modList[index].modId === currentMod.modId) {
+                        option.classList.add('apple-select-option-active');
+                    } else {
+                        option.classList.remove('apple-select-option-active');
+                    }
+                });
             }
 
             // 渲染模组下拉菜单
@@ -401,7 +433,7 @@
                 let html = '';
                 modList.forEach((mod, index) => {
                     html += `
-                        <div class="apple-select-option ${index === 0 ? 'apple-select-option-active' : ''}" data-mod-index="${index}">
+                        <div class="apple-select-option ${mod.modId === currentMod?.modId ? 'apple-select-option-active' : ''}" data-mod-index="${index}">
                             ${mod.cnName}
                         </div>
                     `;
@@ -422,6 +454,10 @@
                         updateSelectedModDisplay();
                         // 加载新版本数据
                         loadModVersionData(currentMod.versionCsvUrl);
+                        // 更新URL参数（不刷新页面）
+                        const newUrlParams = new URLSearchParams(window.location.search);
+                        newUrlParams.set('mod', currentMod.modId);
+                        window.history.replaceState({}, '', `${window.location.pathname}?${newUrlParams.toString()}`);
                         // 关闭下拉菜单
                         toggleModDropdown(false);
                     });

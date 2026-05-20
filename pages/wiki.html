@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百科 | 矿石种植工艺</title>
+    <!-- Tailwind CSS v3 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0071e3',
+                        secondary: '#34c759',
+                        dark: '#121212',
+                        darkSecondary: '#1e1e1e',
+                        darkText: '#f5f5f7'
+                    },
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif']
+                    },
+                    backdropBlur: {
+                        xs: '2px'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            .glass-effect {
+                @apply bg-white/70 dark:bg-darkSecondary/70 backdrop-blur-md;
+            }
+            .nav-link {
+                @apply relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-primary dark:hover:text-primary;
+            }
+            .nav-link::after {
+                content: '';
+                @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            /* 百科卡片核心样式 - 带背景图、大小自适应、渐变遮罩 */
+            .wiki-card {
+                @apply relative overflow-hidden rounded-2xl p-8 transition-all duration-500 hover:scale-[1.02] hover:shadow-xl cursor-pointer flex flex-col justify-end;
+                min-height: 220px;
+            }
+            .wiki-card::before {
+                content: '';
+                @apply absolute inset-0 bg-gradient-to-t from-black/70 to-black/20 z-10;
+            }
+            .wiki-card-content {
+                @apply relative z-20 text-white;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 dark:bg-dark text-gray-900 dark:text-darkText transition-colors duration-300">
+    <!-- 导航栏 -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-gray-200 dark:border-gray-800">
+        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="../index.html" class="flex items-center space-x-2">
+                <img src="../resourses/assets/icons/logo-400.png" alt="Logo" class="h-10 w-10">
+                <span class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">矿石种植工艺</span>
+            </a>
+            
+            <!-- 导航链接 - 桌面版 -->
+            <div class="hidden md:flex items-center space-x-1">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="downloads.html" class="nav-link">下载模组</a>
+                <a href="submods.html" class="nav-link">联动模组</a>
+                <a href="wiki.html" class="nav-link text-primary">百科</a>
+                <a href="donate.html" class="nav-link">捐赠</a>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fa fa-moon-o dark:hidden" aria-hidden="true"></i>
+                    <i class="fa fa-sun-o hidden dark:block text-yellow-400" aria-hidden="true"></i>
+                </button>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden hidden glass-effect border-t border-gray-200 dark:border-gray-800">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="downloads.html" class="nav-link">下载模组</a>
+                <a href="submods.html" class="nav-link">联动模组</a>
+                <a href="wiki.html" class="nav-link text-primary">百科</a>
+                <a href="donate.html" class="nav-link">捐赠</a>
+                <button id="mobile-theme-toggle" class="flex items-center justify-center p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <i class="fa fa-moon-o dark:hidden mr-2" aria-hidden="true"></i>
+                    <i class="fa fa-sun-o hidden dark:block text-yellow-400 mr-2" aria-hidden="true"></i>
+                    <span>切换主题</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="pt-16">
+        <!-- 优化后：版本提示区域（隐藏链接，仅文字跳转） -->
+        <section class="py-6 bg-blue-50 dark:bg-blue-900/30 border-b border-blue-200 dark:border-blue-800">
+            <div class="container mx-auto px-4">
+                <p class="text-blue-800 dark:text-blue-300 text-sm md:text-base">
+                    <i class="fa fa-info-circle mr-2" aria-hidden="true"></i>
+                    4.x及更早版本的模组请访问 
+                    <a href="https://github.com/litQA/Croparium/wiki/%E5%AE%B6%EF%BC%88%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E5%9C%B0%E5%8C%BA%E7%AE%80%E4%BD%93%E9%A6%96%E9%A1%B5%EF%BC%89" 
+                       class="text-primary font-medium hover:underline" target="_blank">
+                        旧版维基文档
+                    </a>
+                </p>
+            </div>
+        </section>
+
+        <!-- 百科标题区域 -->
+        <section class="py-16 bg-white dark:bg-darkSecondary">
+            <div class="container mx-auto px-4 text-center" data-aos="fade-up">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">矿石种植工艺 百科</h1>
+                <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    全面了解矿石种植工艺模组的功能、机制和使用方法
+                </p>
+            </div>
+        </section>
+
+        <!-- 全新重构：6个百科卡片（大小不同 + 背景图片） -->
+        <section class="py-12 bg-gray-50 dark:bg-dark pb-20">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                    <!-- 卡片1：超大卡片 占2列 - 可种植资源 & 获取种子 -->
+                    <a href="#" class="wiki-card md:col-span-2" style="background-image: url('https://picsum.photos/1200/600?random=1');" data-aos="fade-up" data-aos-delay="100">
+                        <div class="wiki-card-content">
+                            <h3 class="text-2xl font-bold mb-2">可种植资源 & 获取种子</h3>
+                            <p class="text-white/80">各类可种植资源的种类、特性与种子获取方式</p>
+                        </div>
+                    </a>
+
+                    <!-- 卡片2：普通卡片 - 提取矿石粉末 -->
+                    <a href="#" class="wiki-card" style="background-image: url('https://picsum.photos/600/600?random=2');" data-aos="fade-up" data-aos-delay="200">
+                        <div class="wiki-card-content">
+                            <h3 class="text-xl font-bold mb-2">提取矿石粉末</h3>
+                            <p class="text-white/80">矿石粉末的提取方法与工具详解</p>
+                        </div>
+                    </a>
+
+                    <!-- 卡片3：普通卡片 - 作物种植条件与生长机制 -->
+                    <a href="#" class="wiki-card" style="background-image: url('https://picsum.photos/600/600?random=3');" data-aos="fade-up" data-aos-delay="300">
+                        <div class="wiki-card-content">
+                            <h3 class="text-xl font-bold mb-2">作物种植条件与生长机制</h3>
+                            <p class="text-white/80">种植环境要求、生长周期与加速方式</p>
+                        </div>
+                    </a>
+
+                    <!-- 卡片4：普通卡片 - 反应核心使用指南 -->
+                    <a href="#" class="wiki-card" style="background-image: url('https://picsum.photos/600/600?random=4');" data-aos="fade-up" data-aos-delay="400">
+                        <div class="wiki-card-content">
+                            <h3 class="text-xl font-bold mb-2">反应核心使用指南</h3>
+                            <p class="text-white/80">自动化种植核心搭建与配置</p>
+                        </div>
+                    </a>
+
+                    <!-- 卡片5：超大卡片 占2列 - 新增物品与方块 -->
+                    <a href="#" class="wiki-card md:col-span-2" style="background-image: url('https://picsum.photos/1200/600?random=5');" data-aos="fade-up" data-aos-delay="500">
+                        <div class="wiki-card-content">
+                            <h3 class="text-2xl font-bold mb-2">新增物品与方块</h3>
+                            <p class="text-white/80">模组全系列物品、方块功能介绍</p>
+                        </div>
+                    </a>
+
+                    <!-- 卡片6：普通卡片 - 合成与配方 -->
+                    <a href="#" class="wiki-card" style="background-image: url('https://picsum.photos/600/600?random=6');" data-aos="fade-up" data-aos-delay="600">
+                        <div class="wiki-card-content">
+                            <h3 class="text-xl font-bold mb-2">合成与配方</h3>
+                            <p class="text-white/80">所有物品的合成方式与配方表</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Logo 和简介 -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="../resourses/assets/icons/logo-400.png" alt="矿石种植工艺 Logo" class="h-10 w-10">
+                        <span class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">矿石种植工艺</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                         矿石种植工艺 模组提供了丰富的功能和内容，让你的 Minecraft 冒险更加精彩。
+                    </p>
+                    <div class="flex space-x-4"></div>
+                </div>
+                
+                <!-- 快速链接 -->
+                <div>
+                    <ul class="flex flex-wrap gap-6 justify-center md:justify-end">
+                        <li><a href="../index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="downloads.html" class="text-gray-400 hover:text-white transition-colors">下载模组</a></li>
+                        <li><a href="submods.html" class="text-gray-400 hover:text-white transition-colors">联动模组</a></li>
+                        <li><a href="wiki.html" class="text-gray-400 hover:text-white transition-colors">百科</a></li>
+                        <li><a href="donate.html" class="text-gray-400 hover:text-white transition-colors">捐赠</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2026 矿石种植工艺. 保留所有权利。
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 800, easing: 'ease-in-out', once: true });
+            
+            // 移动端菜单
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            
+            // 深色模式
+            const themeToggle = document.getElementById('theme-toggle');
+            const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+            function toggleTheme() {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            }
+            themeToggle.addEventListener('click', toggleTheme);
+            mobileThemeToggle.addEventListener('click', toggleTheme);
+            
+            // 导航栏滚动阴影
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => header.classList.toggle('shadow-md', window.scrollY > 50));
+        });
+    </script>
+</body>
+</html>

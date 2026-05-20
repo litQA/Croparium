@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qa爱心便签</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: #fdf2f7;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: background-color 0.5s ease;
+        }
+
+        .start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fdf2f7;
+            z-index: 100;
+            transition: opacity 0.8s ease;
+        }
+
+        .love-note {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: #f43f5e;
+            transform: rotate(45deg) scale(0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        .love-note::before,
+        .love-note::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: inherit;
+            border-radius: 50%;
+        }
+
+        .love-note::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .love-note::after {
+            top: 0;
+            left: -50px;
+        }
+
+        .note-text {
+            position: relative;
+            z-index: 20;
+            font-family: 'Arial Rounded MT Bold', sans-serif;
+            font-size: 14px;
+            color: white;
+            text-align: center;
+            transform: rotate(-45deg);
+            width: 80px;
+            line-height: 1.3;
+        }
+
+        .love-note.show {
+            opacity: 0.9;
+            transform: rotate(45deg) scale(1);
+        }
+
+        /* 不同颜色的爱心便签 */
+        .color-1 { background-color: #f43f5e; }
+        .color-2 { background-color: #ec4899; }
+        .color-3 { background-color: #8b5cf6; }
+        .color-4 { background-color: #ec4899; }
+        .color-5 { background-color: #f97316; }
+
+        .love-note.bounce {
+            animation: bounce 1s ease-in-out;
+            z-index: 100;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: rotate(45deg) scale(1);
+            }
+            25% {
+                transform: rotate(45deg) scale(1.5);
+            }
+            50% {
+                transform: rotate(45deg) scale(1.2) translateY(-50vh);
+            }
+            75% {
+                transform: rotate(45deg) scale(1.3);
+            }
+            100% {
+                transform: rotate(45deg) scale(1) translateY(-100vh);
+                opacity: 0;
+            }
+        }
+
+        .surprise-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 4rem;
+            font-weight: bold;
+            color: #f43f5e;
+            z-index: 200;
+            opacity: 0;
+            animation: fadeInOut 5.2s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+        }
+
+        .love-note.restore {
+            animation: restore 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes restore {
+            0% {
+                transform: rotate(45deg) scale(0) translateY(-100vh);
+                opacity: 0;
+            }
+            50% {
+                transform: rotate(45deg) scale(1.3) translateY(20px);
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(45deg) scale(1) translateY(0);
+                opacity: 0.9;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="start-screen">
+        <i class="fa fa-heart text-6xl text-pink-500 mb-6 animate-pulse"></i>
+        <h1 class="text-3xl md:text-4xl font-bold text-pink-700 mb-4">点击屏幕开始</h1>
+        <p class="text-pink-600 max-w-md text-center px-4">开启一场特别的表白，让爱意填满整个屏幕</p>
+    </div>
+
+    <footer class="fixed bottom-0 left-0 right-0 text-center text-gray-500 text-sm py-2 z-50">
+        <p>© 2026 LitQA. 保留相关权利</p>
+    </footer>
+
+    <script>
+        // 表白文案列表（100条不重复）
+        const loveMessages = [
+            // 原有50条
+            "我喜欢你，胜过一切",
+            "记得好好吃饭，别饿肚子",
+            "天气冷了，我好想见你",
+            "你一笑，我的世界都亮了",
+            "每天都在期待和你说话",
+            "你的存在，让一切都值得",
+            "想和你一起看遍所有风景",
+            "见不到你的时候，全是想念",
+            "你是我藏在心底的秘密",
+            "照顾好自己，我会担心的",
+            "喜欢你，是我做过最对的事",
+            "今天也有在偷偷想你呀",
+            "天冷了，记得多穿点衣服",
+            "和你在一起的时光最美好",
+            "你的眼睛里有星星",
+            "想把所有温柔都给你",
+            "别熬夜了，早点休息哦",
+            "想陪你走过每个春夏秋冬",
+            "看到好吃的，第一时间想到你",
+            "你就是我要找的那个人",
+            "不管多远，心都和你在一起",
+            "今天的风，都带着对你的思念",
+            "记得多喝水，保持好心情",
+            "喜欢你的一切，包括小缺点",
+            "想和你一起做很多很多事",
+            "天气变凉，注意保暖呀",
+            "我的心意，你感受到了吗",
+            "见到你，所有烦恼都消失了",
+            "你在我心里，很重要",
+            "记得按时吃饭，别亏待自己",
+            "我想每天都能见到你",
+            "你的声音，很动听",
+            "天冷了，手冷的话我帮你暖",
+            "喜欢你，没有为什么",
+            "记得好好照顾自己，我会想你",
+            "和你聊天，时间总是过得很快",
+            "你一笑，我就没辙了",
+            "天气冷了，多喝热水哦",
+            "我想和你有很多很多以后",
+            "看到美景，想第一时间分享给你",
+            "记得吃早餐，对身体好",
+            "你是我不期而遇的惊喜",
+            "天冷了，别感冒啦",
+            "我喜欢你，认真且坚定",
+            "记得多休息，别太累了",
+            "想牵着你的手，一直走下去",
+            "你的可爱，治愈了一切",
+            "天气冷了，抱抱你就暖和了",
+            "我想每天对你说晚安",
+            "你是我最想珍惜的人",
+            // 新增50条
+            "遇见你，是我最大的幸运",
+            "你的笑容，是我的解药",
+            "想和你一起吃好多好多饭",
+            "睡前最后想的人是你",
+            "醒来第一件事就是想你",
+            "你的小脾气都很可爱",
+            "想把你揉进我的怀里",
+            "和你在一起，空气都是甜的",
+            "我的快乐，都是你给的",
+            "愿陪你走过每一个清晨和黄昏",
+            "你是我疲惫生活里的温柔梦想",
+            "偷偷把你放在我的未来里",
+            "只要有你，什么都刚刚好",
+            "想给你所有的甜和温柔",
+            "你的名字，是最动听的情话",
+            "见你的路上，风都是甜的",
+            "想和你窝在沙发里看电影",
+            "你的出现，让我的世界完整",
+            "我想成为你最依赖的人",
+            "不管怎样，我都在你身边",
+            "想和你分享所有的喜怒哀乐",
+            "你的拥抱，是最温暖的港湾",
+            "喜欢你，从心动到古稀",
+            "三餐四季，只想和你一起",
+            "我的满心欢喜，都是因为你",
+            "想牵着你的手，走过大街小巷",
+            "你在，我就觉得很安心",
+            "为你，千千万万遍",
+            "你的一切，我都想了解",
+            "想和你一起慢慢变老",
+            "看到你，就觉得岁月静好",
+            "我的偏爱和例外都是你",
+            "想把最好的都留给你",
+            "你是我生命里的光",
+            "和你聊天，连废话都很甜",
+            "想陪你看日出，等日落",
+            "你的存在，让我满心欢喜",
+            "我想每天都对你说我爱你",
+            "天冷了，我的外套永远给你",
+            "想和你一起逛超市，买好多零食",
+            "你闹，我笑，就这样一辈子",
+            "我的心，永远为你敞开",
+            "想记录下和你的每一个瞬间",
+            "你是我独一无二的宝藏",
+            "只要能和你在一起，怎样都好",
+            "想给你煮一碗热乎的粥",
+            "你的晚安，是我最好的安眠药",
+            "想和你一起吹晚风，看星星",
+            "我会一直陪着你，不离不弃",
+            "你是我藏在微风里的喜欢"
+        ];
+
+        const startScreen = document.querySelector('.start-screen');
+        const body = document.body;
+        let hasClicked = false;
+        let activeNotes = 0;          // 当前屏幕中活跃的爱心数量
+        let usedMessageIndexes = [];  // 已使用的文案索引（避免重复）
+        const MAX_NOTES = 30;         // 屏幕最大爱心数量
+        const MIN_NOTES = 10;         // 触发补充的最小数量
+
+        // 初始化：点击屏幕开始
+        body.addEventListener('click', () => {
+            if (hasClicked) return;
+            hasClicked = true;
+
+            // 隐藏开始屏幕
+            startScreen.style.opacity = '0';
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+            }, 800);
+
+            // 初始创建最多30个爱心（而非全部100个）
+            initLoveNotes();
+        });
+
+        // 初始化爱心便签（创建至最大数量）
+        function initLoveNotes() {
+            const needCreate = MAX_NOTES - activeNotes;
+            for (let i = 0; i < needCreate; i++) {
+                setTimeout(() => {
+                    createLoveNote(getRandomUnusedMessage());
+                }, i * 200); // 0.2秒间隔创建
+            }
+        }
+
+        // 获取随机未使用的文案（用完后循环）
+        function getRandomUnusedMessage() {
+            // 如果所有文案都用过了，重置已使用列表
+            if (usedMessageIndexes.length >= loveMessages.length) {
+                usedMessageIndexes = [];
+            }
+            
+            // 随机选一个未使用的索引
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * loveMessages.length);
+            } while (usedMessageIndexes.includes(randomIndex));
+            
+            usedMessageIndexes.push(randomIndex);
+            return loveMessages[randomIndex];
+        }
+
+        // 创建爱心便签核心方法
+        function createLoveNote(message, isRestore = false) {
+            // 超过最大数量则停止创建
+            if (activeNotes >= MAX_NOTES) return;
+            
+            // 创建元素
+            const note = document.createElement('div');
+            const text = document.createElement('div');
+            
+            // 随机颜色
+            const colorClass = `color-${Math.floor(Math.random() * 5) + 1}`;
+            note.className = `love-note ${colorClass} ${isRestore ? 'restore' : ''}`;
+            text.className = 'note-text';
+            text.textContent = message;
+            
+            note.appendChild(text);
+            body.appendChild(note);
+            activeNotes++;
+
+            // 随机位置（避免超出屏幕）
+            const screenWidth = window.innerWidth;
+            const screenHeight = window.innerHeight;
+            const noteSize = 100;
+            const maxX = screenWidth - noteSize;
+            const maxY = screenHeight - noteSize;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            note.style.left = `${randomX}px`;
+            note.style.top = `${randomY}px`;
+
+            // 显示动画
+            setTimeout(() => {
+                if (isRestore) note.classList.remove('restore');
+                note.classList.add('show');
+            }, isRestore ? 800 : 50);
+
+            // 点击爱心触发弹跳并移除
+            note.addEventListener('click', (e) => {
+                e.stopPropagation(); // 防止触发body的点击事件
+                if (!note.classList.contains('bounce')) {
+                    note.classList.add('bounce');
+                    // 动画结束后移除元素
+                    setTimeout(() => {
+                        if (note.parentNode) {
+                            note.parentNode.removeChild(note);
+                            activeNotes--;
+                            checkNoteCount(); // 检查数量是否需要补充
+                        }
+                    }, 1000);
+                }
+            });
+
+            // 添加漂浮动画
+            addFloatAnimation(note);
+        }
+
+        // 漂浮动画
+        function addFloatAnimation(element) {
+            let angle = 0;
+            const originalTop = parseInt(element.style.top);
+            
+            setInterval(() => {
+                if (!element.classList.contains('bounce')) { // 弹跳时停止漂浮
+                    angle += 0.02;
+                    const floatY = Math.sin(angle) * 8; 
+                    element.style.top = `${originalTop + floatY}px`;
+                }
+            }, 50);
+        }
+
+        // 检查爱心数量：≤10时补充至30个
+        function checkNoteCount() {
+            // 数量≤10且未在补充中时，触发补充
+            if (activeNotes <= MIN_NOTES && !isSupplementing) {
+                isSupplementing = true;
+                const needCreate = MAX_NOTES - activeNotes;
+                
+                // 分批补充（避免一次性创建过多）
+                for (let i = 0; i < needCreate; i++) {
+                    setTimeout(() => {
+                        createLoveNote(getRandomUnusedMessage());
+                        // 全部补充完成后重置状态
+                        if (i === needCreate - 1) {
+                            setTimeout(() => {
+                                isSupplementing = false;
+                            }, 1000);
+                        }
+                    }, i * 100); // 0.1秒间隔补充
+                }
+
+                // 补充时随机触发惊喜文案（增加趣味性）
+                if (Math.random() > 0.7) {
+                    setTimeout(() => {
+                        showSurpriseMessage();
+                    }, 1000);
+                }
+            }
+        }
+
+        // 惊喜文案弹窗
+        function showSurpriseMessage() {
+            const surpriseMessage = document.createElement('div');
+            surpriseMessage.className = 'surprise-message';
+            surpriseMessage.textContent = '我喜欢你';
+            body.appendChild(surpriseMessage);
+
+            // 动画结束后移除
+            setTimeout(() => {
+                if (surpriseMessage.parentNode) {
+                    surpriseMessage.parentNode.removeChild(surpriseMessage);
+                }
+            }, 5200);
+        }
+
+        // 补充状态锁（防止重复补充）
+        let isSupplementing = false;
+    </script>
+</body>
+</html>
