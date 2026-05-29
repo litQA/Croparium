@@ -1,11 +1,15 @@
 # New Version Progress丨新版本开发进度
 ## Croparium v5.0
 ### Progress
-██████░░░░░░░░░░ 35.29%
+█████████░░░░░░░░░ 47.83%
 
 ### Tasks
 
 #### Main Mod Compatibility
+
+* [x] Main Mod \- Forge 1\.18\.2
+
+* [x] Main Mod \- Forge 1\.19\.4
 
 * [x] Main Mod \- Forge 1\.20\.1
 
@@ -29,7 +33,7 @@
 
 * [x] Expansion Mod \- Composite Material
 
-* [ ] Expansion Mod \- Confluence Otherworld
+* [x] Expansion Mod \- Confluence Otherworld
 
 * [ ] Expansion Mod \- Create
 
