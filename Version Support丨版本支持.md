@@ -75,7 +75,7 @@
 |Minrcraft Version|1.21.4|1.21.5|1.21.6|1.21.7|1.21.8|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
 |Min NeoForge Version|21.4.155|21.5.75|"21.6.20-beta"|"21.7.25-beta"|21.8.53|
-|Status|LTS‑AS|EOL|EOL|EOL|LTS‑AS|
+|Status|RR‑AS|EOL|EOL|EOL|RR‑AS|
 |Latest Stable Version|4.8.3|3.3.0|3.3.1|4.4.0|4.8.0|
 
 ## NeoForge (26.x)
