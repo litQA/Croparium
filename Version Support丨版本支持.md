@@ -61,7 +61,7 @@
 |Minrcraft Version|1.18.2|1.19.2|1.19.4|1.20.1|
 |:----------:|:--------:|:--------:|:--------:|:--------:|
 |Min Forge Version|40.3.0|43.5.0|45.4.0|47.4.0|
-|Status|LTS‑AS|LTS‑ES|LTS‑AS|LTS‑AS|
+|Status|LTS‑AS|LTS‑ES|RR‑AS|LTS‑AS|
 |Latest Stable Version|4.8.3|4.8.3|4.8.3|4.8.0|
 
 ## NeoForge (20.4-21.3)
