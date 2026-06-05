@@ -89,6 +89,7 @@
 |Minrcraft Version|1.21.6|1.21.7|1.21.8|26.1|26.1.1|26.1.2|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
 |Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.145.1|0.145.4|0.150.0|
+|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|
 |Status|DEV-Alpha|DEV-Alpha|DEV-Alpha|DEV|DEV|DEV|DEV|
 |Latest Stable Version|-|-|-|-|-|-|
 
