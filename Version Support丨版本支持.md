@@ -1,7 +1,7 @@
 # New Version Progress丨新版本开发进度
 ## Croparium v5.0
 ### Progress
-██████████████░░░░░░░░░ 60.87%
+█████████████████░░░░░░ 73.91%
 
 ### Tasks
 
@@ -15,7 +15,7 @@
 
 * [x] Main Mod \- NeoForge 1\.21\.1
 
-* [ ] Main Mod \- NeoForge 1\.21\.4
+* [x] Main Mod \- NeoForge 1\.21\.4
 
 * [x] Main Mod \- NeoForge 1\.21\.8
 
@@ -35,13 +35,13 @@
 
 * [x] Expansion Mod \- Confluence Otherworld
 
-* [ ] Expansion Mod \- Create
+* [x] Expansion Mod \- Create
 
-* [ ] Expansion Mod \- L\_Enders Cataclysm
+* [x] Expansion Mod \- L\_Enders Cataclysm
 
-* [ ] Expansion Mod \- Mekanism
+* [x] Expansion Mod \- Mekanism
 
-* [ ] Expansion Mod \- Twilight Forest
+* [x] Expansion Mod \- Twilight Forest
 
 * [x] Expansion Mod \- BOP Legacy Reborn
 
@@ -87,7 +87,7 @@
 |:----------:|:--------:|
 |Min NeoForge Version|26.1.2.73|
 |Support Type|**LTS**|
-|Status|DEV-Alpha|
+|Status|DEV-Beta|
 |Latest Stable Version|-|
 
 ## Fabric
