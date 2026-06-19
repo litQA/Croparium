@@ -1,3 +1,15 @@
+# Planned Supported Mods丨计划中的联动模组
+Due to limited personal bandwidth, a busy recent schedule, and the fact that this project is fully free with no commercial revenue, the development of various integration mods may slow down in the coming period. Maintenance priority will be given to the core main mod. Thank you for your understanding and support, fellow players and developers.
+
+受个人精力有限、近期繁忙，且本项目无任何商业收益的影响，这些各类联动模组的开发节奏可能会有所放缓。项目维护重心将优先放在核心主模组上，感谢各位玩家与开发者的理解与支持。
+
+- [ ] Thermal Foundation丨热力基础
+- [ ] Immersive Engineering丨沉浸工程
+- [ ] SimpleOres2丨简单矿石2
+- [ ] Applied Energistics 2丨应用能源2
+- [ ] Tech Reborn丨科技复兴
+- [ ] Modern Industrialization丨现代工业化
+
 # Version Support丨版本支持
 |Symbol/符号|Meaning|含义|
 |:----------|:--------|:--------|
