@@ -22,12 +22,12 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |**DEV**|Developing- No stable version|开发中，无稳定版|
 
 ## Minrcraft Forge
-|Minrcraft Version|1.18.2|1.19.2|1.19.4|1.20.1|
-|:----------:|:--------:|:--------:|:--------:|:--------:|
-|Min Forge Version|40.3.0|43.5.0|45.4.0|47.4.0|
-|Support Type|**LTS**|**LTS**|**LTS**|**LTS**|
-|Status|**AS**|ES|**AS**|**AS**|
-|Latest Stable Version|5.0.18|5.0.18|5.0.18|5.0.18|
+|Minrcraft Version|1.17.1|1.18.2|1.19.2|1.19.4|1.20.1|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Forge Version|37.1.1|40.3.0|43.5.0|45.4.0|47.4.0|
+|Support Type|STD|**LTS**|**LTS**|**LTS**|**LTS**|
+|Status|ES|**AS**|ES|**AS**|**AS**|
+|Latest Stable Version|5.0.18|5.0.18|5.0.18|5.0.18|5.0.18|
 
 ## NeoForge (20.4-21.3)
 |Minrcraft Version|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|
