@@ -24,9 +24,10 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 ## Minecraft Forge
 |Minecraft Version|1.17.1|1.18.2|1.19.2|1.19.4|1.20.1|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Forge Version|37.1.1|40.3.0|43.5.0|45.4.0|47.4.0|
+|Forge Version|[37.0.13,)|[40.0.0,)|43.5.0|45.4.0|[47.3.10,)|
+|Java Version|[16,20)|[17,20)|[17,20)|[17,20)|[17,20)|
 |Support Type|STD|**LTS**|**LTS**|**LTS**|**LTS**|
-|Status|ES|**AS**|ES|**AS**|**AS**|
+|Status|ES|ES|ES|ES|**AS**|
 |Latest Stable Version|5.0.18|5.0.18|5.0.18|5.0.18|5.0.18|
 
 ## NeoForge (20.4-21.3)
