@@ -1,3 +1,10 @@
+# Planned Next Major Version丨计划中下一个主要版本
+## v5.1
+### Progress
+░░░░░░░░░░░░░░░░░░░░░░░ 0.00%
+### Tasks
+I'll start later this year.
+
 # Planned Supported Mods丨计划中的联动模组
 Due to limited personal bandwidth, a busy recent schedule, and the fact that this project is fully free with no commercial revenue, the development of various integration mods may slow down in the coming period. Maintenance priority will be given to the core main mod. Thank you for your understanding and support, fellow players and developers.
 
