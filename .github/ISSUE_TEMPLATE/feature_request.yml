@@ -15,7 +15,7 @@ body:
     attributes:
       label: Affected Mod Name
       description: Which mod will this new feature apply to?
-      placeholder: e.g. Croparium, Croparium: Create
+      placeholder: e.g. Croparium, Croparium Create
     validations:
       required: true
 
