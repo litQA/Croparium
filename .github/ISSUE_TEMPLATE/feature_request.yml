@@ -7,13 +7,13 @@ body:
   - type: markdown
     attributes:
       value: |
-        > Important Notice: This project is maintained solo and I am currently stuck in other priorities. So feature requests will likely not be adopted, though they may still be considered in the more distant future.
+        > Important Notice: This is a solo-maintained project and I am tied up with other priorities. So feature requests will likely not be adopted, though you are still encouraged to share your ideas. They will be kept on record and may be revisited in the future.
 
   
   - type: input
     id: module_name
     attributes:
-      label: Affected Mod Name
+      label: Affected Mod's Name
       description: Which mod will this new feature apply to?
       placeholder: e.g. Croparium, Croparium Create
     validations:
