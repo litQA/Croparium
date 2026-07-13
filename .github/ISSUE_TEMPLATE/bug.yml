@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report software defects, crashes or unexpected behaviors
+description: Report Minecraft crashes or unexpected behaviors for loading this mod
 title: "[Bug]"
 labels: ["bug"]
 body:
@@ -7,8 +7,8 @@ body:
   - type: input
     id: module_name
     attributes:
-      label: Affected Module Name
-      description: Specify the exact module related to this bug
+      label: Affected Mod's Name
+      description: Specify the exact mod related to this bug
       placeholder: e.g. Croparium, BOP Legacy Reborn
     validations:
       required: true
