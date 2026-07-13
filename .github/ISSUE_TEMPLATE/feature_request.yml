@@ -7,15 +7,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        > Important Notice: I am currently very busy, so the majority of feature requests will likely not be accepted or implemented.
+        > Important Notice: This project is maintained solo and I am currently stuck in other priorities. The majority of feature requests will likely not be adopted or implemented, though they may still be considered in the more distant future.
 
   
   - type: input
     id: module_name
     attributes:
-      label: Affected Module Name
+      label: Affected Mod Name
       description: Which mod will this new feature apply to?
-      placeholder: e.g. upload, dashboard, parser
+      placeholder: e.g. Croparium, Croparium: Create
     validations:
       required: true
 
@@ -26,7 +26,3 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternative solutions you considered
