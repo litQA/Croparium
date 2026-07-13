@@ -1,0 +1,21 @@
+name: Other Non-Mod Gameplay Question
+description: Questions unrelated to any specific mod
+title: "[Other]"
+labels: ["other"]
+body:
+
+  - type: input
+    id: subject_summary
+    attributes:
+      label: Summary
+      description: Briefly summarize your question in one sentence
+      placeholder: A short overview of your question
+    validations:
+      required: true
+
+  - type: textarea
+    id: detailed_content
+    attributes:
+      label: Detailed Description (Optional)
+      description: Add more details, if needed
+      placeholder: You can elaborate your question here
