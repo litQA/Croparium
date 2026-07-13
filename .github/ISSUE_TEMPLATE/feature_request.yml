@@ -1,0 +1,32 @@
+name: Feature Request
+description: Submit suggestions for new features or improvements
+title: "[Feature]"
+labels: ["enhancement"]
+body:
+  
+  - type: markdown
+    attributes:
+      value: |
+        > Important Notice: I am currently very busy, so the majority of feature requests will likely not be accepted or implemented.
+
+  
+  - type: input
+    id: module_name
+    attributes:
+      label: Affected Module Name
+      description: Which mod will this new feature apply to?
+      placeholder: e.g. upload, dashboard, parser
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Detailed feature proposal
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative solutions you considered
