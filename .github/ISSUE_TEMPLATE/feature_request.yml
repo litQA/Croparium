@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        > Important Notice: This project is maintained solo and I am currently stuck in other priorities. The majority of feature requests will likely not be adopted or implemented, though they may still be considered in the more distant future.
+        > Important Notice: This project is maintained solo and I am currently stuck in other priorities. So feature requests will likely not be adopted, though they may still be considered in the more distant future.
 
   
   - type: input
