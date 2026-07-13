@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report software defects, crashes or unexpected behaviors
-title: "[Bug] "
+title: ""
 labels: ["bug"]
 body:
   # 必填模组名称输入框
@@ -9,7 +9,7 @@ body:
     attributes:
       label: Affected Module Name
       description: Specify the exact module related to this bug
-      placeholder: e.g. auth, renderer, storage
+      placeholder: e.g. Croparium, BOP Legacy Reborn
     validations:
       required: true
 
