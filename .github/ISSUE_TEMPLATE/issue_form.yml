@@ -1,0 +1,71 @@
+name: Issue Submission
+description: Report bugs or submit new feature suggestions
+title: "[{{ type }}] "
+labels: []
+body:
+  # 1. Required Dropdown: Select Issue Type
+  - type: dropdown
+    id: type
+    attributes:
+      label: Issue Type
+      description: Please select the type of your submission
+      options:
+        - Bug
+        - Feature Request
+    validations:
+      required: true
+
+  # 2. Required Module Name Input
+  - type: input
+    id: module
+    attributes:
+      label: Target Module Name
+      description: Write the exact module related to this issue
+      placeholder: e.g. auth, renderer, database-core
+    validations:
+      required: true
+
+  # 3. Disclaimer ONLY visible when selecting Feature Request
+  - type: markdown
+    id: feature-disclaimer
+    attributes:
+      value: |
+        > ⚠️ Important Notice for Feature Requests
+        Our maintainer team is currently heavily backlogged with critical bug fixes. Most new feature suggestions will not be prioritized or implemented in the short term, and we cannot guarantee adoption of your proposal. Please consider whether this feature is strictly necessary before continuing.
+      if: ${{ type == 'Feature Request' }}
+
+  # 4. Bug Description Section (show for Bug type)
+  - type: textarea
+    id: bug-detail
+    attributes:
+      label: Bug Details
+      description: Describe the bug, reproduction steps, expected & actual behavior
+      placeholder: |
+        Steps to reproduce:
+        1. ...
+        Expected result:
+        Actual broken behavior:
+    validations:
+      required: true
+      if: ${{ type == 'Bug' }}
+
+  # 5. Feature Request Section (show for Feature Request type)
+  - type: textarea
+    id: feature-detail
+    attributes:
+      label: Feature Proposal
+      description: Explain your requested feature, use cases and benefits
+      placeholder: |
+        Problem this solves:
+        How the feature should work:
+        Alternative solutions you considered:
+    validations:
+      required: true
+      if: ${{ type == 'Feature Request' }}
+
+  # Optional extra context field
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Context (Optional)
+      description: Screenshot links, logs, related issues, environment info
