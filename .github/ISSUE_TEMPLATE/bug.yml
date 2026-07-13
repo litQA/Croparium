@@ -1,0 +1,35 @@
+name: Bug Report
+description: Report software defects, crashes or unexpected behaviors
+title: "[Bug] "
+labels: ["bug"]
+body:
+  # 必填模组名称输入框
+  - type: input
+    id: module_name
+    attributes:
+      label: Affected Module Name
+      description: Specify the exact module related to this bug
+      placeholder: e.g. auth, renderer, storage
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug_desc
+    attributes:
+      label: Bug Description
+      description: Describe what went wrong clearly
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      placeholder: 1. xxx\n2. xxx\n3. xxx
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Context (logs, screenshots, versions)
