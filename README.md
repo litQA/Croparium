@@ -1,5 +1,5 @@
 
-<img width="850" height="" alt="white bg wide" src="https://github.com/user-attachments/assets/5397d140-df74-4261-ba8a-4d4f78490032" />
+<img width="600"  alt="bg1_wide" src="https://github.com/user-attachments/assets/833e8c53-51aa-40e2-8443-809e1ea8a3aa" />
 
 [<img width="138" height="40" alt="mcmod" src="https://github.com/user-attachments/assets/9dfd1f0f-9a73-4b45-bff7-5ab6f43268e7" />](https://www.mcmod.cn/class/22202.html) [<img width="138" height="40" alt="curseforge" src="https://github.com/user-attachments/assets/bfdca0ad-073c-47fe-9b8f-5bdbbdc5a3a7" />](https://www.curseforge.com/minecraft/mc-mods/croparium) [<img width="138" height="40" alt="modrinth" src="https://github.com/user-attachments/assets/2fe4fdf4-b383-4167-b25b-5ac95ff30dea" />](https://modrinth.com/mod/croparium)
 
