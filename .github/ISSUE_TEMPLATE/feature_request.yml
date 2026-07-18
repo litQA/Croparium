@@ -1,6 +1,6 @@
 name: Feature Request
 description: Submit suggestions for new features or improvements
-title: "[Feature]"
+title: "[Feature] "
 labels: ["enhancement"]
 body:
   
