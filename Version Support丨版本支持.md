@@ -50,7 +50,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |Min NeoForge Version|21.4.155|21.5.75|"21.6.20-beta"|"21.7.25-beta"|21.8.53|
 |Support Type|STD|STD|STD|STD|STD|
 |Status|**AS**|EOL|EOL|EOL|**AS**|
-|Latest Stable Version|5.0.18|3.3.0|3.3.1|5.0.20|5.0.20|
+|Latest Stable Version|5.0.20|3.3.0|3.3.1|5.0.20|5.0.20|
 
 ## NeoForge (26.x)
 |Minecraft Version|26.1.2|
