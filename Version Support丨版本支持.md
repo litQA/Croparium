@@ -66,7 +66,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
 |Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.145.1|0.145.4|0.150.0|
 |Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|
-|Support Type|STD|STD|STD|STD|STD|**LTS**|
+|Support Type|STD|STD|STD|STD|STD|STD|
 |Status|ES|ES|**AS**|ES|ES|**AS**|
 |Latest Stable Version|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|
 
