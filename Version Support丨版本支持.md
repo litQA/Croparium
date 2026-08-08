@@ -26,7 +26,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |**LTS**|Long-Term Support|长期支持版|
 |**AS**|Active Support|活跃维护|
 |**ES**|Extended Support|扩展维护|
-|**MS**|Minimum Support|最小支持|
+|**MS**|Minimum Support|最低限度维护|
 |**DEV**|Developing- No stable version|开发中，无稳定版|
 
 ## Minecraft Forge
@@ -42,7 +42,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
 |Min NeoForge Version|20.4.251|20.6.139|21.0.167|21.1.233|"21.2.1-beta"|21.3.95|
 |Support Type|STD|STD|STD|**LTS**|STD|STD|
-|Status|EOL|EOL|EOL|**AS**|MS|MS|
+|Status|MS|MS|MS|**AS**|MS|MS|
 |Latest Stable Version|4.5.5|4.5.5|3.4.0|5.0.21|3.4.0|3.4.0|
 
 ## NeoForge (21.4-21.8)
