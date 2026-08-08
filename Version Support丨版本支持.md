@@ -35,7 +35,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |Min Forge Version|37.0.13|40.0.0|43.4.3|45.3.4|47.3.10|
 |Support Type|STD|**LTS**|**LTS**|**LTS**|**LTS**|
 |Status|ES|ES|ES|ES|**AS**|
-|Latest Stable Version|5.0.21-lite|5.0.21|5.0.21|5.0.21|5.0.21|
+|Latest Stable Version|5.0.22-lite|5.0.22|5.0.22|5.0.22|5.0.22|
 
 ## NeoForge (20.4-21.3)
 |Minecraft Version|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|
@@ -43,7 +43,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |Min NeoForge Version|20.4.251|20.6.139|21.0.167|21.1.233|"21.2.1-beta"|21.3.95|
 |Support Type|STD|STD|STD|**LTS**|STD|STD|
 |Status|MS|MS|MS|**AS**|MS|MS|
-|Latest Stable Version|4.5.5|4.5.5|3.4.0|5.0.21|3.4.0|3.4.0|
+|Latest Stable Version|4.5.5|4.5.5|3.4.0|5.0.22|3.4.0|3.4.0|
 
 ## NeoForge (21.4-21.8)
 |Minecraft Version|1.21.4|1.21.5|1.21.6|1.21.7|1.21.8|
@@ -51,15 +51,15 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |Min NeoForge Version|21.4.155|21.5.75|"21.6.20-beta"|"21.7.25-beta"|21.8.53|
 |Support Type|STD|STD|STD|STD|STD|
 |Status|**AS**|MS|MS|MS|**AS**|
-|Latest Stable Version|5.0.21|3.3.0|3.3.1|5.0.20|5.0.21|
+|Latest Stable Version|5.0.22|3.3.0|3.3.1|5.0.20|5.0.22|
 
 ## NeoForge (26.x)
 |Minecraft Version|26.1.2|
 |:----------:|:--------:|
-|Min NeoForge Version|26.1.2.73|
+|Min NeoForge Version|26.1.2.71|
 |Support Type|**LTS**|
 |Status|**AS**|
-|Latest Stable Version|5.0.21|
+|Latest Stable Version|5.0.22|
 
 ## Fabric
 |Minecraft Version|1.21.6|1.21.7|1.21.8|26.1|26.1.1|26.1.2|
@@ -68,5 +68,5 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|
 |Support Type|STD|STD|STD|STD|STD|**LTS**|
 |Status|ES|ES|**AS**|ES|ES|**AS**|
-|Latest Stable Version|5.0.21|5.0.21|5.0.21|5.0.21|5.0.21|5.0.21|
+|Latest Stable Version|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|
 
