@@ -33,13 +33,15 @@ You can freely use this mod in your own modpacks; you may distribute it freely u
 
 </details>
 
-# 矿石种植工艺
+# 矿石种植工艺/ 作物园
 
 <details>
 <summary>单击以折叠/展开 项目说明（中国大陆地区简体）</summary>
   
 ## 项目简介
 矿石种植工艺是一款为Minecraft设计的实用模组，旨在为玩家提供全新的资源获取方式，丰富游戏体验。
+
+模组lite版本的中文名称为“作物园”。
 
 本模组遵循Mojang EULA，仅用于非商业用途，严禁倒卖或用于商业盈利。
 
