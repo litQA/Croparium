@@ -1,13 +1,13 @@
 # Planned Next Major Version丨计划中下一个主要版本
 ## v5.1
 ### Progress
-█████████░░░░░░░░░░░░░░ 39.13%
+██████████░░░░░░░░░░░░░ 43.48%
 ### Tasks
 #### Expansions
 - [ ] SimpleOres2丨简单矿石2
 - [ ] Thermal Foundation丨热力基础
 - [ ] Immersive Engineering丨沉浸工程
-- [ ] Applied Energistics 2丨应用能源2
+- [x] Applied Energistics 2丨应用能源2
 - [ ] Shincolle-Shin丨深海舰队收藏
 
 # Planned Supported Mods (Long-term)丨计划中的联动模组（长期计划）
