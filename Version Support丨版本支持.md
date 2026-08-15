@@ -56,7 +56,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 ## NeoForge (26.x)
 |Minecraft Version|26.1.2|
 |:----------:|:--------:|
-|Min NeoForge Version|26.1.2.71|
+|Min NeoForge Version|26.1.2.95|
 |Support Type|**LTS**|
 |Status|**AS**|
 |Latest Stable Version|5.0.22|
