@@ -3,6 +3,8 @@
 ### Progress
 ██████████░░░░░░░░░░░░░ 43.48%
 ### Tasks
+#### Main Mod
+- [ ] NeoForge 26.2 Support
 #### Expansions
 - [ ] SimpleOres2丨简单矿石2
 - [ ] Thermal Foundation丨热力基础
@@ -18,6 +20,7 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 - [ ] Tech Reborn丨科技复兴
 - [ ] Modern Industrialization丨现代工业化
 
+---
 
 # Version Support丨版本支持
 |Symbol/符号|Meaning|含义|
@@ -54,12 +57,12 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |Latest Stable Version|5.0.22|3.3.0|3.3.1|5.0.20|5.0.22|
 
 ## NeoForge (26.x)
-|Minecraft Version|26.1.2|
-|:----------:|:--------:|
-|Min NeoForge Version|26.1.2.95|
-|Support Type|**LTS**|
-|Status|**AS**|
-|Latest Stable Version|5.0.22|
+|Minecraft Version|26.1.2|26.2|
+|:----------:|:--------:|:--------:|
+|Min NeoForge Version|26.1.2.95|26.2.0.59|
+|Support Type|STD|STD|
+|Status|**AS**|DEV|
+|Latest Stable Version|5.0.22|-|
 
 ## Fabric
 |Minecraft Version|1.21.6|1.21.7|1.21.8|26.1|26.1.1|26.1.2|
