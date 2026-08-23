@@ -1,10 +1,11 @@
 # Planned Next Major Version丨计划中下一个主要版本
 ## v5.1
 ### Progress
-██████████░░░░░░░░░░░░░ 43.48%
+████████████░░░░░░░░░░░ 52.17%
 ### Tasks
 #### Main Mod
-- [ ] NeoForge 26.2 Support
+- [x] NeoForge 26.2 Support
+- [x] Fabric 26.2 Support
 #### Expansions
 - [ ] SimpleOres2丨简单矿石2
 - [ ] Thermal Foundation丨热力基础
@@ -61,15 +62,15 @@ Due to limited personal bandwidth, a busy recent schedule, and the fact that thi
 |:----------:|:--------:|:--------:|
 |Min NeoForge Version|26.1.2.95|26.2.0.59|
 |Support Type|STD|STD|
-|Status|**AS**|DEV|
+|Status|**AS**|BETA|
 |Latest Stable Version|5.0.22|-|
 
 ## Fabric
-|Minecraft Version|1.21.6|1.21.7|1.21.8|26.1|26.1.1|26.1.2|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.145.1|0.145.4|0.150.0|
-|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|
-|Support Type|STD|STD|STD|STD|STD|STD|
-|Status|ES|ES|**AS**|ES|ES|**AS**|
-|Latest Stable Version|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|
+|Minecraft Version|1.21.6|1.21.7|1.21.8|26.1|26.1.1|26.1.2|26.2|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.145.1|0.145.4|0.150.0|0.155.2|
+|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|
+|Support Type|STD|STD|STD|STD|STD|STD|STD|
+|Status|ES|ES|**AS**|ES|ES|**AS**|BETA|
+|Latest Stable Version|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|-|
 
