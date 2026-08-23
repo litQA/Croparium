@@ -14,9 +14,10 @@
 - [ ] Shincolle-Shin丨深海舰队收藏
 
 # Planned Supported Mods (Long-term)丨计划中的联动模组（长期计划）
-Due to limited personal bandwidth, a busy recent schedule, and the fact that this project is fully free with no commercial revenue, the development of various integration mods may slow down in the coming period. Maintenance priority will be given to the core main mod. Thank you for your understanding and support, fellow players and developers.
-
-受个人精力有限、近期繁忙，且本项目无任何商业收益的影响，这些各类联动模组的开发节奏可能会有所放缓。项目维护重心将优先放在核心主模组上，感谢各位玩家与开发者的理解与支持。
+## Maintenance Status
+The author is currently a full-time teacher and can only rarely maintain these mods in spare time. Due to limited personal energy and no commercial income from this project, the development of new content, support for new mod loaders, updates for new game versions, and even bug fixes will be slowed down.
+## 维护状态说明
+作者目前是一名全职教师，仅能利用业余时间非常有限地维护这些模组。由于个人精力有限，且本项目没有任何商业收益，因此新内容的开发、对新加载器及新游戏版本的支持，甚至漏洞修复工作，都会有所放缓。
 
 - [ ] Tech Reborn丨科技复兴
 - [ ] Modern Industrialization丨现代工业化
