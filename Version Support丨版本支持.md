@@ -1,7 +1,7 @@
 # Planned Next Major Version丨计划中下一个主要版本
 ## v5.1
 ### Progress
-████████████░░░░░░░░░░░ 52.17%
+█████████████░░░░░░░░░░ 56.52%
 ### Tasks
 #### Main Mod
 - [x] NeoForge 26.2 Support
@@ -9,7 +9,7 @@
 #### Expansions
 - [ ] SimpleOres2丨简单矿石2
 - [ ] Thermal Foundation丨热力基础
-- [ ] Immersive Engineering丨沉浸工程
+- [x] Immersive Engineering丨沉浸工程
 - [x] Applied Energistics 2丨应用能源2
 - [ ] Shincolle-Shin丨深海舰队收藏
 
@@ -21,6 +21,7 @@ The author is currently a full-time teacher and can only rarely maintain these m
 
 - [ ] Tech Reborn丨科技复兴
 - [ ] Modern Industrialization丨现代工业化
+- [ ] Croparia (IF)丨矿石作物/魔种之咏（IF）
 
 ---
 
