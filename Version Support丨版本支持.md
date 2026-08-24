@@ -21,7 +21,8 @@ The author is currently a full-time teacher and can only rarely maintain these m
 
 - [ ] Tech Reborn丨科技复兴
 - [ ] Modern Industrialization丨现代工业化
-- [ ] Croparia (IF)丨矿石作物/魔种之咏（IF）
+- [ ] Croparia丨矿石作物/魔种之咏
+- [ ] Aether II丨天境II
 
 ---
 
