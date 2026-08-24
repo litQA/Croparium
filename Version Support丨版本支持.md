@@ -17,7 +17,7 @@
 ## Maintenance Status
 The author is currently a full-time teacher and can only rarely maintain these mods in spare time. Due to limited personal energy and no commercial income from this project, the development of new content, support for new mod loaders, updates for new game versions, and even bug fixes will be slowed down.
 ## 维护状态说明
-作者目前是一名全职教师，仅能利用业余时间非常有限地维护这些模组。由于个人精力有限，且本项目没有任何商业收益，因此新内容的开发、对新加载器及新游戏版本的支持，甚至漏洞修复工作，都会有所放缓。
+作者目前仅能利用业余时间非常有限地维护这些模组。由于个人精力有限，且本项目没有任何商业收益，因此新内容的开发、对新加载器及新游戏版本的支持，甚至漏洞修复工作，都会有所放缓。
 
 - [ ] Tech Reborn丨科技复兴
 - [ ] Modern Industrialization丨现代工业化
@@ -43,23 +43,15 @@ The author is currently a full-time teacher and can only rarely maintain these m
 |Status|ES|ES|ES|ES|**AS**|
 |Latest Stable Version|5.0.22-lite|5.0.22|5.0.22|5.0.22|5.0.22|
 
-## NeoForge (20.1-21.3)
-|Minecraft Version|1.20.1|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min NeoForge Version|47.0.106|20.4.251|20.6.139|21.0.167|21.1.233|"21.2.1-beta"|21.3.95|
-|Support Type|STD|STD|STD|STD|**LTS**|STD|STD|
-|Status|ES|MS|MS|MS|**AS**|MS|MS|
-|Latest Stable Version|5.0.22|4.5.5|4.5.5|3.4.0|5.0.22|3.4.0|3.4.0|
+## NeoForge (20.1-21.8)
+|Minecraft Version|1.20.1|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|1.21.4|1.21.5|1.21.6|1.21.7|1.21.8|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min NeoForge Version|47.0.106|20.4.251|20.6.139|21.0.167|21.1.233|"21.2.1-beta"|21.3.95|21.4.155|21.5.75|"21.6.20-beta"|"21.7.25-beta"|21.8.53|
+|Support Type|STD|STD|STD|STD|**LTS**|STD|STD|STD|STD|STD|STD|STD|
+|Status|ES|MS|MS|MS|**AS**|MS|MS|**AS**|MS|MS|MS|**AS**|
+|Latest Stable Version|5.0.22|4.5.5|4.5.5|3.4.0|5.0.22|3.4.0|3.4.0|5.0.22|3.3.0|3.3.1|5.0.20|5.0.22|
 
-## NeoForge (21.4-21.8)
-|Minecraft Version|1.21.4|1.21.5|1.21.6|1.21.7|1.21.8|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min NeoForge Version|21.4.155|21.5.75|"21.6.20-beta"|"21.7.25-beta"|21.8.53|
-|Support Type|STD|STD|STD|STD|STD|
-|Status|**AS**|MS|MS|MS|**AS**|
-|Latest Stable Version|5.0.22|3.3.0|3.3.1|5.0.20|5.0.22|
-
-## NeoForge (26.x)
+## NeoForge (26.1+)
 |Minecraft Version|26.1.2|26.2|
 |:----------:|:--------:|:--------:|
 |Min NeoForge Version|26.1.2.95|26.2.0.59|
@@ -67,7 +59,7 @@ The author is currently a full-time teacher and can only rarely maintain these m
 |Status|**AS**|BETA|
 |Latest Stable Version|5.0.22|-|
 
-## Fabric
+## Fabric (1.21.8-26.2)
 |Minecraft Version|1.21.6|1.21.7|1.21.8|26.1|26.1.1|26.1.2|26.2|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
 |Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.145.1|0.145.4|0.150.0|0.155.2|
