@@ -1,7 +1,7 @@
 # Planned Next Major Version丨计划中下一个主要版本
 ## v5.1
 ### Progress
-█████████████░░░░░░░░░░ 56.52%
+██████████████░░░░░░░░░ 60.87%
 ### Tasks
 #### Main Mod
 - [x] NeoForge 26.2 Support
@@ -18,7 +18,7 @@
 The author is currently a full-time teacher and can only rarely maintain these mods in spare time. Due to limited personal energy and no commercial income from this project, the development of new content, support for new mod loaders, updates for new game versions, and even bug fixes will be slowed down.
 ## 维护状态说明
 作者目前仅能利用业余时间非常有限地维护这些模组。由于个人精力有限，且本项目没有任何商业收益，因此新内容的开发、对新加载器及新游戏版本的支持，甚至漏洞修复工作，都会有所放缓。
-
+- [ ] Fabric 1.21.11 Support
 - [ ] Tech Reborn丨科技复兴
 - [ ] Modern Industrialization丨现代工业化
 - [ ] Croparia丨矿石作物/魔种之咏
@@ -47,7 +47,7 @@ The author is currently a full-time teacher and can only rarely maintain these m
 ## NeoForge (20.1-21.8)
 |Minecraft Version|1.20.1|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|1.21.4|1.21.5|1.21.6|1.21.7|1.21.8|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min NeoForge Version|47.0.106|20.4.251|20.6.139|21.0.167|21.1.233|"21.2.1-beta"|21.3.95|21.4.155|21.5.75|"21.6.20-beta"|"21.7.25-beta"|21.8.53|
+|Min NeoForge Version|47.0.106|20.4.251|20.6.139|21.0.167|21.1.248|"21.2.1-beta"|21.3.95|21.4.155|21.5.75|"21.6.20-beta"|"21.7.25-beta"|21.8.54|
 |Support Type|STD|STD|STD|STD|**LTS**|STD|STD|STD|STD|STD|STD|STD|
 |Status|ES|MS|MS|MS|**AS**|MS|MS|**AS**|MS|MS|MS|**AS**|
 |Latest Stable Version|5.0.22|4.5.5|4.5.5|3.4.0|5.0.22|3.4.0|3.4.0|5.0.22|3.3.0|3.3.1|5.0.20|5.0.22|
@@ -61,11 +61,11 @@ The author is currently a full-time teacher and can only rarely maintain these m
 |Latest Stable Version|5.0.22|-|
 
 ## Fabric (1.21.8-26.2)
-|Minecraft Version|1.21.6|1.21.7|1.21.8|26.1|26.1.1|26.1.2|26.2|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.145.1|0.145.4|0.150.0|0.155.2|
-|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|
-|Support Type|STD|STD|STD|STD|STD|STD|STD|
-|Status|ES|ES|**AS**|ES|ES|**AS**|BETA|
-|Latest Stable Version|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|5.0.22-lite|-|
+|Minecraft Version|1.21.6|1.21.7|1.21.8|1.21.11|26.1|26.1.1|26.1.2|26.2|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|
+|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|
+|Support Type|STD|STD|STD|STD|STD|STD|STD|STD|
+|Status|ES|ES|**AS**|DEV|ES|ES|**AS**|BETA|
+|Latest Stable Version|5.0.22-lite|5.0.22-lite|5.0.22-lite|-|5.0.22-lite|5.0.22-lite|5.0.22-lite|-|
 
