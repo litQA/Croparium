@@ -1,5 +1,5 @@
 # Planned Next Major Version丨计划中下一个主要版本
-## v5.1
+## v5.1 & v5.1-lite
 ### Progress
 ███████████████░░░░░░░░ 65.22%
 ### Tasks
