@@ -1,7 +1,7 @@
 # Planned Next Major Version丨计划中下一个主要版本
 ## v5.1
 ### Progress
-██████████████░░░░░░░░░ 60.87%
+███████████████░░░░░░░░ 65.22%
 ### Tasks
 #### Main Mod
 - [x] NeoForge 26.2 Support
@@ -14,7 +14,7 @@
 - [x] Applied Energistics 2丨应用能源2
 - [ ] Shincolle-Shin丨深海舰队收藏
 - [ ] Tech Reborn丨科技复兴
-- [ ] Modern Industrialization丨现代工业化
+- [x] Modern Industrialization丨现代工业化
 - [ ] Croparia丨矿石作物/魔种之咏
 
 # Planned Supported Mods (Long-term)丨计划中的联动模组（长期计划）
