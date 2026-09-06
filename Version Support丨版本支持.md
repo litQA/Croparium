@@ -7,6 +7,7 @@
 - [x] NeoForge 26.2 Support
 - [x] Fabric 26.2 Support
 - [ ] Fabric 1.21.11 Support
+- [ ] Forge 1.16.5 Support
 #### Expansions
 - [ ] SimpleOres2丨简单矿石2
 - [ ] Thermal Foundation丨热力基础
@@ -39,12 +40,12 @@ The author is currently a full-time teacher and can only rarely maintain these m
 |**DEV**|Developing- No stable version|开发中，无稳定版|
 
 ## Minecraft Forge
-|Minecraft Version|1.17.1|1.18.2|1.19.2|1.19.4|1.20.1|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Forge Version|37.0.13|40.0.0|43.4.3|45.3.4|47.3.10|
-|Support Type|STD|**LTS**|**LTS**|**LTS**|**LTS**|
-|Status|ES|ES|ES|ES|**AS**|
-|Latest Stable Version|5.0.26-lite|5.0.26|5.0.26|5.0.26|5.0.26|
+|Minecraft Version|1.16.5|1.17.1|1.18.2|1.19.2|1.19.4|1.20.1|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Forge Version|36.2.0|37.0.13|40.0.0|43.4.3|45.3.4|47.3.10|
+|Support Type|**LTS**|STD|**LTS**|**LTS**|**LTS**|**LTS**|
+|Status|DEV|ES|ES|ES|ES|**AS**|
+|Latest Stable Version|-|5.0.26-lite|5.0.26|5.0.26|5.0.26|5.0.26|
 
 ## NeoForge (20.1-21.8)
 |Minecraft Version|1.20.1|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|1.21.4|1.21.5|1.21.6|1.21.7|1.21.8|
