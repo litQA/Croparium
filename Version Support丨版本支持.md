@@ -1,7 +1,7 @@
 # Planned Next Major Version丨计划中下一个主要版本
 ## v5.1 & v5.1-lite
 ### Progress
-███████████████░░░░░░░░ 65.22%
+████████████████░░░░░░░ 69.57%
 ### Tasks
 #### Main Mod
 - [x] NeoForge 26.2 Support
@@ -10,7 +10,7 @@
 - [ ] Forge 1.16.5 Support
 #### Expansions
 - [ ] SimpleOres2丨简单矿石2
-- [ ] Thermal Foundation丨热力基础
+- [x] Thermal Foundation丨热力基础
 - [x] Immersive Engineering丨沉浸工程
 - [x] Applied Energistics 2丨应用能源2
 - [ ] Shincolle-Shin丨深海舰队收藏
