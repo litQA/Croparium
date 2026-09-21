@@ -1,20 +1,14 @@
 # Planned Next Major Version丨计划中下一个主要版本
-## v5.1 & v5.1-lite
-### Progress
-██████████████████████░ 95.65%
+## v5.2 & v5.2-lite
+
 ### Tasks
-#### Main Mod
-- [x] NeoForge 26.2 Support
-- [x] Fabric 26.2 Support
+#### Main Mod-New Loader
+- [ ] NeoForge 26.3 Support
+- [ ] Fabric 26.3 Support
+- [ ] Forge 1.16.5 Support
 
 #### Expansions
-- [x] SimpleOres2丨简单矿石2
-- [x] Thermal Foundation丨热力基础
-- [x] Immersive Engineering丨沉浸工程
-- [x] Applied Energistics 2丨应用能源2
-- [x] Shinkeiseikan Collection丨深海舰队收藏
-- [x] Modern Industrialization丨现代工业化
-- [x] Croparia丨矿石魔种
+null
 
 
 # Planned Supported Mods (Long-term)丨计划中的联动模组（长期计划）
