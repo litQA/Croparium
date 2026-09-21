@@ -1,22 +1,22 @@
 # Planned Next Major Version丨计划中下一个主要版本
 ## v5.1 & v5.1-lite
 ### Progress
-████████████████░░░░░░░ 69.57%
+██████████████████░░░░░ 78.26%
 ### Tasks
 #### Main Mod
 - [x] NeoForge 26.2 Support
 - [x] Fabric 26.2 Support
-- [ ] Fabric 1.21.11 Support
-- [ ] Forge 1.16.5 Support
+
 #### Expansions
-- [ ] SimpleOres2丨简单矿石2
+- [x] SimpleOres2丨简单矿石2
 - [x] Thermal Foundation丨热力基础
 - [x] Immersive Engineering丨沉浸工程
 - [x] Applied Energistics 2丨应用能源2
-- [ ] Shincolle-Shin丨深海舰队收藏
+- [x] Shinkeiseikan Collection丨深海舰队收藏
 - [ ] Tech Reborn丨科技复兴
 - [x] Modern Industrialization丨现代工业化
-- [ ] Croparia丨矿石作物/魔种之咏
+- [x] Croparia丨矿石魔种
+- [ ] The Undergarden丨深暗之园
 
 # Planned Supported Mods (Long-term)丨计划中的联动模组（长期计划）
 ## Maintenance Status
