@@ -8,17 +8,10 @@
 - [ ] Forge 1.16.5 Support
 
 #### Expansions
-null
-
-
-# Planned Supported Mods (Long-term)丨计划中的联动模组（长期计划）
-## Maintenance Status
-The author is currently a full-time teacher and can only rarely maintain these mods in spare time. Due to limited personal energy and no commercial income from this project, the development of new content, support for new mod loaders, updates for new game versions, and even bug fixes will be slowed down.
-## 维护状态说明
-作者目前仅能利用业余时间非常有限地维护这些模组。由于个人精力有限，且本项目没有任何商业收益，因此新内容的开发、对新加载器及新游戏版本的支持，甚至漏洞修复工作，都会有所放缓。
-
-
 - [ ] Aether II丨天境II
+- [ ] The Undergarden丨深暗之园
+- [ ] Big Reactors丨大型反应堆
+- [ ] Draconic Evolution丨龙之研究
 
 ---
 
@@ -49,19 +42,19 @@ The author is currently a full-time teacher and can only rarely maintain these m
 |Latest Stable Version|5.0.26|5.0.26-lite|5.0.26-lite|3.4.0|5.0.26|3.4.0|3.4.0|5.0.26|3.3.0|3.3.1|5.0.20|5.0.26|
 
 ## NeoForge (26+)
-|Minecraft Version|26.1.2|26.2|
-|:----------:|:--------:|:--------:|
-|Min NeoForge Version|26.1.2.100|26.2.0.60|
-|Support Type|STD|STD|
-|Status|**AS**|**AS**|
-|Latest Stable Version|5.0.26|5.0.26|
+|Minecraft Version|26.1.2|26.2|26.3|
+|:----------:|:--------:|:--------:|:--------:|
+|Min NeoForge Version|26.1.2.100|26.2.0.60|"26.3.0.6-beta"|
+|Support Type|STD|STD|STD|
+|Status|**AS**|**AS**|DEV|
+|Latest Stable Version|5.0.26|5.0.26|-|
 
 ## Fabric (1.21.8-26.2)
-|Minecraft Version|1.21.6|1.21.7|1.21.8|1.21.11|26.1|26.1.1|26.1.2|26.2|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|
-|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|
-|Support Type|STD|STD|STD|STD|STD|STD|STD|STD|
-|Status|ES|ES|**AS**|DEV|ES|ES|**AS**|BETA|
-|Latest Stable Version|5.0.26-lite|5.0.26-lite|5.0.26-lite|-|5.0.26-lite|5.0.26-lite|5.0.26-lite|5.0.26-lite|
+|Minecraft Version|1.21.6|1.21.7|1.21.8|1.21.11|26.1|26.1.1|26.1.2|26.2|26.3|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|-|
+|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|-|
+|Support Type|STD|STD|STD|STD|STD|STD|STD|STD|STD|
+|Status|ES|ES|**AS**|DEV|ES|ES|**AS**|**AS**|DEV|
+|Latest Stable Version|5.0.26-lite|5.0.26-lite|5.0.26-lite|-|5.0.26-lite|5.0.26-lite|5.0.26-lite|5.0.26-lite|-|
 
