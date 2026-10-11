@@ -5,6 +5,7 @@
 #### Main Mod-New Loader
 - [ ] NeoForge 26.3 Support
 - [ ] Fabric 26.3 Support
+- [x] Fabric 1.21.11 Support
 - [ ] Forge 1.16.5 Support
 
 #### Expansions
