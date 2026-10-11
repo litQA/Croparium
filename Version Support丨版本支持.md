@@ -45,9 +45,9 @@
 ## NeoForge (26+)
 |Minecraft Version|26.1.2|26.2|26.3|
 |:----------:|:--------:|:--------:|:--------:|
-|Min NeoForge Version|26.1.2.100|26.2.0.60|"26.3.0.6-beta"|
+|Min NeoForge Version|26.1.2.100|26.2.0.60|"26.3.0.70-beta"|
 |Support Type|STD|STD|STD|
-|Status|**AS**|**AS**|DEV|
+|Status|**AS**|**AS**|Alpha-Test|
 |Latest Stable Version|5.1.0|5.1.0|-|
 
 ## Fabric (1.21.8-26.2)
@@ -56,6 +56,6 @@
 |Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|-|
 |Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|-|
 |Support Type|STD|STD|STD|STD|STD|STD|STD|STD|STD|
-|Status|ES|ES|**AS**|DEV|ES|ES|**AS**|**AS**|DEV|
+|Status|ES|ES|**AS**|Beta-Test|ES|ES|**AS**|**AS**|DEV|
 |Latest Stable Version|5.0.26-lite|5.0.26-lite|5.0.26-lite|-|5.0.26-lite|5.0.26-lite|5.0.26-lite|5.0.26-lite|-|
 
