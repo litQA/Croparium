@@ -15,6 +15,10 @@
 - [ ] Draconic Evolution丨龙之研究
 
 ---
+# Features Under Consideration丨正在考虑中的项目
+- Bedrock Port
+- Forge 1.12.2 Port
+---
 
 # Version Support丨版本支持
 |Symbol/符号|Meaning|含义|
@@ -45,7 +49,7 @@
 ## NeoForge (26+)
 |Minecraft Version|26.1.2|26.2|26.3|
 |:----------:|:--------:|:--------:|:--------:|
-|Min NeoForge Version|26.1.2.108|26.2.0.88|"26.3.0.70-beta"|
+|Min NeoForge Version|26.1.2.108|26.2.0.88|26.3.0.76|
 |Support Type|STD|STD|STD|
 |Status|**AS**|**AS**|Alpha-Test|
 |Latest Stable Version|5.1.0|5.1.0|-|
