@@ -4,7 +4,7 @@
 ### Tasks
 #### Main Mod-New Loader
 - [ ] NeoForge 26.3 Support
-- [ ] Fabric 26.3 Support
+- [x] Fabric 26.3 Support
 - [x] Fabric 1.21.11 Support
 - [ ] Forge 1.16.5 Support
 
@@ -57,9 +57,9 @@
 ## Fabric (1.21.8-26.2)
 |Minecraft Version|1.21.6|1.21.7|1.21.8|1.21.11|26.1|26.1.1|26.1.2|26.2|26.3|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|-|
-|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|-|
+|Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|0.163.0|
+|Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|
 |Support Type|STD|STD|STD|STD|STD|STD|STD|STD|STD|
-|Status|ES|ES|**AS**|Beta-Test|ES|ES|**AS**|**AS**|DEV|
+|Status|ES|ES|**AS**|Beta-Test|ES|ES|**AS**|**AS**|BETA-Test|
 |Latest Stable Version|5.1.0-lite|5.1.0-lite|5.1.0-lite|-|5.1.0-lite|5.1.0-lite|5.1.0-lite|5.1.0-lite|-|
 
