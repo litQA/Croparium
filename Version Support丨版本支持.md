@@ -3,7 +3,7 @@
 
 ### Tasks
 #### Main Mod-New Loader
-- [ ] NeoForge 26.3 Support
+- [x] NeoForge 26.3 Support
 - [x] Fabric 26.3 Support
 - [x] Fabric 1.21.11 Support
 - [ ] Forge 1.16.5 Support
@@ -31,12 +31,12 @@
 |**DEV**|Developing- No stable version|开发中，无稳定版|
 
 ## Minecraft Forge
-|Minecraft Version|1.16.5|1.17.1|1.18.2|1.19.2|1.19.4|1.20.1|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Forge Version|36.2.0|37.0.13|40.0.0|43.4.3|45.3.4|47.3.10|
-|Support Type|**LTS**|STD|**LTS**|**LTS**|**LTS**|**LTS**|
-|Status|DEV|ES|ES|ES|ES|**AS**|
-|Latest Stable Version|-|5.1.0-lite|5.1.0|5.1.0|5.1.0|5.1.0|
+|Minecraft Version|1.12.2|1.16.5|1.17.1|1.18.2|1.19.2|1.19.4|1.20.1|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Forge Version||36.2.0|37.0.13|40.0.0|43.4.3|45.3.4|47.3.10|
+|Support Type|**LTS**|**LTS**|STD|**LTS**|**LTS**|**LTS**|**LTS**|
+|Status|DEV|DEV|ES|ES|ES|ES|**AS**|
+|Latest Stable Version|-|-|5.1.0-lite|5.1.0|5.1.0|5.1.0|5.1.0|
 
 ## NeoForge (20.1-21.8)
 |Minecraft Version|1.20.1|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|1.21.4|1.21.5|1.21.6|1.21.7|1.21.8|
@@ -60,6 +60,6 @@
 |Min Fabric API Version|0.128.2|0.129.0|0.136.1|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|0.163.0|
 |Min Fabric Loader Version|0.18.4|0.18.4|0.18.4|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|
 |Support Type|STD|STD|STD|STD|STD|STD|STD|STD|STD|
-|Status|ES|ES|**AS**|Beta-Test|ES|ES|**AS**|**AS**|BETA-Test|
+|Status|MS|MS|**AS**|Beta-Test|ES|ES|**AS**|**AS**|BETA-Test|
 |Latest Stable Version|5.1.0-lite|5.1.0-lite|5.1.0-lite|-|5.1.0-lite|5.1.0-lite|5.1.0-lite|5.1.0-lite|-|
 
