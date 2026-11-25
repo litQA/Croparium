@@ -38,16 +38,16 @@
 
 ## Minecraft Forge
 ### 1.12.2-1.19.4
-|Minecraft Version|1.12.2|1.16.5|1.17.1|1.18.2|1.19.2|1.19.4|1.20.1|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Forge Version|14.23.5.2860|36.2.0|37.0.13|40.0.0|43.4.3|45.3.4|47.3.10|
-|Support Type|**LTS**|**LTS**|STD|**LTS**|**LTS**|**LTS**|**LTS**|
-|Status|Alpha-Test|DEV|ES|ES|ES|ES|**AS**|
-|Latest Stable Version|-|-|5.1.0-lite|5.1.0|5.1.0|5.1.0|5.1.0|
+|Minecraft Version|1.12.2|1.16.5|1.17.1|1.18.2|1.19.2|1.19.4|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Forge Version|14.23.5.2860|36.2.0|37.0.13|40.0.0|43.4.3|45.3.4|
+|Support Type|**LTS**|**LTS**|STD|**LTS**|**LTS**|**LTS**|
+|Status|Alpha-Test|DEV|ES|ES|ES|ES|
+|Latest Stable Version|-|-|5.1.0-lite|5.1.0|5.1.0|5.1.0|
 ### 1.20.1+
 |Minecraft Version|1.20.1|1.20.4|1.21.1|26.3|
 |:----------:|:--------:|:--------:|:--------:|:--------:|
-|Min Forge Version|47.3.10|49.2.13|51.2.21|66.1.0|
+|Min Forge Version|47.3.10|49.2.13|51.1.21|66.1.0|
 |Support Type|**LTS**|STD|**LTS**|STD|
 |Status|**AS**|Beta-Test|Beta-Test|Beta-Test|
 |Latest Stable Version|5.1.0|-|-|-|
