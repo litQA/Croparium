@@ -47,7 +47,7 @@
 ### 1.20.1+
 |Minecraft Version|1.20.1|1.20.4|1.21.1|26.3|
 |:----------:|:--------:|:--------:|:--------:|:--------:|
-|Min Forge Version|47.3.10|36.2.0|37.0.13|40.0.0|
+|Min Forge Version|47.3.10|49.2.13|51.2.21|66.1.0|
 |Support Type|**LTS**|STD|**LTS**|STD|
 |Status|**AS**|Beta-Test|Beta-Test|Beta-Test|
 |Latest Stable Version|5.1.0|-|-|-|
@@ -56,7 +56,7 @@
 ### 1.20.1-1.21.5
 |Minecraft Version|1.20.1|1.20.4|1.20.6|1.21|1.21.1|1.21.2|1.21.3|1.21.4|1.21.5|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:----------:|:--------:|:--------:|
-|Min NeoForge Version|47.0.106|20.4.251|20.6.139|21.0.167|21.1.252|"21.2.1-beta"|21.3.95|21.4.155|21.5.75|
+|Min NeoForge Version|47.0.106|20.4.251|20.6.139|21.0.167|21.1.252|21.2.1-beta|21.3.95|21.4.155|21.5.75|
 |Support Type|STD|STD|STD|STD|**LTS**|STD|STD|STD|STD|
 |Status|ES|MS|MS|MS|**AS**|MS|MS|**AS**|MS|
 |Latest Stable Version|5.1.0|5.1.0-lite|5.1.0-lite|3.4.0|5.1.0|3.4.0|3.4.0|5.1.0|3.3.0|
@@ -64,26 +64,26 @@
 ### 1.21.6+
 |Minecraft Version|1.21.6|1.21.7|1.21.8|26.1.2|26.2|26.3|
 |:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min NeoForge Version|"21.6.20-beta"|"21.7.25-beta"|21.8.54|26.1.2.108|26.2.0.88|26.3.0.76|
+|Min NeoForge Version|21.6.20-beta|21.7.25-beta|21.8.54|26.1.2.108|26.2.0.88|26.3.0.76|
 |Support Type|STD|STD|STD|STD|STD|STD|
 |Status|MS|MS|**AS**|**AS**|**AS**|Beta-Test|
 |Latest Stable Version|3.3.1|5.0.20|5.1.0|5.1.0|5.1.0|-|
 
 ## Fabric
-### 1.20.1-1.21.8
-|Minecraft Version|1.20.1|1.21.1|1.21.6|1.21.7|1.21.8|
-|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Fabric API Version|0.92.12|0.166.18|0.128.2|0.129.0|0.136.1|
-|Min Fabric Loader Version|0.20.1|0.20.1|0.18.4|0.18.4|0.18.4|
-|Support Type|**LTS**|**LTS**|STD|STD|STD|
-|Status|Beta-test|Beta-Test|MS|MS|**AS**|
-|Latest Stable Version|-|-|5.1.0-lite|5.1.0-lite|5.1.0-lite|
+### 1.20.1-1.21.11
+|Minecraft Version|1.20.1|1.21.1|1.21.6|1.21.7|1.21.8|1.21.11|
+|:----------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Fabric API Version|0.141.6|0.92.12|0.166.18|0.128.2|0.129.0|0.136.1|
+|Min Fabric Loader Version|0.19.3|0.20.1|0.20.1|0.18.4|0.18.4|0.18.4|
+|Support Type|STD|**LTS**|**LTS**|STD|STD|STD|
+|Status|Beta-Test|Beta-test|Beta-Test|MS|MS|**AS**|
+|Latest Stable Version|-|-|-|5.1.0-lite|5.1.0-lite|5.1.0-lite|
 
-### 1.21.11+
-|Minecraft Version|1.21.11|26.1|26.1.1|26.1.2|26.2|26.3|
-|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
-|Min Fabric API Version|0.141.6|0.145.1|0.145.4|0.150.0|0.155.2|0.163.0|
-|Min Fabric Loader Version|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|
-|Support Type|STD|STD|STD|STD|STD|STD|
-|Status|Beta-Test|ES|ES|**AS**|**AS**|BETA-Test|
-|Latest Stable Version|-|5.1.0-lite|5.1.0-lite|5.1.0-lite|5.1.0-lite|-|
+### 26.1+
+|Minecraft Version|26.1|26.1.1|26.1.2|26.2|26.3|
+|:--------:|:--------:|:--------:|:--------:|:--------:|:--------:|
+|Min Fabric API Version|0.145.1|0.145.4|0.150.0|0.155.2|0.163.0|
+|Min Fabric Loader Version|0.19.3|0.19.3|0.19.3|0.19.3|0.19.3|
+|Support Type|STD|STD|STD|STD|STD|
+|Status|ES|ES|**AS**|**AS**|BETA-Test|
+|Latest Stable Version|5.1.0-lite|5.1.0-lite|5.1.0-lite|5.1.0-lite|-|
